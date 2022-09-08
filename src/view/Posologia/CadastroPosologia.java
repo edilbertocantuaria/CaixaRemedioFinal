@@ -278,11 +278,11 @@ public class CadastroPosologia {
 				int numeroVezes = Integer.parseInt(getTfNumeroVezes().getText().trim());
 				String rotinaMedicacao = getTfRotinaMedicacao().getText().trim();
 				String horario1 = getTfHorario1().getText().trim();
-				String horario2 = getTfHorario1().getText().trim();
-				String horario3 = getTfHorario1().getText().trim();
-				String horario4 = getTfHorario1().getText().trim();
-				String horario5 = getTfHorario1().getText().trim();
-				String horario6 = getTfHorario1().getText().trim();
+				String horario2 = getTfHorario2().getText().trim();
+				String horario3 = getTfHorario3().getText().trim();
+				String horario4 = getTfHorario4().getText().trim();
+				String horario5 = getTfHorario5().getText().trim();
+				String horario6 = getTfHorario6().getText().trim();
 				float dosagem = Float.parseFloat(getTfDosagem().getText().trim());
 				String aspectoMedicamento = getTfAspecto().getText().trim();
 				String dataInicioTratamento = getTfDataInicioTratamento().getText().trim();

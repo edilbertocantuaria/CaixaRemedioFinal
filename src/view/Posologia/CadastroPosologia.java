@@ -272,10 +272,6 @@ public class CadastroPosologia {
 
 			public void cadastraPosologia() {
 
-				// deixa o cursor dentro desse jtextfield's
-				// cbEscolhaPaciente.requestFocus();
-				// cbEscolhaMedicamento.requestFocus();
-
 				// cadastra a posologia
 				String nomePaciente = (String) getCbEscolhaPaciente().getSelectedItem();
 				String nomeMedicacao = (String) getCbEscolhaMedicamento().getSelectedItem();

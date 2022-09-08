@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -20,7 +19,6 @@ import controller.PacienteController;
 
 public class BuscaPaciente<Pessoa> {
 	private static JFrame frame = new JFrame("Buscar cadastro de paciente");
-	private DefaultListModel<String> listModel = new DefaultListModel<>();
 	private JPanel panel;
 	private JLabel lbInstrucao;
 	private JFormattedTextField jftCPFBusca;

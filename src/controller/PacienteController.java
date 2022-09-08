@@ -140,6 +140,7 @@ public class PacienteController {
 		view_principalPaciente.dispose();
 	}
 
+	@SuppressWarnings("rawtypes")
 	private void executarBotaoBuscarPaciente() {
 		BuscaPaciente obj = new BuscaPaciente();
 		obj.setVisible(true);

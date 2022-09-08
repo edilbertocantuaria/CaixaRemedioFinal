@@ -22,7 +22,7 @@ public class Posologia {
 	private String dataFimTratamento;
 	private String observacaoAdicionalPosologia;
 
-	public Posologia(String nomePaciente, String nomeMedicacao, int numeroVezes, String rotinaMedicacao,
+	public Posologia(String nomePaciente, String nomeMedicamento, int numeroVezes, String rotinaMedicacao,
 			String horario1, String horario2, String horario3, String horario4, String horario5, String horario6,
 			float dosagem, String aspectoMedicamento, String dataInicioTratamento, String dataFimTratamento,
 			String observacaoAdicionalPosologia) {

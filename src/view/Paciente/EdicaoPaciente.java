@@ -153,9 +153,6 @@ public class EdicaoPaciente {
 
 					String cpfBusca = jftCPFBusca.getText();
 
-					PacienteController pacienteController = new PacienteController();
-					Pessoa paciente = pacienteController.buscarPacientes(cpfBusca);
-
 					// Para inserir as informações de um paciente na lista (igual a do cadastro)
 					String nomePaciente = getTfNomePaciente().getText().trim();
 					String cpf = getTfCPF().getText().trim();
@@ -164,18 +161,29 @@ public class EdicaoPaciente {
 					String genero = getTfGenero().getText().trim();
 					String observacaoAdicionalPaciente = getTfObsAdcPaciente().getText().trim();
 
-					// Atualiza os dados do paciente
-					paciente.setNome(nomePaciente);
-					paciente.setCpf(cpf);
-					paciente.setDataNascimento(dataNascimento);
-					paciente.setTelefone(telefone);
-					paciente.setGenero(genero);
-					paciente.setObservacaoAdicionalPessoa(observacaoAdicionalPaciente);
-
-					if (getTfNomePaciente().getText().isEmpty() && getTfCPF().getText().isEmpty()) {
-						JOptionPane.showMessageDialog(null,
-								"Não foi possível realizar atualizar o cadastro: o campo nome e CPF não podem estar vazio!");
+					int i;
+					if (getTfCPF().getText() == ".   .   -") {
+						i = 0;
 					} else {
+						i = 1;
+					}
+
+					if (getTfNomePaciente().getText().isEmpty() || i != 0 || getTfDataNascimento().getText().isEmpty()
+							|| getTfTelefone().getText().isEmpty() || getTfGenero().getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null,
+								"Não foi possível realizar o cadastro: os dados do paciente não podem estar vazios!");
+						jftCPFBusca.setText("");
+					} else {
+						PacienteController pacienteController = new PacienteController();
+						Pessoa paciente = pacienteController.buscarPacientes(cpfBusca);
+
+						// Atualiza os dados do paciente
+						paciente.setNome(nomePaciente);
+						paciente.setCpf(cpf);
+						paciente.setDataNascimento(dataNascimento);
+						paciente.setTelefone(telefone);
+						paciente.setGenero(genero);
+						paciente.setObservacaoAdicionalPessoa(observacaoAdicionalPaciente);
 
 						System.out.println(PacienteController.pacientes.toString());
 						JOptionPane.showMessageDialog(null, "Atualização efetivada!");

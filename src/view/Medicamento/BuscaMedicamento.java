@@ -110,18 +110,22 @@ public class BuscaMedicamento {
 				MedicamentoController medicamentoController = new MedicamentoController();
 				Medicamento resultado = medicamentoController.buscarMedicamentos(nomeMedicacao);
 
-				tabelaBuscaMedicamento = (DefaultTableModel) jtMedicacaoEncontrada.getModel();
-				tabelaBuscaMedicamento.addRow(new String[] { resultado.getNomeRemedio(), resultado.getCodigo(),
-						resultado.getDescricao(), resultado.getFabricante(), resultado.getBula(),
-						resultado.getObservacaoAdicionalMedicamento() });
+				if (resultado == null) {
+					JOptionPane.showMessageDialog(null, "Medicamento não cadastrado!");
+				} else {
+					tabelaBuscaMedicamento = (DefaultTableModel) jtMedicacaoEncontrada.getModel();
+					tabelaBuscaMedicamento.addRow(new String[] { resultado.getNomeRemedio(), resultado.getCodigo(),
+							resultado.getDescricao(), resultado.getFabricante(), resultado.getBula(),
+							resultado.getObservacaoAdicionalMedicamento() });
 
-				JOptionPane.showMessageDialog(null, "Busca efetivada!");
+					JOptionPane.showMessageDialog(null, "Busca efetivada!");
 
-				// deixa o cursor dentro desse jtextfield's
-				tfMedicamentoBusca.requestFocus();
+					// deixa o cursor dentro desse jtextfield's
+					tfMedicamentoBusca.requestFocus();
 
-				// limpando os campos dos jtextfield's
-				tfMedicamentoBusca.setText("");
+					// limpando os campos dos jtextfield's
+					tfMedicamentoBusca.setText("");
+				}
 			}
 		});
 

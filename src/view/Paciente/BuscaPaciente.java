@@ -95,21 +95,25 @@ public class BuscaPaciente<Pessoa> {
 				PacienteController pacienteController = new PacienteController();
 				Pessoa resultado = (Pessoa) pacienteController.buscarPacientes(cpf);
 
-				tabelaBuscaPaciente = (DefaultTableModel) jtPacienteEncontrado.getModel();
-				tabelaBuscaPaciente.addRow(new String[] { ((model.Pessoa) resultado).getNome(),
-						((model.Pessoa) resultado).getCpf(), ((model.Pessoa) resultado).getDataNascimento(),
-						((model.Pessoa) resultado).getTelefone(), ((model.Pessoa) resultado).getGenero(),
-						((model.Pessoa) resultado).getObservacaoAdicionalPessoa() });
+				if (resultado == null) {
+					JOptionPane.showMessageDialog(null, "Paciente não cadastrado!");
+				} else {
 
-				// PacienteController.pacientes.toString();
-				JOptionPane.showMessageDialog(null, "Busca efetivada!");
+					tabelaBuscaPaciente = (DefaultTableModel) jtPacienteEncontrado.getModel();
+					tabelaBuscaPaciente.addRow(new String[] { ((model.Pessoa) resultado).getNome(),
+							((model.Pessoa) resultado).getCpf(), ((model.Pessoa) resultado).getDataNascimento(),
+							((model.Pessoa) resultado).getTelefone(), ((model.Pessoa) resultado).getGenero(),
+							((model.Pessoa) resultado).getObservacaoAdicionalPessoa() });
 
-				// deixa o cursor dentro desse jtextfield's
-				jftCPFBusca.requestFocus();
+					// PacienteController.pacientes.toString();
+					JOptionPane.showMessageDialog(null, "Busca efetivada!");
 
-				// limpando os campos dos jtextfield's
-				jftCPFBusca.setText("");
+					// deixa o cursor dentro desse jtextfield's
+					jftCPFBusca.requestFocus();
 
+					// limpando os campos dos jtextfield's
+					jftCPFBusca.setText("");
+				}
 			}
 		});
 

@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.text.MaskFormatter;
 
 import controller.PacienteController;
+import model.Paciente;
 
 public class ExclusaoPaciente {
 	private static JFrame frame = new JFrame("Excluir Paciente");
@@ -77,15 +78,22 @@ public class ExclusaoPaciente {
 		btnApagarPaciente.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				try {
+				// deixa o cursor dentro desse jtextfield's
+				jftCPFBusca.requestFocus();
 
-					String cpf = jftCPFBusca.getText();
+				String cpf = jftCPFBusca.getText();
 
-					PacienteController pacienteController = new PacienteController();
-					pacienteController.excluirPacientes(cpf);
+				PacienteController pacienteController = new PacienteController();
+				Paciente resultado = pacienteController.excluirPacientes(cpf);
+
+				if (resultado == null) {
+					JOptionPane.showMessageDialog(null, "CPF inválido!");
 
 					System.out.println(PacienteController.pacientes.toString());
+				} else {
+
 					JOptionPane.showMessageDialog(null, "Paciente excluido!");
+					System.out.println(PacienteController.pacientes.toString());
 
 					// deixa o cursor dentro desse jtextfield's
 					jftCPFBusca.requestFocus();
@@ -93,8 +101,6 @@ public class ExclusaoPaciente {
 					// limpando os campos dos jtextfield's
 					jftCPFBusca.setText("");
 
-				} catch (NumberFormatException e1) {
-					JOptionPane.showMessageDialog(null, "CPF inválido!");
 				}
 			}
 		});

@@ -161,7 +161,8 @@ public class CadastroPaciente {
 				// deixa o cursor dentro desse jtextfield's
 				tfNomePaciente.requestFocus();
 
-				// Cadastra as informações de um paciente na lista
+				// Cadastra as informações de um paciente na
+				// listagetTfDataNascimento().getText()
 				String nomePaciente = getTfNomePaciente().getText().trim();
 				String cpf = getTfCPF().getText().trim();
 				String dataNascimento = getTfDataNascimento().getText().trim();
@@ -169,15 +170,21 @@ public class CadastroPaciente {
 				String genero = getTfGenero().getText().trim();
 				String observacaoAdicionalPaciente = getTfObsAdcPaciente().getText().trim();
 
-				Paciente paciente = new Paciente(nomePaciente, cpf, dataNascimento, telefone, genero,
-						observacaoAdicionalPaciente);
-				PacienteController.pacientes.add(paciente);
-
-				if (getTfNomePaciente().getText().isEmpty() && getTfCPF().getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null,
-							"Não foi possível realizar o cadastro: o campo nome e CPF não podem estar vazio!");
+				int i;
+				if (getTfCPF().getText() == ".   .   -") {
+					i = 0;
 				} else {
+					i = 1;
+				}
 
+				if (getTfNomePaciente().getText().isEmpty() || i != 0 || getTfDataNascimento().getText().isEmpty()
+						|| getTfTelefone().getText().isEmpty() || getTfGenero().getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null,
+							"Não foi possível realizar o cadastro: os dados do paciente não podem estar vazios!");
+				} else {
+					Paciente paciente = new Paciente(nomePaciente, cpf, dataNascimento, telefone, genero,
+							observacaoAdicionalPaciente);
+					PacienteController.pacientes.add(paciente);
 					System.out.println(PacienteController.pacientes.toString());
 					JOptionPane.showMessageDialog(null, "Cadastro efetivado!");
 				}

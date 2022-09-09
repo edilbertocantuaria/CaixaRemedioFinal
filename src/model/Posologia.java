@@ -172,13 +172,13 @@ public class Posologia {
 
 	@Override
 	public String toString() {
-		return "\n\nPosologia [medicamentos=" + nomeMedicamento + ",\n nomePaciente=" + nomePaciente
-				+ ",\\n nomeMedicamento=" + nomeMedicamento + ",\n numeroVezes=" + numeroVezes + ",\\n rotinaMedicacao="
-				+ rotinaMedicacao + ",\n horario1=" + horario1 + ",\n horario2=" + horario2 + ",\n horario3=" + horario3
-				+ ",\n horario4=" + horario4 + "\n horario5=" + horario5 + "\n horario6=" + horario6 + "\n dosagem="
-				+ dosagem + ",\n aspectoMedicamento=" + aspectoMedicamento + ",\n dataInicioTratamento="
-				+ dataInicioTratamento + ",\n dataFimTratamento=" + dataFimTratamento
-				+ ",\nn observacaoAdicionalPosologia=" + observacaoAdicionalPosologia + "]";
+		return "Posologia [medicamentos=" + medicamentos + ",\n\n nomePaciente=" + nomePaciente + ",\n nomeMedicamento="
+				+ nomeMedicamento + ",\n numeroVezes=" + numeroVezes + ",\n rotinaMedicacao=" + rotinaMedicacao
+				+ ",\n horario1=" + horario1 + ",\n horario2=" + horario2 + ",\n horario3=" + horario3 + ",\n horario4="
+				+ horario4 + ",\n horario5=" + horario5 + ",\n horario6=" + horario6 + ",\n dosagem=" + dosagem
+				+ ",\n aspectoMedicamento=" + aspectoMedicamento + ",\n dataInicioTratamento=" + dataInicioTratamento
+				+ ",\n dataFimTratamento=" + dataFimTratamento + ",\n observacaoAdicionalPosologia="
+				+ observacaoAdicionalPosologia + "]\n\n\n";
 	}
 
 }

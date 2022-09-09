@@ -189,14 +189,17 @@ public class CadastroMedicamento {
 				 * 
 				 * @version 09 set 22
 				 */
-				Medicamento medicamento = new Medicamento(nomeRemedio, codigo, descricao, fabricante, bula,
-						principioAtivo, observacaoAdicionalMedicamento);
-				MedicamentoController.medicamentos.add(medicamento);
 
-				if (getTfNomeMedicamento().getText().isEmpty()) {
+				if (getTfNomeMedicamento().getText().isEmpty() || getTfCodigo().getText().isEmpty()
+						|| getTfDescricao().getText().isEmpty() || getTfFabricante().getText().isEmpty()
+						|| getTfBula().getText().isEmpty() || getTfPrincipioAtivo().getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null,
-							"Não foi possível realizar o cadastro: nome do medicamento não pode estar vazio!");
+							"Não foi possível realizar o cadastro: os dados do medicamento não podem estar vazios!");
+
 				} else {
+					Medicamento medicamento = new Medicamento(nomeRemedio, codigo, descricao, fabricante, bula,
+							principioAtivo, observacaoAdicionalMedicamento);
+					MedicamentoController.medicamentos.add(medicamento);
 					JOptionPane.showMessageDialog(null, "Cadastro efetivado!");
 				}
 
@@ -377,5 +380,4 @@ public class CadastroMedicamento {
 		// TODO Auto-generated method stub
 
 	}
-
 }

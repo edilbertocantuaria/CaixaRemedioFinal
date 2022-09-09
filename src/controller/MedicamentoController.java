@@ -79,12 +79,13 @@ public class MedicamentoController {
 	}
 
 	// Exclui o medicamento da lista a partir do seu nome
-	public void excluirMedicamentos(String excluirNomeRemedio) {
+	public Medicamento excluirMedicamentos(String excluirNomeRemedio) {
 		for (int i = 0; i < medicamentos.size(); i++) {
 			if (medicamentos.get(i).getNomeRemedio().equals(excluirNomeRemedio)) {
-				medicamentos.remove(i);
+				return medicamentos.remove(i);
 			}
 		}
+		return null;
 	}
 
 	// Carrega dados na lista de medicamentos

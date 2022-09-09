@@ -280,21 +280,25 @@ public class EdicaoMedicamento {
 					 * 
 					 * @version 09 set 22.
 					 */
-					MedicamentoController medicamentoController = new MedicamentoController();
-					Medicamento medicamento = medicamentoController.buscarMedicamentos(nomeMedicacao);
-					// Atualiza os dados do medicamento
-					medicamento.setNomeRemedio(nomeRemedio);
-					medicamento.setCodigo(codigo);
-					medicamento.setDescricao(descricao);
-					medicamento.setFabricante(fabricante);
-					medicamento.setBula(bula);
-					medicamento.setPrincipioAtivo(principioAtivo);
-					medicamento.setObservacaoAdicionalMedicamento(observacaoAdicionalMedicamento);
 
-					if (getTfNomeMedicamento().getText().isEmpty()) {
+					if (getTfNomeMedicamento().getText().isEmpty() || getTfCodigo().getText().isEmpty()
+							|| getTfDescricao().getText().isEmpty() || getTfFabricante().getText().isEmpty()
+							|| getTfBula().getText().isEmpty() || getTfPrincipioAtivo().getText().isEmpty()) {
 						JOptionPane.showMessageDialog(null,
-								"Não foi possível realizar atualizar o cadastro: o nome do medicamento não pode estar vazio!");
+								"Não foi possível atualizar o cadastro: os dados do medicamento não podem estar vazios!");
+						tfMedicamentoEdicao.setText("");
 					} else {
+
+						MedicamentoController medicamentoController = new MedicamentoController();
+						Medicamento medicamento = medicamentoController.buscarMedicamentos(nomeMedicacao);
+						// Atualiza os dados do medicamento
+						medicamento.setNomeRemedio(nomeRemedio);
+						medicamento.setCodigo(codigo);
+						medicamento.setDescricao(descricao);
+						medicamento.setFabricante(fabricante);
+						medicamento.setBula(bula);
+						medicamento.setPrincipioAtivo(principioAtivo);
+						medicamento.setObservacaoAdicionalMedicamento(observacaoAdicionalMedicamento);
 
 						System.out.println(MedicamentoController.medicamentos.toString());
 						JOptionPane.showMessageDialog(null, "Atualização efetivada!");

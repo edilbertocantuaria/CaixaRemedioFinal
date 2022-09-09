@@ -94,13 +94,13 @@ public class PacienteController {
 	}
 
 	// Exclui o paciente da lista a partir do seu cpf
-	public void excluirPacientes(String excluirCPFPaciente) {
+	public Paciente excluirPacientes(String excluirCPFPaciente) {
 		for (int i = 0; i < pacientes.size(); i++) {
 			if (pacientes.get(i).getCpf().equals(excluirCPFPaciente)) {
-				pacientes.remove(i);
+				return pacientes.remove(i);
 			}
-
 		}
+		return null;
 	}
 
 	// Carrega dados na lista de pacientes

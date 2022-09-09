@@ -109,6 +109,7 @@ public class ListaMedicamento {
 			}
 		}
 		frame.repaint();
+		jtMedicacao.updateUI();
 
 		System.out.println(MedicamentoController.medicamentos.toString());
 

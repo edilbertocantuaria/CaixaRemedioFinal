@@ -88,8 +88,8 @@ public class TelaPrincipal extends JFrame implements ActionListener {
 		return btnPaciente;
 	}
 
-	public static void setBtnPaciente(JButton btnPaciente) {
-		TelaPrincipal.btnPaciente = btnPaciente;
+	public static JButton setBtnPaciente(JButton btnPaciente) {
+		return btnPaciente;
 	}
 
 	public JButton getBtnMedicamento() {

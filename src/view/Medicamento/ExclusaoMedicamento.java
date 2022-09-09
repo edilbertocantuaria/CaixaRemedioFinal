@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import controller.MedicamentoController;
+import model.Medicamento;
 
 /**
  * É a tela para o exclusão dos medicamentos, onde ocorre o dele do CRUD. Ele
@@ -97,23 +98,27 @@ public class ExclusaoMedicamento {
 		btnApagarMedicamento.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				try {
-					// limpando os campos dos jtextfield's
-					tfMedicamentoBusca.requestFocus();
 
-					String nomeMedicacao = tfMedicamentoBusca.getText();
+				// deixa o cursor dentro desse jtextfield's
+				tfMedicamentoBusca.requestFocus();
 
-					/**
-					 * Invoca o controller para que ele busque o medicamento pelo seu nome e
-					 * retire-o do ArrayList medicamentos.
-					 *
-					 * @param nomeMedicacao.
-					 * 
-					 * @version 09 set 22.
-					 */
-					MedicamentoController medicamentoController = new MedicamentoController();
-					medicamentoController.excluirMedicamentos(nomeMedicacao);
+				String nomeMedicacao = tfMedicamentoBusca.getText();
 
+				/**
+				 * Invoca o controller para que ele busque o medicamento pelo seu nome e
+				 * retire-o do ArrayList medicamentos.
+				 *
+				 * @param nomeMedicacao.
+				 * 
+				 * @version 09 set 22.
+				 */
+
+				MedicamentoController medicamentoController = new MedicamentoController();
+				Medicamento resultado = medicamentoController.excluirMedicamentos(nomeMedicacao);
+
+				if (resultado == null) {
+					JOptionPane.showMessageDialog(null, "Medicamento inválido!");
+				} else {
 					JOptionPane.showMessageDialog(null, "Medicamento excluido!");
 
 					// deixa o cursor dentro desse jtextfield's
@@ -123,9 +128,6 @@ public class ExclusaoMedicamento {
 					tfMedicamentoBusca.setText("");
 
 					System.out.println(MedicamentoController.medicamentos.toString());
-
-				} catch (NumberFormatException e1) {
-					JOptionPane.showMessageDialog(null, "Medicamento inválido!");
 				}
 			}
 		});

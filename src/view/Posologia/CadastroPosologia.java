@@ -23,12 +23,18 @@ public class CadastroPosologia {
 
 	private JTextField tfNumeroVezes;
 	private JTextField tfRotinaMedicacao;
-	private JTextField tfHorario1;
 	private JTextField tfDosagem;
 	private JTextField tfObsAdcPosologia;
 	private JTextField tfAspecto;
 	private JTextField tfDataInicioTratamento;
 	private JTextField tfDataFimTratamento;
+	private JFormattedTextField tfHorario1;
+	private JFormattedTextField tfHorario2;
+	private JFormattedTextField tfHorario3;
+	private JFormattedTextField tfHorario4;
+	private JFormattedTextField tfHorario5;
+	private JFormattedTextField tfHorario6;
+
 	private JLabel lbNumeroVezes;
 	private JLabel lbRotinaMedicacao;
 	private JLabel lbHorario;
@@ -55,16 +61,6 @@ public class CadastroPosologia {
 	private JLabel lbEscolhaMedicamento;
 
 	private PosologiaController controller;
-
-	private JFormattedTextField tfHorario2;
-
-	private JFormattedTextField tfHorario3;
-
-	private JFormattedTextField tfHorario4;
-
-	private JFormattedTextField tfHorario5;
-
-	private JFormattedTextField tfHorario6;
 
 	public CadastroPosologia() {
 		frame.setSize(700, 470);
@@ -354,11 +350,11 @@ public class CadastroPosologia {
 		this.tfRotinaMedicacao = tfRotinaMedicacao;
 	}
 
-	public JTextField getTfHorario1() {
+	public JFormattedTextField getTfHorario1() {
 		return tfHorario1;
 	}
 
-	public void setTfHorario1(JTextField tfHorario1) {
+	public void setTfHorario1(JFormattedTextField tfHorario1) {
 		this.tfHorario1 = tfHorario1;
 	}
 

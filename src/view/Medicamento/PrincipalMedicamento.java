@@ -12,6 +12,11 @@ import javax.swing.SwingConstants;
 
 import controller.MedicamentoController;
 
+/**
+ * É a tela principal dos medicamentos, onde contém os botões que concedem
+ * acesso ao cadastro, edição, listagem, busca, exclusão e retorno para a tela
+ * anterior.
+ */
 public class PrincipalMedicamento extends JFrame implements ActionListener {
 
 	private static JFrame PrincipalMedicamento = new JFrame("Medicamento - Caixa de Remédios");
@@ -26,8 +31,13 @@ public class PrincipalMedicamento extends JFrame implements ActionListener {
 	private final JButton btnExcluirMedicamento;
 	private final JButton btnVoltar;
 
+	/*
+	 * Invoca a classe controller para a referida tela, que, neste caso, é
+	 * controller.MedicamentoController
+	 */
 	private final MedicamentoController controller;
 
+	// Define os elementos gráficos da tela PrincipalMedicamento
 	public PrincipalMedicamento() {
 		setResizable(false);
 		setTitle("Caixa de remédio - T8.1M");
@@ -35,7 +45,6 @@ public class PrincipalMedicamento extends JFrame implements ActionListener {
 		this.setBounds(100, 100, 275, 316);
 		getContentPane().setLayout(null);
 
-		// Medicamentos
 		panelMedicamentos = new JPanel();
 		panelMedicamentos.setBounds(20, 95, 229, 170);
 		getContentPane().add(panelMedicamentos);
@@ -74,6 +83,7 @@ public class PrincipalMedicamento extends JFrame implements ActionListener {
 		btnVoltar.setBounds(20, 11, 229, 23);
 		getContentPane().add(btnVoltar);
 
+		// Diz qual ação o botão deve executar ao ser pressionado
 		btnCadastrarMedicamento.addActionListener(this);
 		btnEditarMedicamento.addActionListener(this);
 		btnListarMedicamento.addActionListener(this);
@@ -81,10 +91,24 @@ public class PrincipalMedicamento extends JFrame implements ActionListener {
 		btnExcluirMedicamento.addActionListener(this);
 		btnVoltar.addActionListener(this);
 
+		/**
+		 * Invoca a classe controller.MedicamentoController para executar o comando. É
+		 * como se dissesse "O comando que você quer está descrito em no lugar tal!".
+		 * 
+		 * @version 09 set 22.
+		 */
 		this.controller = new MedicamentoController(this);
 
 	}
 
+	/**
+	 * Sobrescrita. É um comando que diz "Identifiquei a ação que você executou, e
+	 * ela está descrita em tal lugar" Esse "tal lugar" é a classe
+	 * controller.MedicamentoController, que vai procurar pelo método executarBotao,
+	 * que terá como parâmetro o evento ocorrido.
+	 * 
+	 * @version 09 set 22.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		controller.executarBotao(e.getSource());

@@ -1,7 +1,6 @@
 package controller;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import model.Medicamento;
 import view.Medicamento.BuscaMedicamento;
@@ -12,18 +11,19 @@ import view.Medicamento.ListaMedicamento;
 import view.Medicamento.PrincipalMedicamento;
 import view.TelaPrincipal.TelaPrincipal;
 
-/*
- * Realiza a comunicação entre o pacote model e o pacote view.Medicamento por meio
- * dos métodos de: (1) Cadastrar (2) Editar (3) Listar (4) Buscar (5) Excluir.
- * Ou seja, aqui está implementando um sistema de CRUD para o medicamento + busca.
+/**
+ * Realiza a comunicação entre o pacote model e o pacote view.Medicamento por
+ * meio dos métodos de: (1) Cadastrar (2) Editar (3) Listar (4) Buscar (5)
+ * Excluir. Ou seja, aqui está implementando um sistema de CRUD para o
+ * medicamento + busca.
  */
 
 public class MedicamentoController {
 
-	public static List<Medicamento> medicamentos = new ArrayList<>();
+	public static ArrayList<Medicamento> medicamentos = new ArrayList<>();
 
 	public static ArrayList<Medicamento> getMedicamentos() {
-		return (ArrayList<Medicamento>) medicamentos;
+		return medicamentos;
 	}
 
 	private PrincipalMedicamento view_principalMedicamento;
@@ -34,9 +34,15 @@ public class MedicamentoController {
 	}
 
 	public MedicamentoController() {
-		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * O prâmetro-objeto botaoApertado está recebendo, indiretamente, o evento dos
+	 * botões que estão tela PrincipalMedicamento e identifica qual o método deve
+	 * ser executado.
+	 * 
+	 * @version 09 set 22
+	 */
 	public void executarBotao(Object botaoApertado) {
 
 		if (botaoApertado == view_principalMedicamento.getBtnVoltar()) {
@@ -62,7 +68,7 @@ public class MedicamentoController {
 
 	}
 
-	// Realiza a busca de um medicamento na lista por meio de um nome podendo
+	// Realiza a busca de um medicamento na lista por meio do seu nome
 	public Medicamento buscarMedicamentos(String buscarNomeRemedio) {
 		for (int i = 0; i < medicamentos.size(); i++) {
 			if (medicamentos.get(i).getNomeRemedio().equals(buscarNomeRemedio)) {
@@ -70,7 +76,6 @@ public class MedicamentoController {
 			}
 		}
 		return null;
-		// "Medicamento não encontrado! ";
 	}
 
 	// Exclui o medicamento da lista a partir do seu nome
@@ -102,6 +107,13 @@ public class MedicamentoController {
 		medicamentos.add(medicamentoC);
 	}
 
+	/**
+	 * Os seguintes métodos concretizam a ação dos botões pressionados na tela
+	 * PrincpalMedicacao. A execução de cada método abaixo dependerá da cadeia
+	 * condicional que está descrito nas linhas 47 a 70
+	 * 
+	 * @version 09 out 22.
+	 */
 	private void executarBotaoVoltar() {
 		TelaPrincipal obj = new TelaPrincipal();
 		obj.setVisible(true);

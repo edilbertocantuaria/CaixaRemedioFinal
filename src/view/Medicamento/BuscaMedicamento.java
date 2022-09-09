@@ -16,6 +16,13 @@ import javax.swing.table.DefaultTableModel;
 import controller.MedicamentoController;
 import model.Medicamento;
 
+/**
+ * É a tela para a busca dos medicamentos. Ela exibir as informações do
+ * medicamento, se eles estiver presente no ArrayList medicamentos.
+ * 
+ * @author Edilberto.
+ * @version 09 set 22.
+ */
 public class BuscaMedicamento {
 	private static JFrame frame = new JFrame("Buscar cadastro de medicamento");
 
@@ -34,6 +41,11 @@ public class BuscaMedicamento {
 
 	private DefaultTableModel tabelaBuscaMedicamento;
 
+	/**
+	 * Define as dimensões físicas da tela BuscaMedicamento
+	 * 
+	 * @version 09 set 22.
+	 */
 	public BuscaMedicamento() {
 		frame.setSize(577, 280);
 
@@ -44,6 +56,12 @@ public class BuscaMedicamento {
 		frame.setVisible(true);
 	}
 
+	/**
+	 * Define as posições e nomes dos componetes gráficos que estão na tela
+	 * BuscaMedicamento
+	 * 
+	 * @version 09 set 22.
+	 */
 	private void placeComponents(JPanel panel) {
 		panel.setLayout(null);
 

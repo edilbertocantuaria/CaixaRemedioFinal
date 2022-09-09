@@ -13,6 +13,13 @@ import javax.swing.JTextField;
 import controller.MedicamentoController;
 import model.Medicamento;
 
+/**
+ * É a tela para o cadastro dos medicamentos, onde ocorre create + read do CRUD.
+ * 
+ * @author Edilberto.
+ * @version 09 set 22.
+ */
+
 public class CadastroMedicamento {
 	private static JFrame frame = new JFrame("Cadastro de Medicamento");
 
@@ -37,6 +44,12 @@ public class CadastroMedicamento {
 	private JPanel panel;
 	private JLabel lbNomeMedicamentoInfo;
 
+	/**
+	 * Define as dimensões físicas da tela CadastroMedicamento
+	 * 
+	 * @version 09 set 22.
+	 */
+
 	public CadastroMedicamento() {
 		frame.setSize(700, 410);
 
@@ -44,14 +57,15 @@ public class CadastroMedicamento {
 		frame.getContentPane().add(panel);
 		placeComponents(panel);
 
-		lbNomeMedicamentoInfo = new JLabel("(tudo maiúsculo)");
-		lbNomeMedicamentoInfo.setAutoscrolls(true);
-		lbNomeMedicamentoInfo.setBounds(10, 45, 390, 14);
-		panel.add(lbNomeMedicamentoInfo);
-
 		frame.setVisible(true);
 	}
 
+	/**
+	 * Define as posições e nomes dos componetes gráficos que estão na tela
+	 * CadastroMedicamento
+	 * 
+	 * @version 09 out 22.
+	 */
 	private void placeComponents(JPanel panel) {
 		panel.setLayout(null);
 
@@ -83,6 +97,10 @@ public class CadastroMedicamento {
 		lbNomeMedicamento.setAutoscrolls(true);
 		lbNomeMedicamento.setBounds(10, 32, 390, 14);
 		panel.add(lbNomeMedicamento);
+		lbNomeMedicamentoInfo = new JLabel("(tudo maiúsculo)");
+		lbNomeMedicamentoInfo.setAutoscrolls(true);
+		lbNomeMedicamentoInfo.setBounds(10, 45, 390, 14);
+		panel.add(lbNomeMedicamentoInfo);
 		tfNomeMedicamento = new JTextField();
 		tfNomeMedicamento.setBounds(362, 29, 300, 20);
 		panel.add(tfNomeMedicamento);
@@ -115,23 +133,34 @@ public class CadastroMedicamento {
 		tfPrincipioAtivo.setBounds(362, 259, 300, 20);
 		panel.add(tfPrincipioAtivo);
 
+		/**
+		 * Determina a ação do btnVoltar, que neste caso fecha a tela
+		 * CadastroMedicamento e abre a tela PrincipalMedicamento
+		 * 
+		 * @version 09 set. 22.
+		 */
 		btnVoltar = new JButton("Voltar para tela anterior");
 		btnVoltar.setBounds(10, 337, 175, 23);
 		btnVoltar.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Object botaoApertado = e.getSource();
 
-				if (botaoApertado == btnVoltar) {
-					PrincipalMedicamento obj = new PrincipalMedicamento();
-					obj.setVisible(true);
-					frame.dispose();
+				PrincipalMedicamento obj = new PrincipalMedicamento();
+				obj.setVisible(true);
+				frame.dispose();
 
-				}
 			}
 		});
 		panel.add(btnVoltar);
+
+		/**
+		 * Determina a ação do btnCadastro, que neste caso fecha a tela
+		 * PrincipalMedicamento e abre a tela CadastroMedicamento, solicitando os dados
+		 * necessários
+		 * 
+		 * @version 09 set. 22.
+		 */
 
 		btnCadastrarMedicamento = new JButton("Cadastrar Medicamento");
 		btnCadastrarMedicamento.addActionListener(new ActionListener() {
@@ -154,12 +183,15 @@ public class CadastroMedicamento {
 				String principioAtivo = getTfPrincipioAtivo().getText().trim();
 				String observacaoAdicionalMedicamento = getTfObsAdcMedicamento().getText().trim();
 
+				/**
+				 * Adiciona os dados inseridos acima no ArrayList medicamentos. Este ArrayList
+				 * está em controller.MedicamentoController, linhas 23 a 26.
+				 * 
+				 * @version 09 set 22
+				 */
 				Medicamento medicamento = new Medicamento(nomeRemedio, codigo, descricao, fabricante, bula,
 						principioAtivo, observacaoAdicionalMedicamento);
 				MedicamentoController.medicamentos.add(medicamento);
-
-				// ListaMedicamento atualizarLista = new ListaMedicamento();
-				ListaMedicamento.getFrame().repaint();
 
 				if (getTfNomeMedicamento().getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null,

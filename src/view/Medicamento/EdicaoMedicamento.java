@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -13,14 +12,19 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controller.MedicamentoController;
-import controller.PacienteController;
 import model.Medicamento;
 
+/**
+ * É a tela para o edição dos medicamentos, onde ocorre o update do CRUD. Ele
+ * busca o remédio pelo nome e retorna os dados já cadastrados.
+ * 
+ * @author Edilberto.
+ * @version 09 set 22.
+ */
 public class EdicaoMedicamento {
 	private static JFrame frame = new JFrame("Editar Paciente");
 	private JButton btnEditarMedicamento_edicao;
 	private JButton btnVoltar;
-	private JComboBox<String> cbEscolhaPaciente;
 
 	private MedicamentoController controller;
 	private JButton btnAtualizarCadastroMedicamento;
@@ -46,6 +50,11 @@ public class EdicaoMedicamento {
 	private JLabel lbInstrucao;
 	private JPanel panel;
 
+	/**
+	 * Define as dimensões físicas da tela EdicaoMedicamento
+	 * 
+	 * @version 09 set 22.
+	 */
 	public EdicaoMedicamento() {
 		frame.setSize(700, 480);
 
@@ -56,6 +65,12 @@ public class EdicaoMedicamento {
 		frame.setVisible(true);
 	}
 
+	/**
+	 * Define as posições e nomes dos componetes gráficos que estão na tela
+	 * EdicaoMedicamento
+	 * 
+	 * @version 09 out 22.
+	 */
 	private void placeComponents(JPanel panel) {
 		panel.setLayout(null);
 
@@ -158,88 +173,17 @@ public class EdicaoMedicamento {
 		tfObsAdcMedicamento.setBounds(374, 360, 300, 20);
 		panel.add(tfObsAdcMedicamento);
 
-		btnAtualizarCadastroMedicamento = new JButton("Atualizar cadastro");
-		btnAtualizarCadastroMedicamento.setEnabled(false);
-		btnAtualizarCadastroMedicamento.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				atualizaMedicamento();
-			}
-
-			public void atualizaMedicamento() {
-				try {
-
-					tfMedicamentoEdicao.requestFocus();
-
-					String nomeMedicacao = tfMedicamentoEdicao.getText();
-
-					MedicamentoController medicamentoController = new MedicamentoController();
-					Medicamento medicamento = medicamentoController.buscarMedicamentos(nomeMedicacao);
-
-					// Para inserir as informações de um medicamento na lista (igual a do cadastro)
-
-					// Cadastra as informações de um medicamento na lista
-					String nomeRemedio = getTfNomeMedicamento().getText().trim();
-					String codigo = getTfCodigo().getText().trim();
-					String descricao = getTfDescricao().getText().trim();
-					String fabricante = getTfFabricante().getText().trim();
-					String bula = getTfBula().getText().trim();
-					String principioAtivo = getTfPrincipioAtivo().getText().trim();
-					String observacaoAdicionalMedicamento = getTfObsAdcMedicamento().getText().trim();
-
-					// Atualiza os dados do medicamento
-					medicamento.setNomeRemedio(nomeRemedio);
-					medicamento.setCodigo(codigo);
-					medicamento.setDescricao(descricao);
-					medicamento.setFabricante(fabricante);
-					medicamento.setBula(bula);
-					medicamento.setPrincipioAtivo(principioAtivo);
-					medicamento.setObservacaoAdicionalMedicamento(observacaoAdicionalMedicamento);
-
-					if (getTfNomeMedicamento().getText().isEmpty()) {
-						JOptionPane.showMessageDialog(null,
-								"Não foi possível realizar atualizar o cadastro: o nome do medicamento não pode estar vazio!");
-					} else {
-
-						System.out.println(PacienteController.pacientes.toString());
-						JOptionPane.showMessageDialog(null, "Atualização efetivada!");
-					}
-
-					// limpando os campos dos jtextfield's
-					tfMedicamentoEdicao.setText("");
-					tfNomeMedicamento.setText("");
-					tfCodigo.setText("");
-					tfDescricao.setText("");
-					tfFabricante.setText("");
-					tfBula.setText("");
-					tfPrincipioAtivo.setText("");
-					tfObsAdcMedicamento.setText("");
-
-					// desabilitando a edição/inserção de texto nos jtextfield's
-					tfNomeMedicamento.setEnabled(false);
-					tfNomeMedicamento.setEditable(false);
-					tfCodigo.setEnabled(false);
-					tfCodigo.setEditable(false);
-					tfDescricao.setEnabled(false);
-					tfDescricao.setEditable(false);
-					tfFabricante.setEnabled(false);
-					tfFabricante.setEditable(false);
-					tfBula.setEnabled(false);
-					tfBula.setEditable(false);
-					tfPrincipioAtivo.setEnabled(false);
-					tfPrincipioAtivo.setEditable(false);
-					tfObsAdcMedicamento.setEnabled(false);
-					tfObsAdcMedicamento.setEditable(false);
-				} catch (NumberFormatException e1) {
-					JOptionPane.showMessageDialog(null, "Nome inválido!");
-				}
-			}
-
-		});
-
-		btnAtualizarCadastroMedicamento.setBounds(499, 407, 175, 23);
-		panel.add(btnAtualizarCadastroMedicamento);
-
+		/**
+		 * Começa a buscar pela medicação pelo seu nome. Como o Java faz distinção entre
+		 * letras maiúsculas e minúsculas, solicita a padronização do nome de todas
+		 * medicações serem inserirdas em CAIXA ALTA, caso contrário, não irá retornar
+		 * resultado. A busca sendo bem sucedida, esta é a parte do código responsável
+		 * para que cada textfield fique com seu respectivo dado. Dessa forma, por
+		 * exemplo, esta é a parte do código que vai mostrar que o nome da medicação no
+		 * tfNomeMedicamento.
+		 * 
+		 * @version 09 set 22.
+		 */
 		btnEditarMedicamento_edicao = new JButton("Editar Medicamento");
 		btnEditarMedicamento_edicao.addActionListener(new ActionListener() {
 			@Override
@@ -248,6 +192,13 @@ public class EdicaoMedicamento {
 
 				String nomeMedicacao = tfMedicamentoEdicao.getText();
 
+				/**
+				 * Invoca o controller para que ele procure o medicamento pelo seu nome no
+				 * método buscarMedicamento.
+				 * 
+				 * @param nomeMedicacao.
+				 * @version 09 set 22.
+				 */
 				MedicamentoController medicamentoController = new MedicamentoController();
 				Medicamento resultado = medicamentoController.buscarMedicamentos(nomeMedicacao);
 
@@ -286,6 +237,110 @@ public class EdicaoMedicamento {
 		btnEditarMedicamento_edicao.setBounds(10, 50, 175, 25);
 		panel.add(btnEditarMedicamento_edicao);
 
+		/**
+		 * É a parte do código que de fato permite alterar os dados antes inseridos.
+		 * Devido o método ecrito nas linhas 188 a 237, os campos já se encontrarão
+		 * preenchidos nesta parte, cabendo ao usuário realizar as modificações e
+		 * salvá-las ao clicar no btnAtualizarCadastro. Esta modificação não altera as
+		 * posições no ArrayList medicamentos.
+		 * 
+		 * @version 09 set 22.
+		 */
+		btnAtualizarCadastroMedicamento = new JButton("Atualizar cadastro");
+		btnAtualizarCadastroMedicamento.setEnabled(false);
+		btnAtualizarCadastroMedicamento.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				atualizaMedicamento();
+			}
+
+			public void atualizaMedicamento() {
+				try {
+
+					tfMedicamentoEdicao.requestFocus();
+
+					String nomeMedicacao = tfMedicamentoEdicao.getText();
+
+					// Para inserir as informações de um medicamento na lista (igual ao cadastro)
+
+					// Cadastra as informações de um medicamento na lista
+					String nomeRemedio = getTfNomeMedicamento().getText().trim();
+					String codigo = getTfCodigo().getText().trim();
+					String descricao = getTfDescricao().getText().trim();
+					String fabricante = getTfFabricante().getText().trim();
+					String bula = getTfBula().getText().trim();
+					String principioAtivo = getTfPrincipioAtivo().getText().trim();
+					String observacaoAdicionalMedicamento = getTfObsAdcMedicamento().getText().trim();
+
+					/**
+					 * Invoca o controller para que ele atualize o medicamento, substituindo as
+					 * informações antigas e inserindo as novas
+					 *
+					 * @param nomeMedicacao.
+					 * 
+					 * @version 09 set 22.
+					 */
+					MedicamentoController medicamentoController = new MedicamentoController();
+					Medicamento medicamento = medicamentoController.buscarMedicamentos(nomeMedicacao);
+					// Atualiza os dados do medicamento
+					medicamento.setNomeRemedio(nomeRemedio);
+					medicamento.setCodigo(codigo);
+					medicamento.setDescricao(descricao);
+					medicamento.setFabricante(fabricante);
+					medicamento.setBula(bula);
+					medicamento.setPrincipioAtivo(principioAtivo);
+					medicamento.setObservacaoAdicionalMedicamento(observacaoAdicionalMedicamento);
+
+					if (getTfNomeMedicamento().getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null,
+								"Não foi possível realizar atualizar o cadastro: o nome do medicamento não pode estar vazio!");
+					} else {
+
+						System.out.println(MedicamentoController.medicamentos.toString());
+						JOptionPane.showMessageDialog(null, "Atualização efetivada!");
+					}
+
+					// limpando os campos dos jtextfield's
+					tfMedicamentoEdicao.setText("");
+					tfNomeMedicamento.setText("");
+					tfCodigo.setText("");
+					tfDescricao.setText("");
+					tfFabricante.setText("");
+					tfBula.setText("");
+					tfPrincipioAtivo.setText("");
+					tfObsAdcMedicamento.setText("");
+
+					// desabilitando a edição/inserção de texto nos jtextfield's
+					tfNomeMedicamento.setEnabled(false);
+					tfNomeMedicamento.setEditable(false);
+					tfCodigo.setEnabled(false);
+					tfCodigo.setEditable(false);
+					tfDescricao.setEnabled(false);
+					tfDescricao.setEditable(false);
+					tfFabricante.setEnabled(false);
+					tfFabricante.setEditable(false);
+					tfBula.setEnabled(false);
+					tfBula.setEditable(false);
+					tfPrincipioAtivo.setEnabled(false);
+					tfPrincipioAtivo.setEditable(false);
+					tfObsAdcMedicamento.setEnabled(false);
+					tfObsAdcMedicamento.setEditable(false);
+				} catch (NumberFormatException e1) {
+					JOptionPane.showMessageDialog(null, "Nome inválido!");
+				}
+			}
+
+		});
+
+		btnAtualizarCadastroMedicamento.setBounds(499, 407, 175, 23);
+		panel.add(btnAtualizarCadastroMedicamento);
+
+		/**
+		 * Determina a ação do btnVoltar, que neste caso fecha a tela EdicaoMedicamento
+		 * e abre a tela PrincipalMedicamento
+		 * 
+		 * @version 09 set. 22.
+		 */
 		btnVoltar = new JButton("Voltar para tela anterior");
 		btnVoltar.setBounds(10, 407, 175, 23);
 		panel.add(btnVoltar);
@@ -293,16 +348,13 @@ public class EdicaoMedicamento {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Object botaoApertado = e.getSource();
+				tfMedicamentoEdicao.setText("");
+				PrincipalMedicamento obj = new PrincipalMedicamento();
+				obj.setVisible(true);
+				frame.dispose();
 
-				if (botaoApertado == btnVoltar) {
-					tfMedicamentoEdicao.setText("");
-					PrincipalMedicamento obj = new PrincipalMedicamento();
-					obj.setVisible(true);
-					frame.dispose();
-
-				}
 			}
+
 		});
 	}
 
@@ -328,14 +380,6 @@ public class EdicaoMedicamento {
 
 	public void setBtnVoltar(JButton btnVoltar) {
 		this.btnVoltar = btnVoltar;
-	}
-
-	public JComboBox<String> getCbEscolhaPaciente() {
-		return cbEscolhaPaciente;
-	}
-
-	public void setCbEscolhaPaciente(JComboBox<String> cbEscolhaPaciente) {
-		this.cbEscolhaPaciente = cbEscolhaPaciente;
 	}
 
 	public MedicamentoController getController() {

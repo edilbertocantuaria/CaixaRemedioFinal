@@ -3,6 +3,7 @@ package controller;
 import view.Medicamento.PrincipalMedicamento;
 import view.Paciente.PrincipalPaciente;
 import view.Posologia.PrincipalPosologia;
+import view.Rotina.PrincipalRotina;
 import view.TelaPrincipal.TelaPrincipal;
 
 public class TelaPrincipalController {
@@ -30,11 +31,10 @@ public class TelaPrincipalController {
 
 			this.executarBotaoPrincipalPosologia();
 		}
-		/*
-		 * if (botaoApertado == view.getBtnRotina()) {
-		 * 
-		 * this.executarBotaoRotina(); }
-		 */
+		if (botaoApertado == view.getBtnRotina()) {
+
+			this.executarBotaoRotina();
+		}
 
 	}
 
@@ -60,8 +60,10 @@ public class TelaPrincipalController {
 	}
 
 	// Chama a tela principal da Rotina
-	/*
-	 * private void executarBotaoRotina() { PrincipalRotina obj = new
-	 * PrincipalRotina(); obj.setVisible(true); view.dispose(); }
-	 */
+	private void executarBotaoRotina() {
+		PrincipalRotina obj = new PrincipalRotina();
+		obj.setVisible(true);
+		view.dispose();
+	}
+
 }

@@ -34,6 +34,7 @@ public class PosologiaController {
 	private PrincipalPosologia view_principalPosologia;
 	private CadastroPosologia view_cadastroPosologia;
 	private ListaPosologia view_listaPosologia;
+	private EdicaoPosologia view_EdicaoPosologia;
 
 	public PosologiaController(PrincipalPosologia principalPosologia) {
 		super();
@@ -43,6 +44,11 @@ public class PosologiaController {
 	public PosologiaController(CadastroPosologia cadastroPosologia) {
 		super();
 		this.setView_cadastroPosologia(cadastroPosologia);
+	}
+
+	public PosologiaController(EdicaoPosologia edicaoPosologia) {
+		super();
+		this.view_EdicaoPosologia = edicaoPosologia;
 	}
 
 	public void executarBotao(Object botaoApertado) {

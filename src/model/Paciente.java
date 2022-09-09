@@ -20,7 +20,8 @@ public class Paciente extends Pessoa {
 
 	@Override
 	public String toString() {
-		return super.toString() + "-> Paciente [rotinas=" + posologias + "]" + "\n\n\n";
+		return super.toString() + "-------------------------------------> Paciente [rotinas=" + posologias + "]"
+				+ "\n\n\n";
 	}
 
 }

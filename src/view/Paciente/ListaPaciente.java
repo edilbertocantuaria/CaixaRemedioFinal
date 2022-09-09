@@ -37,6 +37,7 @@ public class ListaPaciente {
 	}
 
 	private void placeComponentes(JPanel panel) {
+
 		if (PacienteController.pacientes.isEmpty()) {
 			lbSemMedicamento.setFont(new Font("Arial", Font.BOLD, 15));
 			lbSemMedicamento.setHorizontalAlignment(SwingConstants.CENTER);
@@ -62,10 +63,10 @@ public class ListaPaciente {
 
 				tabelaPaciente.addRow(new String[] { paciente.getNome(), paciente.getCpf(),
 						paciente.getObservacaoAdicionalPessoa() });
-
 			}
 
 		}
+		System.out.println(PacienteController.pacientes);
 
 		btnVoltar = new JButton("Voltar para tela anterior");
 		btnVoltar.setBounds(10, 207, 190, 23);

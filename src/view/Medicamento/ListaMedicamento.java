@@ -16,6 +16,13 @@ import javax.swing.table.DefaultTableModel;
 import controller.MedicamentoController;
 import model.Medicamento;
 
+/**
+ * É a tela para a listagem dos medicamentos. Ela busca exibir as informações de
+ * todos medicamentos presentes no ArrayList medicamentos.
+ * 
+ * @author Edilberto.
+ * @version 09 set 22.
+ */
 public class ListaMedicamento {
 	private static JFrame frame = new JFrame("Lista de Medicamentos");
 	private JLabel lbSemMedicamento = new JLabel("Ainda não há medicamentos cadastrados =(");
@@ -24,6 +31,12 @@ public class ListaMedicamento {
 	private JTable jtMedicacao;
 	private JScrollPane scrollPane;
 	private DefaultTableModel tabelaMedicacao;
+
+	/**
+	 * Define as dimensões físicas da tela ListaMedicamento
+	 * 
+	 * @version 09 set 22.
+	 */
 
 	public ListaMedicamento() {
 		frame.setSize(577, 280);
@@ -44,8 +57,19 @@ public class ListaMedicamento {
 		ListaMedicamento.frame = frame;
 	}
 
+	/**
+	 * Define as posições e nomes dos componetes gráficos que estão na tela
+	 * ListaMedicamento
+	 * 
+	 * @version 09 out 22.
+	 */
+
 	private void placeComponentes(JPanel panel) {
 
+		/*
+		 * caso não tenha medicação cadastrada, imprime uma label informando que não
+		 * medicamento cadastrado. Caso contrário irá imprimir uma JTable listando.
+		 */
 		if (MedicamentoController.medicamentos.isEmpty()) {
 
 			lbSemMedicamento.setFont(new Font("Arial", Font.BOLD, 15));
@@ -61,7 +85,7 @@ public class ListaMedicamento {
 
 			jtMedicacao = new JTable();
 			jtMedicacao.setModel(new DefaultTableModel(new Object[][] {},
-					new String[] { "Medicamento", "Descrição", "Observação Adicional" }));
+					new String[] { "Medicamento", "Descrição", "Observação Adicional" })); // Define as colunas
 			scrollPane.setViewportView(jtMedicacao);
 
 			tabelaMedicacao = (DefaultTableModel) jtMedicacao.getModel();
@@ -69,8 +93,16 @@ public class ListaMedicamento {
 			// criando a tabela de medicamentos inicial
 			for (int i = 0; i < MedicamentoController.medicamentos.size(); i++) {
 
+				/*
+				 * Invoca a classe controller.MedicamentoController para pegar o medicamento que
+				 * se encontra na posição i do ArrayList medicamentos
+				 */
 				Medicamento medicamento = MedicamentoController.medicamentos.get(i);
 
+				/*
+				 * Pede para imprimir somente alguns dados solicitados, na ordem pré-definida na
+				 * linha 88,
+				 */
 				tabelaMedicacao.addRow(new String[] { medicamento.getNomeRemedio(), medicamento.getDescricao(),
 						medicamento.getObservacaoAdicionalMedicamento() });
 
@@ -79,20 +111,22 @@ public class ListaMedicamento {
 		frame.repaint();
 
 		System.out.println(MedicamentoController.medicamentos.toString());
-		// }
+
+		/**
+		 * Determina a ação do btnVoltar, que neste caso fecha a tela ListaMedicamento e
+		 * abre a tela PrincipalMedicamento
+		 * 
+		 * @version 09 set. 22.
+		 */
 		btnVoltar = new JButton("Voltar para tela anterior");
 		btnVoltar.setBounds(10, 207, 190, 23);
 		btnVoltar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Object botaoApertado = e.getSource();
+				PrincipalMedicamento obj = new PrincipalMedicamento();
+				obj.setVisible(true);
+				frame.dispose();
 
-				if (botaoApertado == btnVoltar) {
-					PrincipalMedicamento obj = new PrincipalMedicamento();
-					obj.setVisible(true);
-					frame.dispose();
-
-				}
 			}
 		});
 

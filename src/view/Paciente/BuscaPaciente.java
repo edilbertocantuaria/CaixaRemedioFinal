@@ -8,27 +8,32 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
 
-import controller.PacienteController;
+import controller.Paciente.BuscaPacienteController;
 
-public class BuscaPaciente<Pessoa> {
+public class BuscaPaciente<Pessoa> implements ActionListener {
 	private static JFrame frame = new JFrame("Buscar cadastro de paciente");
 	private JPanel panel;
-	private JLabel lbInstrucao;
-	private JFormattedTextField jftCPFBusca;
-	private JButton btnBuscar;
+	private JLabel lbCPF;
+
+	public JFormattedTextField jftCPFBusca;
+	public JButton btnBuscar;
+	public JButton btnVoltar;
+
+	public JTable jtPacienteEncontrado;
+	public DefaultTableModel tabelaBuscaPaciente;
+
 	private JLabel lbPacienteEncontrado;
-	private JButton btnVoltar;
+
 	private JPanel panel_1;
 	private JScrollPane scrollPane;
-	private JTable jtPacienteEncontrado;
-	private DefaultTableModel tabelaBuscaPaciente;
+
+	private BuscaPacienteController controller;
 
 	public BuscaPaciente() {
 		frame.setSize(577, 280);
@@ -41,6 +46,7 @@ public class BuscaPaciente<Pessoa> {
 	}
 
 	private void placeComponents(JPanel panel) {
+		setController(new BuscaPacienteController(this));
 		panel.setLayout(null);
 
 		MaskFormatter mascaraCPF = null;
@@ -52,17 +58,13 @@ public class BuscaPaciente<Pessoa> {
 			erro1.printStackTrace();
 		}
 
-		lbInstrucao = new JLabel("Digite o CPF ");
-		lbInstrucao.setBounds(20, 10, 80, 25);
-		panel.add(lbInstrucao);
+		lbCPF = new JLabel("Digite o CPF ");
+		lbCPF.setBounds(20, 10, 80, 25);
+		panel.add(lbCPF);
 
 		jftCPFBusca = new JFormattedTextField(mascaraCPF);
 		jftCPFBusca.setBounds(110, 10, 100, 25);
 		panel.add(jftCPFBusca);
-
-		btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(466, 10, 85, 25);
-		panel.add(btnBuscar);
 
 		lbPacienteEncontrado = new JLabel("Paciente encontrado");
 		lbPacienteEncontrado.setBounds(10, 55, 200, 25);
@@ -82,66 +84,105 @@ public class BuscaPaciente<Pessoa> {
 				new String[] { "Nome", "CPF", "Data de Nascimento", "Telefone", "Gênero", "Observação Adicional" }));
 		scrollPane.setViewportView(jtPacienteEncontrado);
 
-		btnBuscar.addActionListener(new ActionListener() {
-
-			@SuppressWarnings("unchecked")
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// deixa o cursor dentro desse jtextfield's
-				jftCPFBusca.requestFocus();
-
-				String cpf = jftCPFBusca.getText();
-
-				PacienteController pacienteController = new PacienteController();
-				Pessoa resultado = (Pessoa) pacienteController.buscarPacientes(cpf);
-
-				if (resultado == null) {
-					JOptionPane.showMessageDialog(null, "Paciente não cadastrado!");
-				} else {
-
-					tabelaBuscaPaciente = (DefaultTableModel) jtPacienteEncontrado.getModel();
-					tabelaBuscaPaciente.addRow(new String[] { ((model.Pessoa) resultado).getNome(),
-							((model.Pessoa) resultado).getCpf(), ((model.Pessoa) resultado).getDataNascimento(),
-							((model.Pessoa) resultado).getTelefone(), ((model.Pessoa) resultado).getGenero(),
-							((model.Pessoa) resultado).getObservacaoAdicionalPessoa() });
-
-					// PacienteController.pacientes.toString();
-					JOptionPane.showMessageDialog(null, "Busca efetivada!");
-
-					// deixa o cursor dentro desse jtextfield's
-					jftCPFBusca.requestFocus();
-
-					// limpando os campos dos jtextfield's
-					jftCPFBusca.setText("");
-				}
-			}
-		});
+		btnBuscar = new JButton("Buscar");
+		btnBuscar.setBounds(466, 10, 85, 25);
+		btnBuscar.addActionListener(this);
+		panel.add(btnBuscar);
 
 		btnVoltar = new JButton("Voltar para tela anterior");
 		btnVoltar.setBounds(376, 46, 175, 23);
 		panel.add(btnVoltar);
-		btnVoltar.addActionListener(new ActionListener() {
+		btnVoltar.addActionListener(this);
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Object botaoApertado = e.getSource();
+		this.controller = new BuscaPacienteController(this);
+	}
 
-				if (botaoApertado == btnVoltar) {
-					((DefaultTableModel) jtPacienteEncontrado.getModel()).setRowCount(0);
-					jftCPFBusca.setText("");// limpando os campos dos jtextfield's
-					PrincipalPaciente obj = new PrincipalPaciente();
-					obj.setVisible(true);
-					frame.dispose();
-
-				}
-			}
-		});
-
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		controller.executarBotao(e.getSource());
 	}
 
 	public void setVisible(boolean b) {
-		// TODO Auto-generated method stub
+	}
 
+	public static JFrame getFrame() {
+		return frame;
+	}
+
+	public JPanel getPanel() {
+		return panel;
+	}
+
+	public JFormattedTextField getJftCPFBusca() {
+		return jftCPFBusca;
+	}
+
+	public JButton getBtnBuscar() {
+		return btnBuscar;
+	}
+
+	public JButton getBtnVoltar() {
+		return btnVoltar;
+	}
+
+	public JPanel getPanel_1() {
+		return panel_1;
+	}
+
+	public JScrollPane getScrollPane() {
+		return scrollPane;
+	}
+
+	public JTable getJtPacienteEncontrado() {
+		return jtPacienteEncontrado;
+	}
+
+	public DefaultTableModel getTabelaBuscaPaciente() {
+		return tabelaBuscaPaciente;
+	}
+
+	public BuscaPacienteController getController() {
+		return controller;
+	}
+
+	public static void setFrame(JFrame frame) {
+		BuscaPaciente.frame = frame;
+	}
+
+	public void setPanel(JPanel panel) {
+		this.panel = panel;
+	}
+
+	public void setJftCPFBusca(JFormattedTextField jftCPFBusca) {
+		this.jftCPFBusca = jftCPFBusca;
+	}
+
+	public void setBtnBuscar(JButton btnBuscar) {
+		this.btnBuscar = btnBuscar;
+	}
+
+	public void setBtnVoltar(JButton btnVoltar) {
+		this.btnVoltar = btnVoltar;
+	}
+
+	public void setPanel_1(JPanel panel_1) {
+		this.panel_1 = panel_1;
+	}
+
+	public void setScrollPane(JScrollPane scrollPane) {
+		this.scrollPane = scrollPane;
+	}
+
+	public void setJtPacienteEncontrado(JTable jtPacienteEncontrado) {
+		this.jtPacienteEncontrado = jtPacienteEncontrado;
+	}
+
+	public void setTabelaBuscaPaciente(DefaultTableModel tabelaBuscaPaciente) {
+		this.tabelaBuscaPaciente = tabelaBuscaPaciente;
+	}
+
+	public void setController(BuscaPacienteController controller) {
+		this.controller = controller;
 	}
 
 }

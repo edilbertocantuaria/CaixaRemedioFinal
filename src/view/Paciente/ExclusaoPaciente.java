@@ -8,19 +8,19 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.text.MaskFormatter;
 
-import controller.PacienteController;
-import model.Paciente;
+import controller.Paciente.ExclusaoPacienteController;
 
-public class ExclusaoPaciente {
+public class ExclusaoPaciente implements ActionListener {
 	private static JFrame frame = new JFrame("Excluir Paciente");
-	private JLabel instrucao;
-	private JFormattedTextField jftCPFBusca;
-	private JButton btnApagarPaciente;
-	private JButton btnVoltar;
+	private JLabel lbCPF;
+	public JFormattedTextField jftCPFBusca;
+	public JButton btnApagarPaciente;
+	public JButton btnVoltar;
+
+	private ExclusaoPacienteController controller;
 
 	public ExclusaoPaciente() {
 		frame.setSize(400, 280);
@@ -33,6 +33,7 @@ public class ExclusaoPaciente {
 	}
 
 	private void placeComponents(JPanel panel) {
+		setController(new ExclusaoPacienteController(this));
 		panel.setLayout(null);
 
 		MaskFormatter mascaraCPF = null;
@@ -44,9 +45,9 @@ public class ExclusaoPaciente {
 			erro1.printStackTrace();
 		}
 
-		instrucao = new JLabel("Digite o CPF ");
-		instrucao.setBounds(20, 10, 80, 25);
-		panel.add(instrucao);
+		lbCPF = new JLabel("Digite o CPF ");
+		lbCPF.setBounds(20, 10, 80, 25);
+		panel.add(lbCPF);
 
 		jftCPFBusca = new JFormattedTextField(mascaraCPF);
 		jftCPFBusca.setBounds(110, 10, 100, 25);
@@ -54,62 +55,69 @@ public class ExclusaoPaciente {
 
 		btnApagarPaciente = new JButton("Excluir Paciente");
 		btnApagarPaciente.setBounds(10, 50, 146, 25);
+		btnApagarPaciente.addActionListener(this);
 		panel.add(btnApagarPaciente);
 
 		btnVoltar = new JButton("Voltar para tela anterior");
 		btnVoltar.setBounds(10, 207, 175, 23);
+		btnVoltar.addActionListener(this);
 		panel.add(btnVoltar);
-		btnVoltar.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Object botaoApertado = e.getSource();
+		this.controller = new ExclusaoPacienteController(this);
+	}
 
-				if (botaoApertado == btnVoltar) {
-					jftCPFBusca.setText("");// limpando os campos dos jtextfield's
-					PrincipalPaciente obj = new PrincipalPaciente();
-					obj.setVisible(true);
-					frame.dispose();
-
-				}
-			}
-		});
-
-		btnApagarPaciente.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// deixa o cursor dentro desse jtextfield's
-				jftCPFBusca.requestFocus();
-
-				String cpf = jftCPFBusca.getText();
-
-				PacienteController pacienteController = new PacienteController();
-				Paciente resultado = pacienteController.excluirPacientes(cpf);
-
-				if (resultado == null) {
-					JOptionPane.showMessageDialog(null, "CPF inválido!");
-
-					System.out.println(PacienteController.pacientes.toString());
-				} else {
-
-					JOptionPane.showMessageDialog(null, "Paciente excluido!");
-					System.out.println(PacienteController.pacientes.toString());
-
-					// deixa o cursor dentro desse jtextfield's
-					jftCPFBusca.requestFocus();
-
-					// limpando os campos dos jtextfield's
-					jftCPFBusca.setText("");
-
-				}
-			}
-		});
-
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		this.controller.executarBotao(e.getSource());
 	}
 
 	public void setVisible(boolean b) {
-		// TODO Auto-generated method stub
-
 	}
 
+	public static JFrame getFrame() {
+		return frame;
+	}
+
+	public JLabel getLbCPF() {
+		return lbCPF;
+	}
+
+	public JFormattedTextField getJftCPFBusca() {
+		return jftCPFBusca;
+	}
+
+	public JButton getBtnApagarPaciente() {
+		return btnApagarPaciente;
+	}
+
+	public JButton getBtnVoltar() {
+		return btnVoltar;
+	}
+
+	public ExclusaoPacienteController getController() {
+		return controller;
+	}
+
+	public static void setFrame(JFrame frame) {
+		ExclusaoPaciente.frame = frame;
+	}
+
+	public void setLbCPF(JLabel lbCPF) {
+		this.lbCPF = lbCPF;
+	}
+
+	public void setJftCPFBusca(JFormattedTextField jftCPFBusca) {
+		this.jftCPFBusca = jftCPFBusca;
+	}
+
+	public void setBtnApagarPaciente(JButton btnApagarPaciente) {
+		this.btnApagarPaciente = btnApagarPaciente;
+	}
+
+	public void setBtnVoltar(JButton btnVoltar) {
+		this.btnVoltar = btnVoltar;
+	}
+
+	private void setController(ExclusaoPacienteController exclusaoPacienteController) {
+	}
 }

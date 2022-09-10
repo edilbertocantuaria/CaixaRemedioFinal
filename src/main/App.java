@@ -1,8 +1,8 @@
 package main;
 
-import controller.MedicamentoController;
-import controller.PacienteController;
-import controller.PosologiaController;
+import controller.Medicamento.MedicamentoController;
+import controller.Paciente.PacienteController;
+import controller.Posologia.PosologiaController;
 import view.TelaPrincipal.TelaPrincipal;
 
 /**

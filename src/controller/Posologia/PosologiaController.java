@@ -1,4 +1,4 @@
-package controller;
+package controller.Posologia;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,8 @@ import java.util.List;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 
+import controller.Medicamento.MedicamentoController;
+import controller.Paciente.PacienteController;
 import model.Medicamento;
 import model.Paciente;
 import model.Posologia;

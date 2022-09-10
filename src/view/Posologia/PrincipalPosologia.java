@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import controller.PosologiaController;
+import controller.Posologia.PosologiaController;
 
 public class PrincipalPosologia extends JFrame implements ActionListener {
 

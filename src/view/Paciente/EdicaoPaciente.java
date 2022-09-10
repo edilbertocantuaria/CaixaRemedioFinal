@@ -5,46 +5,47 @@ import java.awt.event.ActionListener;
 import java.text.ParseException;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
-import controller.PacienteController;
-import model.Pessoa;
+import controller.Paciente.EdicaoPacienteController;
 
-public class EdicaoPaciente {
+public class EdicaoPaciente implements ActionListener {
+
 	private static JFrame frame = new JFrame("Editar Paciente");
-	private JLabel instrucao;
-	private JButton btnEditarPaciente_edicao;
-	private JButton btnVoltar;
-	private JComboBox<String> cbEscolhaPaciente;
 
-	private PacienteController controller;
-	private JTextField tfNomePaciente;
-	private JTextField tfGenero;
-	private JTextField tfObsAdcPaciente;
+	public JFormattedTextField jftCPFBusca;
+	public JTextField tfNomePaciente;
+	public JTextField tfGenero;
+	public JTextField tfObsAdcPaciente;
+	public JFormattedTextField tfCPF;
+	public JFormattedTextField tfDataNascimento;
+	public JFormattedTextField tfTelefone;
+
+	public JButton btnAtualizarCadastroPaciente;
+	public JButton btnEditarPaciente_edicao;
+	public JButton btnVoltar;
+
+	private JLabel instrucao;
 	private JLabel lbNomePaciente;
 	private JLabel lbCPF;
 	private JLabel lbCPFinfo;
-	private JFormattedTextField tfCPF;
 	private JLabel lbDataNascimento;
-	private JFormattedTextField tfDataNascimento;
 	private JLabel lbTelefone;
-	private JFormattedTextField tfTelefone;
 	private JLabel lbGenero;
 	private JLabel lbObsAdcPaciente;
-	private JButton btnAtualizarCadastroPaciente;
-	private JFormattedTextField jftCPFBusca;
+	private JPanel panel;
+
+	private EdicaoPacienteController controller;
 
 	public EdicaoPaciente() {
 		frame.setSize(500, 420);
 
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		frame.getContentPane().add(panel);
 		placeComponents(panel);
 
@@ -52,6 +53,7 @@ public class EdicaoPaciente {
 	}
 
 	private void placeComponents(JPanel panel) {
+		setController(new EdicaoPacienteController(this));
 		panel.setLayout(null);
 
 		MaskFormatter mascaraData = null;
@@ -142,83 +144,8 @@ public class EdicaoPaciente {
 
 		btnAtualizarCadastroPaciente = new JButton("Atualizar cadastro");
 		btnAtualizarCadastroPaciente.setEnabled(false);
-		btnAtualizarCadastroPaciente.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				atualizaPaciente();
-			}
-
-			public void atualizaPaciente() {
-				try {
-
-					String cpfBusca = jftCPFBusca.getText();
-
-					// Para inserir as informações de um paciente na lista (igual a do cadastro)
-					String nomePaciente = getTfNomePaciente().getText().trim();
-					String cpf = getTfCPF().getText().trim();
-					String dataNascimento = getTfDataNascimento().getText().trim();
-					String telefone = getTfTelefone().getText().trim();
-					String genero = getTfGenero().getText().trim();
-					String observacaoAdicionalPaciente = getTfObsAdcPaciente().getText().trim();
-
-					int i;
-					if (getTfCPF().getText() == ".   .   -") {
-						i = 0;
-					} else {
-						i = 1;
-					}
-
-					if (getTfNomePaciente().getText().isEmpty() || i != 0 || getTfDataNascimento().getText().isEmpty()
-							|| getTfTelefone().getText().isEmpty() || getTfGenero().getText().isEmpty()) {
-						JOptionPane.showMessageDialog(null,
-								"Não foi possível realizar o cadastro: os dados do paciente não podem estar vazios!");
-						jftCPFBusca.setText("");
-					} else {
-						PacienteController pacienteController = new PacienteController();
-						Pessoa paciente = pacienteController.buscarPacientes(cpfBusca);
-
-						// Atualiza os dados do paciente
-						paciente.setNome(nomePaciente);
-						paciente.setCpf(cpf);
-						paciente.setDataNascimento(dataNascimento);
-						paciente.setTelefone(telefone);
-						paciente.setGenero(genero);
-						paciente.setObservacaoAdicionalPessoa(observacaoAdicionalPaciente);
-
-						System.out.println(PacienteController.pacientes.toString());
-						JOptionPane.showMessageDialog(null, "Atualização efetivada!");
-					}
-
-					// limpando os campos dos jtextfield's
-					tfNomePaciente.setText("");
-					tfCPF.setText("");
-					tfDataNascimento.setText("");
-					tfTelefone.setText("");
-					tfGenero.setText("");
-					tfObsAdcPaciente.setText("");
-					jftCPFBusca.setText("");
-
-					// desabilitando a edição/inserção de texto nos jtextfield's
-					tfNomePaciente.setEnabled(false);
-					tfNomePaciente.setEditable(false);
-					tfCPF.setEnabled(false);
-					tfCPF.setEditable(false);
-					tfDataNascimento.setEnabled(false);
-					tfDataNascimento.setEditable(false);
-					tfTelefone.setEnabled(false);
-					tfTelefone.setEditable(false);
-					tfGenero.setEnabled(false);
-					tfGenero.setEditable(false);
-					tfObsAdcPaciente.setEnabled(false);
-					tfObsAdcPaciente.setEditable(false);
-				} catch (NumberFormatException e1) {
-					JOptionPane.showMessageDialog(null, "CPF inválido!");
-				}
-			}
-
-		});
-
 		btnAtualizarCadastroPaciente.setBounds(302, 351, 175, 23);
+		btnAtualizarCadastroPaciente.addActionListener(this);
 		panel.add(btnAtualizarCadastroPaciente);
 
 		jftCPFBusca = new JFormattedTextField(mascaraCPF);
@@ -226,237 +153,135 @@ public class EdicaoPaciente {
 		panel.add(jftCPFBusca);
 
 		btnEditarPaciente_edicao = new JButton("Editar Paciente");
-		btnEditarPaciente_edicao.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				jftCPFBusca.requestFocus();
-
-				String cpf = jftCPFBusca.getText();
-
-				PacienteController pacienteController = new PacienteController();
-				Pessoa resultado = pacienteController.buscarPacientes(cpf);
-
-				btnAtualizarCadastroPaciente.setEnabled(true);
-
-				tfNomePaciente.setText(resultado.getNome());
-				tfNomePaciente.setEnabled(true);
-				tfNomePaciente.setEditable(true);
-
-				tfCPF.setText(resultado.getCpf());
-				tfCPF.setEnabled(true);
-				tfCPF.setEditable(true);
-
-				tfDataNascimento.setText(resultado.getDataNascimento());
-				tfDataNascimento.setEnabled(true);
-				tfDataNascimento.setEditable(true);
-
-				tfTelefone.setText(resultado.getTelefone());
-				tfTelefone.setEnabled(true);
-				tfTelefone.setEditable(true);
-
-				tfGenero.setText(resultado.getGenero());
-				tfGenero.setEnabled(true);
-				tfGenero.setEditable(true);
-
-				tfObsAdcPaciente.setText(resultado.getObservacaoAdicionalPessoa());
-				tfObsAdcPaciente.setEnabled(true);
-				tfObsAdcPaciente.setEditable(true);
-
-			}
-		});
+		btnEditarPaciente_edicao.addActionListener(this);
 		btnEditarPaciente_edicao.setBounds(10, 50, 146, 25);
 		panel.add(btnEditarPaciente_edicao);
 
 		btnVoltar = new JButton("Voltar para tela anterior");
 		btnVoltar.setBounds(10, 351, 175, 23);
+		btnVoltar.addActionListener(this);
 		panel.add(btnVoltar);
-		btnVoltar.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Object botaoApertado = e.getSource();
+	}
 
-				if (botaoApertado == btnVoltar) {
-					jftCPFBusca.setText("");
-					PrincipalPaciente obj = new PrincipalPaciente();
-					obj.setVisible(true);
-					frame.dispose();
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		controller.executarBotao(e.getSource());
+	}
 
-				}
-			}
-		});
+	public void setVisible(boolean b) {
 	}
 
 	public static JFrame getFrame() {
 		return frame;
 	}
 
-	public static void setFrame(JFrame frame) {
-		EdicaoPaciente.frame = frame;
-	}
-
-	public JLabel getInstrucao() {
-		return instrucao;
-	}
-
-	public void setInstrucao(JLabel instrucao) {
-		this.instrucao = instrucao;
-	}
-
-	public JButton getBtnEditarPaciente_edicao() {
-		return btnEditarPaciente_edicao;
-	}
-
-	public void setBtnEditarPaciente_edicao(JButton btnEditarPaciente_edicao) {
-		this.btnEditarPaciente_edicao = btnEditarPaciente_edicao;
-	}
-
-	public JButton getBtnVoltar() {
-		return btnVoltar;
-	}
-
-	public void setBtnVoltar(JButton btnVoltar) {
-		this.btnVoltar = btnVoltar;
-	}
-
-	public JComboBox<String> getCbEscolhaPaciente() {
-		return cbEscolhaPaciente;
-	}
-
-	public void setCbEscolhaPaciente(JComboBox<String> cbEscolhaPaciente) {
-		this.cbEscolhaPaciente = cbEscolhaPaciente;
-	}
-
-	public PacienteController getController() {
-		return controller;
-	}
-
-	public void setController(PacienteController controller) {
-		this.controller = controller;
+	public JFormattedTextField getJftCPFBusca() {
+		return jftCPFBusca;
 	}
 
 	public JTextField getTfNomePaciente() {
 		return tfNomePaciente;
 	}
 
-	public void setTfNomePaciente(JTextField tfNomePaciente) {
-		this.tfNomePaciente = tfNomePaciente;
-	}
-
 	public JTextField getTfGenero() {
 		return tfGenero;
-	}
-
-	public void setTfGenero(JTextField tfGenero) {
-		this.tfGenero = tfGenero;
 	}
 
 	public JTextField getTfObsAdcPaciente() {
 		return tfObsAdcPaciente;
 	}
 
-	public void setTfObsAdcPaciente(JTextField tfObsAdcPaciente) {
-		this.tfObsAdcPaciente = tfObsAdcPaciente;
-	}
-
-	public JLabel getLbNomePaciente() {
-		return lbNomePaciente;
-	}
-
-	public void setLbNomePaciente(JLabel lbNomePaciente) {
-		this.lbNomePaciente = lbNomePaciente;
-	}
-
-	public JLabel getLbCPF() {
-		return lbCPF;
-	}
-
-	public void setLbCPF(JLabel lbCPF) {
-		this.lbCPF = lbCPF;
-	}
-
-	public JLabel getLbCPFinfo() {
-		return lbCPFinfo;
-	}
-
-	public void setLbCPFinfo(JLabel lbCPFinfo) {
-		this.lbCPFinfo = lbCPFinfo;
-	}
-
 	public JFormattedTextField getTfCPF() {
 		return tfCPF;
-	}
-
-	public void setTfCPF(JFormattedTextField tfCPF) {
-		this.tfCPF = tfCPF;
-	}
-
-	public JLabel getLbDataNascimento() {
-		return lbDataNascimento;
-	}
-
-	public void setLbDataNascimento(JLabel lbDataNascimento) {
-		this.lbDataNascimento = lbDataNascimento;
 	}
 
 	public JFormattedTextField getTfDataNascimento() {
 		return tfDataNascimento;
 	}
 
-	public void setTfDataNascimento(JFormattedTextField tfDataNascimento) {
-		this.tfDataNascimento = tfDataNascimento;
-	}
-
-	public JLabel getLbTelefone() {
-		return lbTelefone;
-	}
-
-	public void setLbTelefone(JLabel lbTelefone) {
-		this.lbTelefone = lbTelefone;
-	}
-
 	public JFormattedTextField getTfTelefone() {
 		return tfTelefone;
-	}
-
-	public void setTfTelefone(JFormattedTextField tfTelefone) {
-		this.tfTelefone = tfTelefone;
-	}
-
-	public JLabel getLbGenero() {
-		return lbGenero;
-	}
-
-	public void setLbGenero(JLabel lbGenero) {
-		this.lbGenero = lbGenero;
-	}
-
-	public JLabel getLbObsAdcPaciente() {
-		return lbObsAdcPaciente;
-	}
-
-	public void setLbObsAdcPaciente(JLabel lbObsAdcPaciente) {
-		this.lbObsAdcPaciente = lbObsAdcPaciente;
 	}
 
 	public JButton getBtnAtualizarCadastroPaciente() {
 		return btnAtualizarCadastroPaciente;
 	}
 
-	public void setBtnAtualizarCadastroPaciente(JButton btnAtualizarCadastroPaciente) {
-		this.btnAtualizarCadastroPaciente = btnAtualizarCadastroPaciente;
+	public JButton getBtnEditarPaciente_edicao() {
+		return btnEditarPaciente_edicao;
 	}
 
-	public JFormattedTextField getJftCPFBusca() {
-		return jftCPFBusca;
+	public JButton getBtnVoltar() {
+		return btnVoltar;
+	}
+
+	public JLabel getInstrucao() {
+		return instrucao;
+	}
+
+	public JPanel getPanel() {
+		return panel;
+	}
+
+	public EdicaoPacienteController getController() {
+		return controller;
+	}
+
+	public static void setFrame(JFrame frame) {
+		EdicaoPaciente.frame = frame;
 	}
 
 	public void setJftCPFBusca(JFormattedTextField jftCPFBusca) {
 		this.jftCPFBusca = jftCPFBusca;
 	}
 
-	public void setVisible(boolean b) {
-		// TODO Auto-generated method stub
-
+	public void setTfNomePaciente(JTextField tfNomePaciente) {
+		this.tfNomePaciente = tfNomePaciente;
 	}
+
+	public void setTfGenero(JTextField tfGenero) {
+		this.tfGenero = tfGenero;
+	}
+
+	public void setTfObsAdcPaciente(JTextField tfObsAdcPaciente) {
+		this.tfObsAdcPaciente = tfObsAdcPaciente;
+	}
+
+	public void setTfCPF(JFormattedTextField tfCPF) {
+		this.tfCPF = tfCPF;
+	}
+
+	public void setTfDataNascimento(JFormattedTextField tfDataNascimento) {
+		this.tfDataNascimento = tfDataNascimento;
+	}
+
+	public void setTfTelefone(JFormattedTextField tfTelefone) {
+		this.tfTelefone = tfTelefone;
+	}
+
+	public void setBtnAtualizarCadastroPaciente(JButton btnAtualizarCadastroPaciente) {
+		this.btnAtualizarCadastroPaciente = btnAtualizarCadastroPaciente;
+	}
+
+	public void setBtnEditarPaciente_edicao(JButton btnEditarPaciente_edicao) {
+		this.btnEditarPaciente_edicao = btnEditarPaciente_edicao;
+	}
+
+	public void setBtnVoltar(JButton btnVoltar) {
+		this.btnVoltar = btnVoltar;
+	}
+
+	public void setInstrucao(JLabel instrucao) {
+		this.instrucao = instrucao;
+	}
+
+	public void setPanel(JPanel panel) {
+		this.panel = panel;
+	}
+
+	public void setController(EdicaoPacienteController controller) {
+		this.controller = controller;
+	}
+
 }

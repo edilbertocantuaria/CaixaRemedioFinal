@@ -13,19 +13,24 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
-import controller.PacienteController;
+import controller.Paciente.ListaPacienteController;
+import controller.Paciente.PacienteController;
 import model.Paciente;
 
-public class ListaPaciente {
+public class ListaPaciente implements ActionListener {
 	private static JFrame frame = new JFrame("Lista de pacientes");
 	private JLabel lbSemMedicamento = new JLabel("Ainda não há pacientes cadastrados =(");
-	private JButton btnVoltar;
+	public JButton btnVoltar;
 	private JPanel panel;
 	private JScrollPane scrollPane;
-	private JTable jtPaciente;
-	private DefaultTableModel tabelaPaciente;
+	public JTable jtPaciente;
+	public DefaultTableModel tabelaPaciente;
+
+	private ListaPacienteController controller;
+	public JButton btnAtualizar;
 
 	public ListaPaciente() {
+
 		frame.setSize(577, 280);
 
 		panel = new JPanel();
@@ -37,6 +42,7 @@ public class ListaPaciente {
 	}
 
 	private void placeComponentes(JPanel panel) {
+		setController(new ListaPacienteController(this));
 
 		if (PacienteController.pacientes.isEmpty()) {
 			lbSemMedicamento.setFont(new Font("Arial", Font.BOLD, 15));
@@ -66,32 +72,97 @@ public class ListaPaciente {
 			}
 
 		}
-		System.out.println(PacienteController.pacientes);
+		// System.out.println(PacienteController.pacientes);
+
+		btnAtualizar = new JButton("Atualizar lista");
+		btnAtualizar.addActionListener(this);
+		btnAtualizar.setBounds(361, 207, 190, 23);
+		panel.add(btnAtualizar);
 
 		btnVoltar = new JButton("Voltar para tela anterior");
 		btnVoltar.setBounds(10, 207, 190, 23);
-		btnVoltar.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Object botaoApertado = e.getSource();
-
-				if (botaoApertado == btnVoltar) {
-					PrincipalPaciente obj = new PrincipalPaciente();
-					obj.setVisible(true);
-					frame.dispose();
-
-				}
-			}
-		});
+		btnVoltar.addActionListener(this);
 		panel.setLayout(null);
 		panel.add(btnVoltar);
+		this.controller = new ListaPacienteController(this);
+	}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		controller.executarBotao(e.getSource());
 	}
 
 	public void setVisible(boolean b) {
-		// TODO Auto-generated method stub
-
 	}
 
+	public static JFrame getFrame() {
+		return frame;
+	}
+
+	public JLabel getLbSemMedicamento() {
+		return lbSemMedicamento;
+	}
+
+	public JButton getBtnVoltar() {
+		return btnVoltar;
+	}
+
+	public JPanel getPanel() {
+		return panel;
+	}
+
+	public JScrollPane getScrollPane() {
+		return scrollPane;
+	}
+
+	public JTable getJtPaciente() {
+		return jtPaciente;
+	}
+
+	public DefaultTableModel getTabelaPaciente() {
+		return tabelaPaciente;
+	}
+
+	public ListaPacienteController getController() {
+		return controller;
+	}
+
+	public static void setFrame(JFrame frame) {
+		ListaPaciente.frame = frame;
+	}
+
+	public void setLbSemMedicamento(JLabel lbSemMedicamento) {
+		this.lbSemMedicamento = lbSemMedicamento;
+	}
+
+	public JButton getBtnAtualizar() {
+		return btnAtualizar;
+	}
+
+	public void setBtnAtualizar(JButton btnAtualizar) {
+		this.btnAtualizar = btnAtualizar;
+	}
+
+	public void setBtnVoltar(JButton btnVoltar) {
+		this.btnVoltar = btnVoltar;
+	}
+
+	public void setPanel(JPanel panel) {
+		this.panel = panel;
+	}
+
+	public void setScrollPane(JScrollPane scrollPane) {
+		this.scrollPane = scrollPane;
+	}
+
+	public void setJtPaciente(JTable jtPaciente) {
+		this.jtPaciente = jtPaciente;
+	}
+
+	public void setTabelaPaciente(DefaultTableModel tabelaPaciente) {
+		this.tabelaPaciente = tabelaPaciente;
+	}
+
+	private void setController(ListaPacienteController listaPacienteController) {
+	}
 }

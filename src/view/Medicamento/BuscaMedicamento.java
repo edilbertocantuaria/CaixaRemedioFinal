@@ -7,14 +7,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import controller.MedicamentoController;
-import model.Medicamento;
+import controller.Medicamento.BuscaMedicamentoController;
 
 /**
  * É a tela para a busca dos medicamentos. Ela exibir as informações do
@@ -23,23 +21,25 @@ import model.Medicamento;
  * @author Edilberto.
  * @version 09 set 22.
  */
-public class BuscaMedicamento {
-	private static JFrame frame = new JFrame("Buscar cadastro de medicamento");
+public class BuscaMedicamento implements ActionListener {
+	public static JFrame frame = new JFrame("Buscar cadastro de medicamento");
 
 	private JPanel panel;
 	private JLabel lbInstrucao;
-	private JButton btnBuscar;
+	private JLabel lbInstrucaoInfo;
 	private JLabel lbMedicacaoEncontrada;
 
-	private JButton btnVoltar;
-	private TextField tfMedicamentoBusca;
-	private JLabel lbInstrucaoInfo;
+	public JButton btnBuscar;
+	public JButton btnVoltar;
+	public TextField tfMedicamentoBusca;
 
 	private JPanel panel_1;
 	private JScrollPane scrollPane;
-	private JTable jtMedicacaoEncontrada;
+	public JTable jtMedicacaoEncontrada;
 
-	private DefaultTableModel tabelaBuscaMedicamento;
+	public DefaultTableModel tabelaBuscaMedicamento;
+
+	public BuscaMedicamentoController controller;
 
 	/**
 	 * Define as dimensões físicas da tela BuscaMedicamento
@@ -63,6 +63,7 @@ public class BuscaMedicamento {
 	 * @version 09 set 22.
 	 */
 	private void placeComponents(JPanel panel) {
+		setController(new BuscaMedicamentoController(this));
 		panel.setLayout(null);
 
 		lbInstrucao = new JLabel("Digite o nome do medicamento: ");
@@ -98,59 +99,102 @@ public class BuscaMedicamento {
 				"Código", "Descrição", "Fabricante", "Bula", "Princípio Ativo", "Observação adicional" }));
 		scrollPane.setViewportView(jtMedicacaoEncontrada);
 
-		btnBuscar.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// deixa o cursor dentro desse jtextfield's
-				tfMedicamentoBusca.requestFocus();
-
-				String nomeMedicacao = tfMedicamentoBusca.getText();
-
-				MedicamentoController medicamentoController = new MedicamentoController();
-				Medicamento resultado = medicamentoController.buscarMedicamentos(nomeMedicacao);
-
-				if (resultado == null) {
-					JOptionPane.showMessageDialog(null, "Medicamento não cadastrado!");
-				} else {
-					tabelaBuscaMedicamento = (DefaultTableModel) jtMedicacaoEncontrada.getModel();
-					tabelaBuscaMedicamento.addRow(new String[] { resultado.getNomeRemedio(), resultado.getCodigo(),
-							resultado.getDescricao(), resultado.getFabricante(), resultado.getBula(),
-							resultado.getObservacaoAdicionalMedicamento() });
-
-					JOptionPane.showMessageDialog(null, "Busca efetivada!");
-
-					// deixa o cursor dentro desse jtextfield's
-					tfMedicamentoBusca.requestFocus();
-
-					// limpando os campos dos jtextfield's
-					tfMedicamentoBusca.setText("");
-				}
-			}
-		});
+		btnBuscar.addActionListener(this);
 
 		btnVoltar = new JButton("Voltar para tela anterior");
 		btnVoltar.setBounds(376, 46, 175, 23);
 		panel.add(btnVoltar);
-		btnVoltar.addActionListener(new ActionListener() {
+		btnVoltar.addActionListener(this);
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Object botaoApertado = e.getSource();
+		this.controller = new BuscaMedicamentoController(this);
+	}
 
-				if (botaoApertado == btnVoltar) {
-					PrincipalMedicamento obj = new PrincipalMedicamento();
-					obj.setVisible(true);
-					frame.dispose();
-
-				}
-			}
-		});
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		controller.executarBotao(e.getSource());
 
 	}
 
 	public void setVisible(boolean b) {
-		// TODO Auto-generated method stub
-
 	}
+
+	private void setController(BuscaMedicamentoController buscaMedicamentoController) {
+	}
+
+	public static JFrame getFrame() {
+		return frame;
+	}
+
+	public JPanel getPanel() {
+		return panel;
+	}
+
+	public JButton getBtnBuscar() {
+		return btnBuscar;
+	}
+
+	public JButton getBtnVoltar() {
+		return btnVoltar;
+	}
+
+	public TextField getTfMedicamentoBusca() {
+		return tfMedicamentoBusca;
+	}
+
+	public JPanel getPanel_1() {
+		return panel_1;
+	}
+
+	public JScrollPane getScrollPane() {
+		return scrollPane;
+	}
+
+	public JTable getJtMedicacaoEncontrada() {
+		return jtMedicacaoEncontrada;
+	}
+
+	public DefaultTableModel getTabelaBuscaMedicamento() {
+		return tabelaBuscaMedicamento;
+	}
+
+	public BuscaMedicamentoController getController() {
+		return controller;
+	}
+
+	public static void setFrame(JFrame frame) {
+		BuscaMedicamento.frame = frame;
+	}
+
+	public void setPanel(JPanel panel) {
+		this.panel = panel;
+	}
+
+	public void setBtnBuscar(JButton btnBuscar) {
+		this.btnBuscar = btnBuscar;
+	}
+
+	public void setBtnVoltar(JButton btnVoltar) {
+		this.btnVoltar = btnVoltar;
+	}
+
+	public void setTfMedicamentoBusca(TextField tfMedicamentoBusca) {
+		this.tfMedicamentoBusca = tfMedicamentoBusca;
+	}
+
+	public void setPanel_1(JPanel panel_1) {
+		this.panel_1 = panel_1;
+	}
+
+	public void setScrollPane(JScrollPane scrollPane) {
+		this.scrollPane = scrollPane;
+	}
+
+	public void setJtMedicacaoEncontrada(JTable jtMedicacaoEncontrada) {
+		this.jtMedicacaoEncontrada = jtMedicacaoEncontrada;
+	}
+
+	public void setTabelaBuscaMedicamento(DefaultTableModel tabelaBuscaMedicamento) {
+		this.tabelaBuscaMedicamento = tabelaBuscaMedicamento;
+	}
+
 }

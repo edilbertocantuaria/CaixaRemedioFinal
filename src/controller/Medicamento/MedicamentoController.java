@@ -1,4 +1,4 @@
-package controller;
+package controller.Medicamento;
 
 import java.util.ArrayList;
 

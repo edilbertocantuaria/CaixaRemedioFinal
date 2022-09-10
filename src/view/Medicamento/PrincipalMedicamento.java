@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import controller.MedicamentoController;
+import controller.Medicamento.MedicamentoController;
 
 /**
  * É a tela principal dos medicamentos, onde contém os botões que concedem

@@ -7,11 +7,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import controller.MedicamentoController;
-import model.Medicamento;
+import controller.Medicamento.ExclusaoMedicamentoController;
 
 /**
  * É a tela para o exclusão dos medicamentos, onde ocorre o dele do CRUD. Ele
@@ -21,13 +19,15 @@ import model.Medicamento;
  * @version 09 set 22.
  */
 
-public class ExclusaoMedicamento {
+public class ExclusaoMedicamento implements ActionListener {
 	private static JFrame frame = new JFrame("Excluir Medicamento");
 	private JLabel instrucao;
 	private JLabel lbInstrucaoInfo;
-	private TextField tfMedicamentoBusca;
-	private JButton btnApagarMedicamento;
-	private JButton btnVoltar;
+	public TextField tfMedicamentoBusca;
+	public JButton btnApagarMedicamento;
+	public JButton btnVoltar;
+
+	private ExclusaoMedicamentoController controller;
 
 	/**
 	 * Define as dimensões físicas da tela ExclusaoMedicamento
@@ -51,6 +51,8 @@ public class ExclusaoMedicamento {
 	 * @version 09 out 22.
 	 */
 	private void placeComponents(JPanel panel) {
+		setController(new ExclusaoMedicamentoController(this));
+
 		panel.setLayout(null);
 
 		instrucao = new JLabel("Digite o nome do medicamento: ");
@@ -68,6 +70,7 @@ public class ExclusaoMedicamento {
 		btnApagarMedicamento = new JButton("Excluir Medicamento");
 		btnApagarMedicamento.setBounds(10, 50, 175, 25);
 		panel.add(btnApagarMedicamento);
+		btnApagarMedicamento.addActionListener(this);
 
 		/**
 		 * Determina a ação do btnVoltar, que neste caso fecha a tela
@@ -78,65 +81,66 @@ public class ExclusaoMedicamento {
 		btnVoltar = new JButton("Voltar para tela anterior");
 		btnVoltar.setBounds(10, 207, 175, 23);
 		panel.add(btnVoltar);
-		btnVoltar.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				PrincipalMedicamento obj = new PrincipalMedicamento();
-				obj.setVisible(true);
-				frame.dispose();
+		btnVoltar.addActionListener(this);
 
-			}
-		});
-
-		/**
-		 * É a parte do código que de fato permite exluir os dados antes inseridos. Ele
-		 * realiza a busca do remédio no ArrayList e, em seguida, remove. ao clicar no
-		 * btnApagarMedicamento.
-		 * 
-		 * @version 09 set 22.
-		 */
-		btnApagarMedicamento.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				// deixa o cursor dentro desse jtextfield's
-				tfMedicamentoBusca.requestFocus();
-
-				String nomeMedicacao = tfMedicamentoBusca.getText();
-
-				/**
-				 * Invoca o controller para que ele busque o medicamento pelo seu nome e
-				 * retire-o do ArrayList medicamentos.
-				 *
-				 * @param nomeMedicacao.
-				 * 
-				 * @version 09 set 22.
-				 */
-
-				MedicamentoController medicamentoController = new MedicamentoController();
-				Medicamento resultado = medicamentoController.excluirMedicamentos(nomeMedicacao);
-
-				if (resultado == null) {
-					JOptionPane.showMessageDialog(null, "Medicamento inválido!");
-				} else {
-					JOptionPane.showMessageDialog(null, "Medicamento excluido!");
-
-					// deixa o cursor dentro desse jtextfield's
-					tfMedicamentoBusca.requestFocus();
-
-					// limpando os campos dos jtextfield's
-					tfMedicamentoBusca.setText("");
-
-					System.out.println(MedicamentoController.medicamentos.toString());
-				}
-			}
-		});
+		this.controller = new ExclusaoMedicamentoController(this);
 
 	}
 
-	public void setVisible(boolean b) {
-		// TODO Auto-generated method stub
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		controller.executarBotao(e.getSource());
 
+	}
+
+	private void setController(ExclusaoMedicamentoController exclusaoMedicamentoController) {
+	}
+
+	public void setVisible(boolean b) {
+	}
+
+	public static JFrame getFrame() {
+		return frame;
+	}
+
+	public JLabel getInstrucao() {
+		return instrucao;
+	}
+
+	public TextField getTfMedicamentoBusca() {
+		return tfMedicamentoBusca;
+	}
+
+	public JButton getBtnApagarMedicamento() {
+		return btnApagarMedicamento;
+	}
+
+	public JButton getBtnVoltar() {
+		return btnVoltar;
+	}
+
+	public ExclusaoMedicamentoController getController() {
+		return controller;
+	}
+
+	public static void setFrame(JFrame frame) {
+		ExclusaoMedicamento.frame = frame;
+	}
+
+	public void setInstrucao(JLabel instrucao) {
+		this.instrucao = instrucao;
+	}
+
+	public void setTfMedicamentoBusca(TextField tfMedicamentoBusca) {
+		this.tfMedicamentoBusca = tfMedicamentoBusca;
+	}
+
+	public void setBtnApagarMedicamento(JButton btnApagarMedicamento) {
+		this.btnApagarMedicamento = btnApagarMedicamento;
+	}
+
+	public void setBtnVoltar(JButton btnVoltar) {
+		this.btnVoltar = btnVoltar;
 	}
 
 }

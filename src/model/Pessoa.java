@@ -9,6 +9,16 @@ public abstract class Pessoa {
 	private String genero;
 	private String observacaoAdicionalPessoa;
 
+	/**
+	 * Construtor da classe pessoa.
+	 * 
+	 * @param nome
+	 * @param cpf
+	 * @param dataNascimento
+	 * @param telefone
+	 * @param genero
+	 * @param observacaoAdicionalPessoa
+	 */
 	public Pessoa(String nome, String cpf, String dataNascimento, String telefone, String genero,
 			String observacaoAdicionalPessoa) {
 		super();

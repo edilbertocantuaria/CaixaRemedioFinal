@@ -19,9 +19,9 @@ public class TelaPrincipal extends JFrame implements ActionListener {
 	private final JLabel lbCaixaRemedios;
 	private final JLabel lbAlunoEdilberto;
 	private final JLabel lbAlunoCaetano;
+	private JButton btnRotina;
 
 	private final TelaPrincipalController controller;
-	private JButton btnRotina;
 
 	public TelaPrincipal() {
 		setResizable(false);

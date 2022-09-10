@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import controller.PacienteController;
+import controller.Paciente.PacienteController;
 
 public class PrincipalPaciente extends JFrame implements ActionListener {
 

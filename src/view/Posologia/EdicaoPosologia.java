@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
-import controller.PosologiaController;
+import controller.Posologia.PosologiaController;
 import model.Posologia;
 
 public class EdicaoPosologia {

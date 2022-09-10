@@ -13,7 +13,7 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
-import controller.PosologiaController;
+import controller.Posologia.PosologiaController;
 import model.Posologia;
 
 public class ListaPosologia {

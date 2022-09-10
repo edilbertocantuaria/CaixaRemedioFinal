@@ -13,7 +13,8 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
-import controller.MedicamentoController;
+import controller.Medicamento.ListaMedicamentoController;
+import controller.Medicamento.MedicamentoController;
 import model.Medicamento;
 
 /**
@@ -23,14 +24,19 @@ import model.Medicamento;
  * @author Edilberto.
  * @version 09 set 22.
  */
-public class ListaMedicamento {
+public class ListaMedicamento implements ActionListener {
 	private static JFrame frame = new JFrame("Lista de Medicamentos");
 	private JLabel lbSemMedicamento = new JLabel("Ainda não há medicamentos cadastrados =(");
-	private JButton btnVoltar;
+
+	public JButton btnVoltar;
+	public JButton btnAtualizar;
+
 	private JPanel panel;
-	private JTable jtMedicacao;
+	public JTable jtMedicacao;
 	private JScrollPane scrollPane;
-	private DefaultTableModel tabelaMedicacao;
+	public DefaultTableModel tabelaMedicacao;
+
+	private ListaMedicamentoController controller;
 
 	/**
 	 * Define as dimensões físicas da tela ListaMedicamento
@@ -65,6 +71,7 @@ public class ListaMedicamento {
 	 */
 
 	private void placeComponentes(JPanel panel) {
+		setController(new ListaMedicamentoController(this));
 
 		/*
 		 * caso não tenha medicação cadastrada, imprime uma label informando que não
@@ -93,26 +100,19 @@ public class ListaMedicamento {
 			// criando a tabela de medicamentos inicial
 			for (int i = 0; i < MedicamentoController.medicamentos.size(); i++) {
 
-				/*
-				 * Invoca a classe controller.MedicamentoController para pegar o medicamento que
-				 * se encontra na posição i do ArrayList medicamentos
-				 */
 				Medicamento medicamento = MedicamentoController.medicamentos.get(i);
-
-				/*
-				 * Pede para imprimir somente alguns dados solicitados, na ordem pré-definida na
-				 * linha 88,
-				 */
 				tabelaMedicacao.addRow(new String[] { medicamento.getNomeRemedio(), medicamento.getDescricao(),
 						medicamento.getObservacaoAdicionalMedicamento() });
 
 			}
 		}
-		frame.repaint();
-		jtMedicacao.updateUI();
 
-		System.out.println(MedicamentoController.medicamentos.toString());
+		// System.out.println(MedicamentoController.medicamentos.toString());
 
+		btnAtualizar = new JButton("Atualizar lista");
+		btnAtualizar.setBounds(361, 207, 190, 23);
+		btnAtualizar.addActionListener(this);
+		panel.add(btnAtualizar);
 		/**
 		 * Determina a ação do btnVoltar, que neste caso fecha a tela ListaMedicamento e
 		 * abre a tela PrincipalMedicamento
@@ -121,24 +121,78 @@ public class ListaMedicamento {
 		 */
 		btnVoltar = new JButton("Voltar para tela anterior");
 		btnVoltar.setBounds(10, 207, 190, 23);
-		btnVoltar.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				PrincipalMedicamento obj = new PrincipalMedicamento();
-				obj.setVisible(true);
-				frame.dispose();
-
-			}
-		});
+		btnVoltar.addActionListener(this);
 
 		panel.setLayout(null);
 		panel.add(btnVoltar);
 
+		this.controller = new ListaMedicamentoController(this);
+
+	}
+
+	private void setController(ListaMedicamentoController listaMedicamentoController) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		controller.executarBotao(e.getSource());
 	}
 
 	public void setVisible(boolean b) {
-		// TODO Auto-generated method stub
+	}
 
+	public JButton getBtnVoltar() {
+		return btnVoltar;
+	}
+
+	public JButton getBtnAtualizar() {
+		return btnAtualizar;
+	}
+
+	public JPanel getPanel() {
+		return panel;
+	}
+
+	public JTable getJtMedicacao() {
+		return jtMedicacao;
+	}
+
+	public JScrollPane getScrollPane() {
+		return scrollPane;
+	}
+
+	public DefaultTableModel getTabelaMedicacao() {
+		return tabelaMedicacao;
+	}
+
+	public ListaMedicamentoController getController() {
+		return controller;
+	}
+
+	public void setBtnVoltar(JButton btnVoltar) {
+		this.btnVoltar = btnVoltar;
+	}
+
+	public void setBtnAtualizar(JButton btnAtualizar) {
+		this.btnAtualizar = btnAtualizar;
+	}
+
+	public void setPanel(JPanel panel) {
+		this.panel = panel;
+	}
+
+	public void setJtMedicacao(JTable jtMedicacao) {
+		this.jtMedicacao = jtMedicacao;
+	}
+
+	public void setScrollPane(JScrollPane scrollPane) {
+		this.scrollPane = scrollPane;
+	}
+
+	public void setTabelaMedicacao(DefaultTableModel tabelaMedicacao) {
+		this.tabelaMedicacao = tabelaMedicacao;
 	}
 
 }

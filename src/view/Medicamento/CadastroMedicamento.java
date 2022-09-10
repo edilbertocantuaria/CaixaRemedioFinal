@@ -6,12 +6,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import controller.MedicamentoController;
-import model.Medicamento;
+import controller.Medicamento.CadastroMedicamentoController;
 
 /**
  * É a tela para o cadastro dos medicamentos, onde ocorre create + read do CRUD.
@@ -20,16 +18,17 @@ import model.Medicamento;
  * @version 09 set 22.
  */
 
-public class CadastroMedicamento {
+public class CadastroMedicamento implements ActionListener {
 	private static JFrame frame = new JFrame("Cadastro de Medicamento");
 
-	private JTextField tfNomeMedicamento;
-	private JTextField tfCodigo;
-	private JTextField tfDescricao;
-	private JTextField tfFabricante;
-	private JTextField tfObsAdcMedicamento;
-	private JTextField tfBula;
-	private JTextField tfPrincipioAtivo;
+	public JTextField tfNomeMedicamento;
+	public JTextField tfCodigo;
+	public JTextField tfDescricao;
+	public JTextField tfFabricante;
+	public JTextField tfObsAdcMedicamento;
+	public JTextField tfBula;
+	public JTextField tfPrincipioAtivo;
+
 	private JLabel lbNomeMedicamento;
 	private JLabel lbCodigo;
 	private JLabel lbDescricao;
@@ -38,11 +37,14 @@ public class CadastroMedicamento {
 	private JLabel lbBula;
 	private JLabel lbBulaExemplo;
 	private JLabel lbPrincipioAtivo;
+
 	private JButton btnCadastrarMedicamento;
 	private JButton btnVoltar;
 
 	private JPanel panel;
 	private JLabel lbNomeMedicamentoInfo;
+
+	private CadastroMedicamentoController controller;
 
 	/**
 	 * Define as dimensões físicas da tela CadastroMedicamento
@@ -67,6 +69,7 @@ public class CadastroMedicamento {
 	 * @version 09 out 22.
 	 */
 	private void placeComponents(JPanel panel) {
+		setController(new CadastroMedicamentoController(this));
 		panel.setLayout(null);
 
 		lbCodigo = new JLabel("Codigo de barras:");
@@ -141,17 +144,7 @@ public class CadastroMedicamento {
 		 */
 		btnVoltar = new JButton("Voltar para tela anterior");
 		btnVoltar.setBounds(10, 337, 175, 23);
-		btnVoltar.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				PrincipalMedicamento obj = new PrincipalMedicamento();
-				obj.setVisible(true);
-				frame.dispose();
-
-			}
-		});
+		btnVoltar.addActionListener(this);
 		panel.add(btnVoltar);
 
 		/**
@@ -163,221 +156,116 @@ public class CadastroMedicamento {
 		 */
 
 		btnCadastrarMedicamento = new JButton("Cadastrar Medicamento");
-		btnCadastrarMedicamento.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				cadastraMedicamento();
-			}
-
-			public void cadastraMedicamento() {
-				// deixa o cursor dentro desse jtextfield's
-				tfNomeMedicamento.requestFocus();
-
-				// Cadastra as informações de um medicamento na lista
-
-				String nomeRemedio = getTfNomeMedicamento().getText().trim();
-				String codigo = getTfCodigo().getText().trim();
-				String descricao = getTfDescricao().getText().trim();
-				String fabricante = getTfFabricante().getText().trim();
-				String bula = getTfBula().getText().trim();
-				String principioAtivo = getTfPrincipioAtivo().getText().trim();
-				String observacaoAdicionalMedicamento = getTfObsAdcMedicamento().getText().trim();
-
-				/**
-				 * Adiciona os dados inseridos acima no ArrayList medicamentos. Este ArrayList
-				 * está em controller.MedicamentoController, linhas 23 a 26.
-				 * 
-				 * @version 09 set 22
-				 */
-
-				if (getTfNomeMedicamento().getText().isEmpty() || getTfCodigo().getText().isEmpty()
-						|| getTfDescricao().getText().isEmpty() || getTfFabricante().getText().isEmpty()
-						|| getTfBula().getText().isEmpty() || getTfPrincipioAtivo().getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null,
-							"Não foi possível realizar o cadastro: os dados do medicamento não podem estar vazios!");
-
-				} else {
-					Medicamento medicamento = new Medicamento(nomeRemedio, codigo, descricao, fabricante, bula,
-							principioAtivo, observacaoAdicionalMedicamento);
-					MedicamentoController.medicamentos.add(medicamento);
-					JOptionPane.showMessageDialog(null, "Cadastro efetivado!");
-				}
-
-				System.out.println(MedicamentoController.medicamentos.toString());
-
-				// limpando os campos dos jtextfield's
-				tfNomeMedicamento.setText("");
-				tfCodigo.setText("");
-				tfDescricao.setText("");
-				tfFabricante.setText("");
-				tfBula.setText("");
-				tfPrincipioAtivo.setText("");
-				tfObsAdcMedicamento.setText("");
-
-				// deixa o cursor dentro desse jtextfield's
-				tfNomeMedicamento.requestFocus();
-
-			}
-		});
+		btnCadastrarMedicamento.addActionListener(this);
 		btnCadastrarMedicamento.setBounds(487, 337, 175, 23);
 		panel.add(btnCadastrarMedicamento);
 
+		this.controller = new CadastroMedicamentoController(this);
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		controller.executarBotao(e.getSource());
+	}
+
+	public void setVisible(boolean b) {
+	}
+
+	public CadastroMedicamentoController getController() {
+		return controller;
+	}
+
+	public void setController(CadastroMedicamentoController controller) {
+		this.controller = controller;
 	}
 
 	public static JFrame getFrame() {
 		return frame;
 	}
 
-	public static void setFrame(JFrame frame) {
-		CadastroMedicamento.frame = frame;
-	}
-
 	public JTextField getTfNomeMedicamento() {
 		return tfNomeMedicamento;
-	}
-
-	public void setTfNomeMedicamento(JTextField tfNomeMedicamento) {
-		this.tfNomeMedicamento = tfNomeMedicamento;
 	}
 
 	public JTextField getTfCodigo() {
 		return tfCodigo;
 	}
 
-	public void setTfCodigo(JTextField tfCodigo) {
-		this.tfCodigo = tfCodigo;
-	}
-
 	public JTextField getTfDescricao() {
 		return tfDescricao;
-	}
-
-	public void setTfDescricao(JTextField tfDescricao) {
-		this.tfDescricao = tfDescricao;
 	}
 
 	public JTextField getTfFabricante() {
 		return tfFabricante;
 	}
 
-	public void setTfFabricante(JTextField tfFabricante) {
-		this.tfFabricante = tfFabricante;
-	}
-
 	public JTextField getTfObsAdcMedicamento() {
 		return tfObsAdcMedicamento;
-	}
-
-	public void setTfObsAdcMedicamento(JTextField tfObsAdcMedicamento) {
-		this.tfObsAdcMedicamento = tfObsAdcMedicamento;
 	}
 
 	public JTextField getTfBula() {
 		return tfBula;
 	}
 
-	public void setTfBula(JTextField tfBula) {
-		this.tfBula = tfBula;
-	}
-
 	public JTextField getTfPrincipioAtivo() {
 		return tfPrincipioAtivo;
-	}
-
-	public void setTfPrincipioAtivo(JTextField tfPrincipioAtivo) {
-		this.tfPrincipioAtivo = tfPrincipioAtivo;
-	}
-
-	public JLabel getLbNomeMedicamento() {
-		return lbNomeMedicamento;
-	}
-
-	public void setLbNomeMedicamento(JLabel lbNomeMedicamento) {
-		this.lbNomeMedicamento = lbNomeMedicamento;
-	}
-
-	public JLabel getLbCodigo() {
-		return lbCodigo;
-	}
-
-	public void setLbCodigo(JLabel lbCodigo) {
-		this.lbCodigo = lbCodigo;
-	}
-
-	public JLabel getLbDescricao() {
-		return lbDescricao;
-	}
-
-	public void setLbDescricao(JLabel lbDescricao) {
-		this.lbDescricao = lbDescricao;
-	}
-
-	public JLabel getLbFabricante() {
-		return lbFabricante;
-	}
-
-	public void setLbFabricante(JLabel lbFabricante) {
-		this.lbFabricante = lbFabricante;
-	}
-
-	public JLabel getLbObsAdcMedicamento() {
-		return lbObsAdcMedicamento;
-	}
-
-	public void setLbObsAdcMedicamento(JLabel lbObsAdcMedicamento) {
-		this.lbObsAdcMedicamento = lbObsAdcMedicamento;
-	}
-
-	public JLabel getLbBula() {
-		return lbBula;
-	}
-
-	public void setLbBula(JLabel lbBula) {
-		this.lbBula = lbBula;
-	}
-
-	public JLabel getLbBulaExemplo() {
-		return lbBulaExemplo;
-	}
-
-	public void setLbBulaExemplo(JLabel lbBulaExemplo) {
-		this.lbBulaExemplo = lbBulaExemplo;
-	}
-
-	public JLabel getLbPrincipioAtivo() {
-		return lbPrincipioAtivo;
-	}
-
-	public void setLbPrincipioAtivo(JLabel lbPrincipioAtivo) {
-		this.lbPrincipioAtivo = lbPrincipioAtivo;
 	}
 
 	public JButton getBtnCadastrarMedicamento() {
 		return btnCadastrarMedicamento;
 	}
 
-	public void setBtnCadastrarMedicamento(JButton btnCadastrarMedicamento) {
-		this.btnCadastrarMedicamento = btnCadastrarMedicamento;
-	}
-
 	public JButton getBtnVoltar() {
 		return btnVoltar;
-	}
-
-	public void setBtnVoltar(JButton btnVoltar) {
-		this.btnVoltar = btnVoltar;
 	}
 
 	public JPanel getPanel() {
 		return panel;
 	}
 
+	public static void setFrame(JFrame frame) {
+		CadastroMedicamento.frame = frame;
+	}
+
+	public void setTfNomeMedicamento(JTextField tfNomeMedicamento) {
+		this.tfNomeMedicamento = tfNomeMedicamento;
+	}
+
+	public void setTfCodigo(JTextField tfCodigo) {
+		this.tfCodigo = tfCodigo;
+	}
+
+	public void setTfDescricao(JTextField tfDescricao) {
+		this.tfDescricao = tfDescricao;
+	}
+
+	public void setTfFabricante(JTextField tfFabricante) {
+		this.tfFabricante = tfFabricante;
+	}
+
+	public void setTfObsAdcMedicamento(JTextField tfObsAdcMedicamento) {
+		this.tfObsAdcMedicamento = tfObsAdcMedicamento;
+	}
+
+	public void setTfBula(JTextField tfBula) {
+		this.tfBula = tfBula;
+	}
+
+	public void setTfPrincipioAtivo(JTextField tfPrincipioAtivo) {
+		this.tfPrincipioAtivo = tfPrincipioAtivo;
+	}
+
+	public void setBtnCadastrarMedicamento(JButton btnCadastrarMedicamento) {
+		this.btnCadastrarMedicamento = btnCadastrarMedicamento;
+	}
+
+	public void setBtnVoltar(JButton btnVoltar) {
+		this.btnVoltar = btnVoltar;
+	}
+
 	public void setPanel(JPanel panel) {
 		this.panel = panel;
 	}
 
-	public void setVisible(boolean b) {
-		// TODO Auto-generated method stub
-
-	}
 }

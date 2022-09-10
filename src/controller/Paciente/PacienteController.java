@@ -1,4 +1,4 @@
-package controller;
+package controller.Paciente;
 
 import java.util.ArrayList;
 
@@ -33,14 +33,6 @@ public class PacienteController {
 		this.view_principalPaciente = principalPaciente;
 	}
 
-	public PacienteController() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public PacienteController(EdicaoPaciente edicaoPaciente) {
-		// TODO Auto-generated constructor stub
-	}
-
 	public void executarBotao(Object botaoApertado) {
 		if (botaoApertado == view_principalPaciente.getBtnVoltar()) {
 			this.executarBotaoVoltar();
@@ -48,27 +40,22 @@ public class PacienteController {
 
 		if (botaoApertado == view_principalPaciente.getBtnCadastrarPaciente()) {
 			this.executarBotaoCadastrarPaciente();
-
 		}
 
 		if (botaoApertado == view_principalPaciente.getBtnEditarPaciente()) {
 			this.executarBotaoEditarPaciente();
-
 		}
 
 		if (botaoApertado == view_principalPaciente.getBtnListarPaciente()) {
 			this.executarBotaoListarPaciente();
-
 		}
 
 		if (botaoApertado == view_principalPaciente.getBtnBuscarPaciente()) {
 			this.executarBotaoBuscarPaciente();
-
 		}
 
 		if (botaoApertado == view_principalPaciente.getBtnExcluirPaciente()) {
 			this.executarBotaoExcluirPaciente();
-
 		}
 
 	}

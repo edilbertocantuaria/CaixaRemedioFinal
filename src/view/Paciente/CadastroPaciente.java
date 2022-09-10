@@ -8,37 +8,35 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
-import controller.PacienteController;
-import model.Paciente;
+import controller.Paciente.CadastroPacienteController;
 
-public class CadastroPaciente {
+public class CadastroPaciente implements ActionListener {
 	private static JFrame frame = new JFrame("Cadastro de Paciente");
 
-	private JTextField tfNomePaciente;
-	private JTextField tfDataNascimento;
-	private JTextField tfTelefone;
-	private JTextField tfGenero;
-	private JTextField tfObsAdcPaciente;
+	public JTextField tfNomePaciente;
+	public JFormattedTextField tfCPF;
+	public JTextField tfDataNascimento;
+	public JTextField tfTelefone;
+	public JTextField tfGenero;
+	public JTextField tfObsAdcPaciente;
+
 	private JLabel lbNomePaciente;
 	private JLabel lbDataNascimento;
 	private JLabel lbTelefone;
 	private JLabel lbGenero;
 	private JLabel lbObsAdcPaciente;
+	private JLabel lbCPF;
+	private JLabel lbCPFinfo;
+	private JPanel panel;
+
 	private JButton btnRealizarCadastroPaciente;
 	private JButton btnVoltar;
-	private JPanel panel;
-	private JFormattedTextField telefoneText;
-	private JFormattedTextField dataText;
-	private JFormattedTextField tfCPF;
-	// private JTextField tfCPF;
-	private JLabel lbCPF;
 
-	private JLabel lbCPFinfo;
+	private CadastroPacienteController controller;
 
 	public CadastroPaciente() {
 		frame.setSize(500, 350);
@@ -51,6 +49,7 @@ public class CadastroPaciente {
 	}
 
 	private void placeComponents(JPanel panel) {
+		setController(new CadastroPacienteController(this));
 		panel.setLayout(null);
 
 		MaskFormatter mascaraData = null;
@@ -124,86 +123,15 @@ public class CadastroPaciente {
 
 		btnVoltar = new JButton("Voltar para tela anterior");
 		btnVoltar.setBounds(10, 277, 175, 23);
-
-		btnVoltar.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Object botaoApertado = e.getSource();
-
-				if (botaoApertado == btnVoltar) {
-					// limpando os campos dos jtextfield's
-					tfNomePaciente.setText("");
-					tfCPF.setText("");
-					tfDataNascimento.setText("");
-					tfTelefone.setText("");
-					tfGenero.setText("");
-					tfObsAdcPaciente.setText("");
-
-					PrincipalPaciente obj = new PrincipalPaciente();
-					obj.setVisible(true);
-					frame.dispose();
-
-				}
-			}
-		});
-
+		btnVoltar.addActionListener(this);
 		panel.add(btnVoltar);
 
 		btnRealizarCadastroPaciente = new JButton("Realizar cadastro");
-		btnRealizarCadastroPaciente.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				cadastraPaciente();
-			}
-
-			public void cadastraPaciente() {
-				// deixa o cursor dentro desse jtextfield's
-				tfNomePaciente.requestFocus();
-
-				// Cadastra as informações de um paciente na
-				// listagetTfDataNascimento().getText()
-				String nomePaciente = getTfNomePaciente().getText().trim();
-				String cpf = getTfCPF().getText().trim();
-				String dataNascimento = getTfDataNascimento().getText().trim();
-				String telefone = getTfTelefone().getText().trim();
-				String genero = getTfGenero().getText().trim();
-				String observacaoAdicionalPaciente = getTfObsAdcPaciente().getText().trim();
-
-				int i;
-				if (getTfCPF().getText() == ".   .   -") {
-					i = 0;
-				} else {
-					i = 1;
-				}
-
-				if (getTfNomePaciente().getText().isEmpty() || i != 0 || getTfDataNascimento().getText().isEmpty()
-						|| getTfTelefone().getText().isEmpty() || getTfGenero().getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null,
-							"Não foi possível realizar o cadastro: os dados do paciente não podem estar vazios!");
-				} else {
-					Paciente paciente = new Paciente(nomePaciente, cpf, dataNascimento, telefone, genero,
-							observacaoAdicionalPaciente);
-					PacienteController.pacientes.add(paciente);
-					System.out.println(PacienteController.pacientes.toString());
-					JOptionPane.showMessageDialog(null, "Cadastro efetivado!");
-				}
-
-				// limpando os campos dos jtextfield's
-				tfNomePaciente.setText("");
-				tfCPF.setText("");
-				tfDataNascimento.setText("");
-				tfTelefone.setText("");
-				tfGenero.setText("");
-				tfObsAdcPaciente.setText("");
-
-				// deixa o cursor dentro desse jtextfield's
-				tfNomePaciente.requestFocus();
-
-			}
-		});
+		btnRealizarCadastroPaciente.addActionListener(this);
 		btnRealizarCadastroPaciente.setBounds(302, 277, 175, 23);
 		panel.add(btnRealizarCadastroPaciente);
+
+		this.controller = new CadastroPacienteController(this);
 
 	}
 
@@ -213,6 +141,22 @@ public class CadastroPaciente {
 
 	public static void setFrame(JFrame frame) {
 		CadastroPaciente.frame = frame;
+	}
+
+	public JFormattedTextField getTfCPF() {
+		return tfCPF;
+	}
+
+	public JLabel getLbCPFinfo() {
+		return lbCPFinfo;
+	}
+
+	public void setLbCPFinfo(JLabel lbCPFinfo) {
+		this.lbCPFinfo = lbCPFinfo;
+	}
+
+	public void setTfCPF(JFormattedTextField tfCPF) {
+		this.tfCPF = tfCPF;
 	}
 
 	public JTextField getTfNomePaciente() {
@@ -255,46 +199,6 @@ public class CadastroPaciente {
 		this.tfObsAdcPaciente = tfObsAdcPaciente;
 	}
 
-	public JLabel getLbNomePaciente() {
-		return lbNomePaciente;
-	}
-
-	public void setLbNomePaciente(JLabel lbNomePaciente) {
-		this.lbNomePaciente = lbNomePaciente;
-	}
-
-	public JLabel getLbDataNascimento() {
-		return lbDataNascimento;
-	}
-
-	public void setLbDataNascimento(JLabel lbDataNascimento) {
-		this.lbDataNascimento = lbDataNascimento;
-	}
-
-	public JLabel getLbTelefone() {
-		return lbTelefone;
-	}
-
-	public void setLbTelefone(JLabel lbTelefone) {
-		this.lbTelefone = lbTelefone;
-	}
-
-	public JLabel getLbGenero() {
-		return lbGenero;
-	}
-
-	public void setLbGenero(JLabel lbGenero) {
-		this.lbGenero = lbGenero;
-	}
-
-	public JLabel getLbObsAdcPaciente() {
-		return lbObsAdcPaciente;
-	}
-
-	public void setLbObsAdcPaciente(JLabel lbObsAdcPaciente) {
-		this.lbObsAdcPaciente = lbObsAdcPaciente;
-	}
-
 	public JButton getBtnRealizarCadastroPaciente() {
 		return btnRealizarCadastroPaciente;
 	}
@@ -319,54 +223,21 @@ public class CadastroPaciente {
 		this.panel = panel;
 	}
 
-	public JFormattedTextField getTelefoneText() {
-		return telefoneText;
-	}
-
-	public void setTelefoneText(JFormattedTextField telefoneText) {
-		this.telefoneText = telefoneText;
-	}
-
-	public JFormattedTextField getDataText() {
-		return dataText;
-	}
-
-	public void setDataText(JFormattedTextField dataText) {
-		this.dataText = dataText;
-	}
-
-	public JLabel getLbCPF() {
-		return lbCPF;
-	}
-
-	public void setLbCPF(JLabel lbCPF) {
-		this.lbCPF = lbCPF;
-	}
-
-	/*
-	 * public JTextField getTfCPF() { return tfCPF; }
-	 * 
-	 * public void setTfCPF(JTextField tfCPF) { this.tfCPF = tfCPF; }
-	 */
-
-	public JFormattedTextField getTfCPF() {
-		return tfCPF;
-	}
-
-	public JLabel getLbCPFinfo() {
-		return lbCPFinfo;
-	}
-
-	public void setLbCPFinfo(JLabel lbCPFinfo) {
-		this.lbCPFinfo = lbCPFinfo;
-	}
-
-	public void setTfCPF(JFormattedTextField tfCPF) {
-		this.tfCPF = tfCPF;
-	}
-
 	public void setVisible(boolean b) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public CadastroPacienteController getController() {
+		return controller;
+	}
+
+	public void setController(CadastroPacienteController controller) {
+		this.controller = controller;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		controller.executarBotao(e.getSource());
 	}
 }

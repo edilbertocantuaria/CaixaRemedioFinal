@@ -36,7 +36,8 @@ public class ListaMedicamentoController {
 
 			Medicamento medicamento = MedicamentoController.medicamentos.get(i);
 
-			view.tabelaMedicacao.addRow(new String[] { medicamento.getNomeRemedio(), medicamento.getDescricao(),
+			view.tabelaMedicacao.addRow(new String[] { medicamento.getNomeRemedio(), medicamento.getCodigo(),
+					medicamento.getDescricao(), medicamento.getFabricante(), medicamento.getBula(),
 					medicamento.getObservacaoAdicionalMedicamento() });
 		}
 		PrincipalMedicamento obj = new PrincipalMedicamento();
@@ -54,7 +55,8 @@ public class ListaMedicamentoController {
 
 			Medicamento medicamento = MedicamentoController.medicamentos.get(i);
 
-			view.tabelaMedicacao.addRow(new String[] { medicamento.getNomeRemedio(), medicamento.getDescricao(),
+			view.tabelaMedicacao.addRow(new String[] { medicamento.getNomeRemedio(), medicamento.getCodigo(),
+					medicamento.getDescricao(), medicamento.getFabricante(), medicamento.getBula(),
 					medicamento.getObservacaoAdicionalMedicamento() });
 		}
 		JOptionPane.showMessageDialog(null, "Lista atualizada!");

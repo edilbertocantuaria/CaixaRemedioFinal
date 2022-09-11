@@ -56,8 +56,8 @@ public class ListaPaciente implements ActionListener {
 			panel.add(scrollPane);
 
 			jtPaciente = new JTable();
-			jtPaciente.setModel(new DefaultTableModel(new Object[][] {},
-					new String[] { "Paciente", "CPF", "Observação Adicional" }));
+			jtPaciente.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "CPF",
+					"Data de Nascimento", "Telefone", "Gênero", "Observação Adicional" }));
 			scrollPane.setViewportView(jtPaciente);
 
 			tabelaPaciente = (DefaultTableModel) jtPaciente.getModel();
@@ -68,6 +68,7 @@ public class ListaPaciente implements ActionListener {
 				Paciente paciente = PacienteController.pacientes.get(i);
 
 				tabelaPaciente.addRow(new String[] { paciente.getNome(), paciente.getCpf(),
+						paciente.getDataNascimento(), paciente.getTelefone(), paciente.getGenero(),
 						paciente.getObservacaoAdicionalPessoa() });
 			}
 

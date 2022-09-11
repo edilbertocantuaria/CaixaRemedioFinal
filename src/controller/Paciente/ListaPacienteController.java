@@ -35,8 +35,9 @@ public class ListaPacienteController {
 
 			Paciente paciente = PacienteController.pacientes.get(i);
 
-			view.tabelaPaciente.addRow(
-					new String[] { paciente.getNome(), paciente.getCpf(), paciente.getObservacaoAdicionalPessoa() });
+			view.tabelaPaciente
+					.addRow(new String[] { paciente.getNome(), paciente.getCpf(), paciente.getDataNascimento(),
+							paciente.getTelefone(), paciente.getGenero(), paciente.getObservacaoAdicionalPessoa() });
 		}
 		PrincipalPaciente obj = new PrincipalPaciente();
 		obj.setVisible(true);
@@ -52,8 +53,9 @@ public class ListaPacienteController {
 
 			Paciente paciente = PacienteController.pacientes.get(i);
 
-			view.tabelaPaciente.addRow(
-					new String[] { paciente.getNome(), paciente.getCpf(), paciente.getObservacaoAdicionalPessoa() });
+			view.tabelaPaciente
+					.addRow(new String[] { paciente.getNome(), paciente.getCpf(), paciente.getDataNascimento(),
+							paciente.getTelefone(), paciente.getGenero(), paciente.getObservacaoAdicionalPessoa() });
 
 		}
 		JOptionPane.showMessageDialog(null, "Lista atualizada!");

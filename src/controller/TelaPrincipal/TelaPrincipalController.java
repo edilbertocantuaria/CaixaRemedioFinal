@@ -1,4 +1,4 @@
-package controller;
+package controller.TelaPrincipal;
 
 import view.Medicamento.PrincipalMedicamento;
 import view.Paciente.PrincipalPaciente;

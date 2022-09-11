@@ -123,7 +123,7 @@ public class EdicaoMedicamentoController {
 				|| view.getTfBula().getText().isEmpty() || view.getTfPrincipioAtivo().getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null,
 					"Não foi possível atualizar o cadastro: os dados do medicamento não podem estar vazios!");
-			view.tfMedicamentoEdicao.setText("");
+
 		} else {
 
 			MedicamentoController medicamentoController = new MedicamentoController();
@@ -137,34 +137,35 @@ public class EdicaoMedicamentoController {
 			medicamento.setPrincipioAtivo(principioAtivo);
 			medicamento.setObservacaoAdicionalMedicamento(observacaoAdicionalMedicamento);
 			JOptionPane.showMessageDialog(null, "Atualização efetivada!");
+
+			// limpando os campos dos jtfield's
+			view.tfMedicamentoEdicao.setText("");
+			view.tfNomeMedicamento.setText("");
+			view.tfCodigo.setText("");
+			view.tfDescricao.setText("");
+			view.tfFabricante.setText("");
+			view.tfBula.setText("");
+			view.tfPrincipioAtivo.setText("");
+			view.tfObsAdcMedicamento.setText("");
+
+			// desabilitando a edição/inserção de texto nos jtfield's
+			view.tfNomeMedicamento.setEnabled(false);
+			view.tfNomeMedicamento.setEditable(false);
+			view.tfCodigo.setEnabled(false);
+			view.tfCodigo.setEditable(false);
+			view.tfDescricao.setEnabled(false);
+			view.tfDescricao.setEditable(false);
+			view.tfFabricante.setEnabled(false);
+			view.tfFabricante.setEditable(false);
+			view.tfBula.setEnabled(false);
+			view.tfBula.setEditable(false);
+			view.tfPrincipioAtivo.setEnabled(false);
+			view.tfPrincipioAtivo.setEditable(false);
+			view.tfObsAdcMedicamento.setEnabled(false);
+			view.tfObsAdcMedicamento.setEditable(false);
 		}
 		// System.out.println(MedicamentoController.medicamentos.toString());
 
-		// limpando os campos dos jtfield's
-		view.tfMedicamentoEdicao.setText("");
-		view.tfNomeMedicamento.setText("");
-		view.tfCodigo.setText("");
-		view.tfDescricao.setText("");
-		view.tfFabricante.setText("");
-		view.tfBula.setText("");
-		view.tfPrincipioAtivo.setText("");
-		view.tfObsAdcMedicamento.setText("");
-
-		// desabilitando a edição/inserção de texto nos jtfield's
-		view.tfNomeMedicamento.setEnabled(false);
-		view.tfNomeMedicamento.setEditable(false);
-		view.tfCodigo.setEnabled(false);
-		view.tfCodigo.setEditable(false);
-		view.tfDescricao.setEnabled(false);
-		view.tfDescricao.setEditable(false);
-		view.tfFabricante.setEnabled(false);
-		view.tfFabricante.setEditable(false);
-		view.tfBula.setEnabled(false);
-		view.tfBula.setEditable(false);
-		view.tfPrincipioAtivo.setEnabled(false);
-		view.tfPrincipioAtivo.setEditable(false);
-		view.tfObsAdcMedicamento.setEnabled(false);
-		view.tfObsAdcMedicamento.setEditable(false);
 	}
 
 }

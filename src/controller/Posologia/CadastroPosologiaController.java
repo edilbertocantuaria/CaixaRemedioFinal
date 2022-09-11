@@ -146,7 +146,7 @@ public class CadastroPosologiaController {
 				j = 1;
 			}
 
-			if (view.getTfAspecto().getText().isEmpty() && view.getTfRotinaMedicacao().getText().isEmpty()) {
+			if (view.getTfAspecto().getText().isEmpty() || view.getTfRotinaMedicacao().getText().isEmpty()) {
 				k = 1;
 			} else {
 				k = 0;
@@ -182,29 +182,30 @@ public class CadastroPosologiaController {
 
 				PosologiaController.posologias.add(posologia);
 				JOptionPane.showMessageDialog(null, "Cadastro efetivado!");
+
+				// limpando os campos dos jtextfield's
+				view.cbEscolhaPaciente.setSelectedIndex(-1);
+				view.cbEscolhaMedicamento.setSelectedIndex(-1);
+				view.tfNumeroVezes.setText("");
+				view.tfRotinaMedicacao.setText("");
+				view.tfHorario1.setText("");
+				view.tfHorario2.setText("");
+				view.tfHorario3.setText("");
+				view.tfHorario4.setText("");
+				view.tfHorario5.setText("");
+				view.tfHorario6.setText("");
+				view.tfDosagem.setText("");
+				view.tfAspecto.setText("");
+				view.tfDataInicioTratamento.setText("");
+				view.tfDataFimTratamento.setText("");
+				view.tfObsAdcPosologia.setText("");
+				view.tfCodigoPosologia.setText("");
+
 			}
-			System.out.print(PosologiaController.posologias.toString());
+			// System.out.print(PosologiaController.posologias.toString());
 
 			// System.out.println("\n i: " + i + "\n j: " + j + "\n k: " + k + "\n a: " + a
 			// + "\n b: " + b + "\n c: " + c);
-
-			// limpando os campos dos jtextfield's
-			view.cbEscolhaPaciente.setSelectedIndex(-1);
-			view.cbEscolhaMedicamento.setSelectedIndex(-1);
-			view.tfNumeroVezes.setText("");
-			view.tfRotinaMedicacao.setText("");
-			view.tfHorario1.setText("");
-			view.tfHorario2.setText("");
-			view.tfHorario3.setText("");
-			view.tfHorario4.setText("");
-			view.tfHorario5.setText("");
-			view.tfHorario6.setText("");
-			view.tfDosagem.setText("");
-			view.tfAspecto.setText("");
-			view.tfDataInicioTratamento.setText("");
-			view.tfDataFimTratamento.setText("");
-			view.tfObsAdcPosologia.setText("");
-			view.tfCodigoPosologia.setText("");
 
 		}
 	}

@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import controller.TelaPrincipalController;
+import controller.TelaPrincipal.TelaPrincipalController;
 
 public class TelaPrincipal extends JFrame implements ActionListener {
 

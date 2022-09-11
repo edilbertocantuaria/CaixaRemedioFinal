@@ -92,18 +92,19 @@ public class CadastroPacienteController {
 				PacienteController.pacientes.add(paciente);
 				// System.out.println(PacienteController.pacientes.toString());
 				JOptionPane.showMessageDialog(null, "Cadastro efetivado!");
+
+				// limpando os campos dos jtextfield's
+				view.tfNomePaciente.setText("");
+				view.tfCPF.setText("");
+				view.tfDataNascimento.setText("");
+				view.tfTelefone.setText("");
+				view.tfGenero.setText("");
+				view.tfObsAdcPaciente.setText("");
+
+				// deixa o cursor dentro desse jtextfield's
+				view.tfNomePaciente.requestFocus();
 			}
 
-			// limpando os campos dos jtextfield's
-			view.tfNomePaciente.setText("");
-			view.tfCPF.setText("");
-			view.tfDataNascimento.setText("");
-			view.tfTelefone.setText("");
-			view.tfGenero.setText("");
-			view.tfObsAdcPaciente.setText("");
-
-			// deixa o cursor dentro desse jtextfield's
-			view.tfNomePaciente.requestFocus();
 		}
 	}
 

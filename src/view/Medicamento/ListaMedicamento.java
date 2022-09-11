@@ -91,8 +91,10 @@ public class ListaMedicamento implements ActionListener {
 			panel.add(scrollPane);
 
 			jtMedicacao = new JTable();
-			jtMedicacao.setModel(new DefaultTableModel(new Object[][] {},
-					new String[] { "Medicamento", "Descrição", "Observação Adicional" })); // Define as colunas
+			jtMedicacao.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Nome do medicamento",
+					"Código", "Descrição", "Fabricante", "Bula", "Princípio Ativo", "Observação adicional" })); // Define
+																												// as
+																												// colunas
 			scrollPane.setViewportView(jtMedicacao);
 
 			tabelaMedicacao = (DefaultTableModel) jtMedicacao.getModel();
@@ -101,7 +103,8 @@ public class ListaMedicamento implements ActionListener {
 			for (int i = 0; i < MedicamentoController.medicamentos.size(); i++) {
 
 				Medicamento medicamento = MedicamentoController.medicamentos.get(i);
-				tabelaMedicacao.addRow(new String[] { medicamento.getNomeRemedio(), medicamento.getDescricao(),
+				tabelaMedicacao.addRow(new String[] { medicamento.getNomeRemedio(), medicamento.getCodigo(),
+						medicamento.getDescricao(), medicamento.getFabricante(), medicamento.getBula(),
 						medicamento.getObservacaoAdicionalMedicamento() });
 
 			}

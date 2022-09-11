@@ -82,21 +82,22 @@ public class CadastroMedicamentoController {
 						principioAtivo, observacaoAdicionalMedicamento);
 				MedicamentoController.medicamentos.add(medicamento);
 				JOptionPane.showMessageDialog(null, "Cadastro efetivado!");
+
+				// limpando os campos dos jtextfield's
+				view.tfNomeMedicamento.setText("");
+				view.tfCodigo.setText("");
+				view.tfDescricao.setText("");
+				view.tfFabricante.setText("");
+				view.tfBula.setText("");
+				view.tfPrincipioAtivo.setText("");
+				view.tfObsAdcMedicamento.setText("");
+
+				// deixa o cursor dentro desse jtextfield's
+				view.tfNomeMedicamento.requestFocus();
+
 			}
 
 			// System.out.println(MedicamentoController.medicamentos.toString());
-
-			// limpando os campos dos jtextfield's
-			view.tfNomeMedicamento.setText("");
-			view.tfCodigo.setText("");
-			view.tfDescricao.setText("");
-			view.tfFabricante.setText("");
-			view.tfBula.setText("");
-			view.tfPrincipioAtivo.setText("");
-			view.tfObsAdcMedicamento.setText("");
-
-			// deixa o cursor dentro desse jtextfield's
-			view.tfNomeMedicamento.requestFocus();
 
 		}
 	}

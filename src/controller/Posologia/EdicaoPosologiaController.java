@@ -200,7 +200,7 @@ public class EdicaoPosologiaController {
 			j = 1;
 		}
 
-		if (view.getTfAspecto().getText().isEmpty() && view.getTfRotinaMedicacao().getText().isEmpty()) {
+		if (view.getTfAspecto().getText().isEmpty() || view.getTfRotinaMedicacao().getText().isEmpty()) {
 			k = 1;
 		} else {
 			k = 0;
@@ -229,7 +229,7 @@ public class EdicaoPosologiaController {
 			JOptionPane.showMessageDialog(null,
 					"Não foi possível atualizar cadastro: os dados da posologia não podem estar vazios!");
 
-			view.jftCodPosologiaBusca.setText("");
+			//
 
 		} else {
 			String cod = view.jftCodPosologiaBusca.getText();
@@ -252,75 +252,80 @@ public class EdicaoPosologiaController {
 			resultado.setObservacaoAdicionalPosologia(observacaoAdicionalPosologia);
 			resultado.setCodigoPosologia(codigoPosologia);
 
-			System.out.println(PosologiaController.posologias.toString());
+			// System.out.println(PosologiaController.posologias.toString());
 			JOptionPane.showMessageDialog(null, "Atualização efetivada!");
+
+			// limpando os campos dos jtextfield's
+			view.jftCodPosologiaBusca.setText("");
+			view.cbEscolhaPaciente.setSelectedIndex(-1);
+			view.cbEscolhaMedicamento.setSelectedIndex(-1);
+			view.tfNumeroVezes.setText("");
+			view.tfRotinaMedicacao.setText("");
+			view.tfHorario1.setText("");
+			view.tfHorario2.setText("");
+			view.tfHorario3.setText("");
+			view.tfHorario4.setText("");
+			view.tfHorario5.setText("");
+			view.tfHorario6.setText("");
+			view.tfDosagem.setText("");
+			view.tfAspecto.setText("");
+			view.tfDataInicioTratamento.setText("");
+			view.tfDataFimTratamento.setText("");
+			view.tfObsAdcPosologia.setText("");
+			view.tfCodigoPosologia.setText("");
+
+			// desabilitando a edição/inserção de texto nos jtexview.tfield's
+			view.cbEscolhaPaciente.setEnabled(false);
+			view.cbEscolhaPaciente.setSelectedIndex(-1);
+
+			view.cbEscolhaMedicamento.setEnabled(false);
+			view.cbEscolhaMedicamento.setSelectedIndex(-1);
+
+			view.tfRotinaMedicacao.setEditable(false);
+			view.tfRotinaMedicacao.setEnabled(false);
+
+			view.tfHorario1.setEnabled(false);
+			view.tfHorario1.setEditable(false);
+
+			view.tfHorario2.setEnabled(false);
+			view.tfHorario2.setEditable(false);
+
+			view.tfHorario3.setEnabled(false);
+			view.tfHorario3.setEditable(false);
+
+			view.tfHorario4.setEnabled(false);
+			view.tfHorario4.setEditable(false);
+
+			view.tfHorario5.setEnabled(false);
+			view.tfHorario5.setEditable(false);
+
+			view.tfHorario6.setEnabled(false);
+			view.tfHorario6.setEditable(false);
+
+			view.tfDosagem.setEditable(false);
+			view.tfDosagem.setEnabled(false);
+
+			view.tfNumeroVezes.setEditable(false);
+			view.tfNumeroVezes.setEnabled(false);
+
+			view.tfObsAdcPosologia.setEditable(false);
+			view.tfObsAdcPosologia.setEnabled(false);
+
+			view.tfAspecto.setEditable(false);
+			view.tfAspecto.setEnabled(false);
+
+			view.tfDataInicioTratamento.setEditable(false);
+			view.tfDataInicioTratamento.setEnabled(false);
+
+			view.tfDataFimTratamento.setEditable(false);
+			view.tfDataFimTratamento.setEnabled(false);
+
+			view.tfCodigoPosologia.setEditable(false);
+			view.tfCodigoPosologia.setEnabled(false);
+
+			view.btnAtualizarPosologia.setEnabled(false);
+
 		}
-		// limpando os campos dos jtextfield's
-		view.cbEscolhaPaciente.setSelectedIndex(-1);
-		view.cbEscolhaMedicamento.setSelectedIndex(-1);
-		view.tfNumeroVezes.setText("");
-		view.tfRotinaMedicacao.setText("");
-		view.tfHorario1.setText("");
-		view.tfHorario2.setText("");
-		view.tfHorario3.setText("");
-		view.tfHorario4.setText("");
-		view.tfHorario5.setText("");
-		view.tfHorario6.setText("");
-		view.tfDosagem.setText("");
-		view.tfAspecto.setText("");
-		view.tfDataInicioTratamento.setText("");
-		view.tfDataFimTratamento.setText("");
-		view.tfObsAdcPosologia.setText("");
-		view.tfCodigoPosologia.setText("");
-
-		// desabilitando a edição/inserção de texto nos jtexview.tfield's
-		view.cbEscolhaPaciente.setEnabled(false);
-		view.cbEscolhaPaciente.setSelectedIndex(-1);
-
-		view.cbEscolhaMedicamento.setEnabled(false);
-		view.cbEscolhaMedicamento.setSelectedIndex(-1);
-
-		view.tfRotinaMedicacao.setEditable(false);
-		view.tfRotinaMedicacao.setEnabled(false);
-
-		view.tfHorario1.setEnabled(false);
-		view.tfHorario1.setEditable(false);
-
-		view.tfHorario2.setEnabled(false);
-		view.tfHorario2.setEditable(false);
-
-		view.tfHorario3.setEnabled(false);
-		view.tfHorario3.setEditable(false);
-
-		view.tfHorario4.setEnabled(false);
-		view.tfHorario4.setEditable(false);
-
-		view.tfHorario5.setEnabled(false);
-		view.tfHorario5.setEditable(false);
-
-		view.tfHorario6.setEnabled(false);
-		view.tfHorario6.setEditable(false);
-
-		view.tfDosagem.setEditable(false);
-		view.tfDosagem.setEnabled(false);
-
-		view.tfNumeroVezes.setEditable(false);
-		view.tfNumeroVezes.setEnabled(false);
-
-		view.tfObsAdcPosologia.setEditable(false);
-		view.tfObsAdcPosologia.setEnabled(false);
-
-		view.tfAspecto.setEditable(false);
-		view.tfAspecto.setEnabled(false);
-
-		view.tfDataInicioTratamento.setEditable(false);
-		view.tfDataInicioTratamento.setEnabled(false);
-
-		view.tfDataFimTratamento.setEditable(false);
-		view.tfDataFimTratamento.setEnabled(false);
-
-		view.tfCodigoPosologia.setEditable(false);
-		view.tfCodigoPosologia.setEnabled(false);
 
 	}
 }

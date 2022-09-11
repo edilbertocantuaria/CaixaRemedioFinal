@@ -137,30 +137,31 @@ public class EdicaoPacienteController {
 
 			// System.out.println(PacienteController.pacientes.toString());
 			JOptionPane.showMessageDialog(null, "Atualização efetivada!");
+
+			// limpando os campos dos jtextfield's
+			view.tfNomePaciente.setText("");
+			view.tfCPF.setText("");
+			view.tfDataNascimento.setText("");
+			view.tfTelefone.setText("");
+			view.tfGenero.setText("");
+			view.tfObsAdcPaciente.setText("");
+			view.jftCPFBusca.setText("");
+
+			// desabilitando a edição/inserção de texto nos jtexview.tfield's
+			view.tfNomePaciente.setEnabled(false);
+			view.tfNomePaciente.setEditable(false);
+			view.tfCPF.setEnabled(false);
+			view.tfCPF.setEditable(false);
+			view.tfDataNascimento.setEnabled(false);
+			view.tfDataNascimento.setEditable(false);
+			view.tfTelefone.setEnabled(false);
+			view.tfTelefone.setEditable(false);
+			view.tfGenero.setEnabled(false);
+			view.tfGenero.setEditable(false);
+			view.tfObsAdcPaciente.setEnabled(false);
+			view.tfObsAdcPaciente.setEditable(false);
+
 		}
-
-		// limpando os campos dos jtextfield's
-		view.tfNomePaciente.setText("");
-		view.tfCPF.setText("");
-		view.tfDataNascimento.setText("");
-		view.tfTelefone.setText("");
-		view.tfGenero.setText("");
-		view.tfObsAdcPaciente.setText("");
-		view.jftCPFBusca.setText("");
-
-		// desabilitando a edição/inserção de texto nos jtexview.tfield's
-		view.tfNomePaciente.setEnabled(false);
-		view.tfNomePaciente.setEditable(false);
-		view.tfCPF.setEnabled(false);
-		view.tfCPF.setEditable(false);
-		view.tfDataNascimento.setEnabled(false);
-		view.tfDataNascimento.setEditable(false);
-		view.tfTelefone.setEnabled(false);
-		view.tfTelefone.setEditable(false);
-		view.tfGenero.setEnabled(false);
-		view.tfGenero.setEditable(false);
-		view.tfObsAdcPaciente.setEnabled(false);
-		view.tfObsAdcPaciente.setEditable(false);
 
 	}
 

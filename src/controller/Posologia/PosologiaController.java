@@ -50,7 +50,7 @@ public class PosologiaController {
 
 	public PosologiaController(EdicaoPosologia edicaoPosologia) {
 		super();
-		this.view_EdicaoPosologia = edicaoPosologia;
+		this.setView_EdicaoPosologia(edicaoPosologia);
 	}
 
 	public void executarBotao(Object botaoApertado) {
@@ -203,6 +203,14 @@ public class PosologiaController {
 
 	public static void setPosologias(List<Posologia> posologias) {
 		PosologiaController.posologias = posologias;
+	}
+
+	public EdicaoPosologia getView_EdicaoPosologia() {
+		return view_EdicaoPosologia;
+	}
+
+	public void setView_EdicaoPosologia(EdicaoPosologia view_EdicaoPosologia) {
+		this.view_EdicaoPosologia = view_EdicaoPosologia;
 	}
 
 }

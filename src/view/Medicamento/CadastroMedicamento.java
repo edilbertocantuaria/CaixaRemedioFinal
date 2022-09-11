@@ -53,7 +53,7 @@ public class CadastroMedicamento implements ActionListener {
 	 */
 
 	public CadastroMedicamento() {
-		frame.setSize(700, 410);
+		frame.setSize(725, 410);
 
 		panel = new JPanel();
 		frame.getContentPane().add(panel);
@@ -76,7 +76,7 @@ public class CadastroMedicamento implements ActionListener {
 		lbCodigo.setBounds(10, 78, 251, 14);
 		panel.add(lbCodigo);
 		tfCodigo = new JTextField();
-		tfCodigo.setBounds(362, 75, 300, 20);
+		tfCodigo.setBounds(399, 75, 300, 20);
 		panel.add(tfCodigo);
 		tfCodigo.setColumns(10);
 
@@ -84,7 +84,7 @@ public class CadastroMedicamento implements ActionListener {
 		lbDescricao.setBounds(10, 124, 259, 14);
 		panel.add(lbDescricao);
 		tfDescricao = new JTextField();
-		tfDescricao.setBounds(363, 121, 300, 20);
+		tfDescricao.setBounds(399, 121, 300, 20);
 		panel.add(tfDescricao);
 		tfDescricao.setColumns(10);
 
@@ -92,7 +92,7 @@ public class CadastroMedicamento implements ActionListener {
 		lbFabricante.setBounds(10, 170, 342, 14);
 		panel.add(lbFabricante);
 		tfFabricante = new JTextField();
-		tfFabricante.setBounds(362, 167, 300, 20);
+		tfFabricante.setBounds(399, 167, 300, 20);
 		panel.add(tfFabricante);
 		tfFabricante.setColumns(10);
 
@@ -105,7 +105,7 @@ public class CadastroMedicamento implements ActionListener {
 		lbNomeMedicamentoInfo.setBounds(10, 45, 390, 14);
 		panel.add(lbNomeMedicamentoInfo);
 		tfNomeMedicamento = new JTextField();
-		tfNomeMedicamento.setBounds(362, 29, 300, 20);
+		tfNomeMedicamento.setBounds(399, 29, 300, 20);
 		panel.add(tfNomeMedicamento);
 		tfNomeMedicamento.setColumns(10);
 
@@ -114,7 +114,7 @@ public class CadastroMedicamento implements ActionListener {
 		panel.add(lbObsAdcMedicamento);
 		tfObsAdcMedicamento = new JTextField();
 		tfObsAdcMedicamento.setColumns(10);
-		tfObsAdcMedicamento.setBounds(362, 305, 300, 20);
+		tfObsAdcMedicamento.setBounds(399, 305, 300, 20);
 		panel.add(tfObsAdcMedicamento);
 
 		lbBula = new JLabel("Bula:");
@@ -122,10 +122,10 @@ public class CadastroMedicamento implements ActionListener {
 		panel.add(lbBula);
 		tfBula = new JTextField();
 		tfBula.setColumns(10);
-		tfBula.setBounds(362, 213, 300, 20);
+		tfBula.setBounds(399, 213, 300, 20);
 		panel.add(tfBula);
 		lbBulaExemplo = new JLabel("(Pode inserir um link que redireciona para a bula da medicação)");
-		lbBulaExemplo.setBounds(10, 229, 342, 14);
+		lbBulaExemplo.setBounds(10, 229, 412, 14);
 		panel.add(lbBulaExemplo);
 
 		lbPrincipioAtivo = new JLabel("Princípio ativo do medicamento:");
@@ -133,7 +133,7 @@ public class CadastroMedicamento implements ActionListener {
 		panel.add(lbPrincipioAtivo);
 		tfPrincipioAtivo = new JTextField();
 		tfPrincipioAtivo.setColumns(10);
-		tfPrincipioAtivo.setBounds(362, 259, 300, 20);
+		tfPrincipioAtivo.setBounds(399, 259, 300, 20);
 		panel.add(tfPrincipioAtivo);
 
 		/**
@@ -157,7 +157,7 @@ public class CadastroMedicamento implements ActionListener {
 
 		btnCadastrarMedicamento = new JButton("Cadastrar Medicamento");
 		btnCadastrarMedicamento.addActionListener(this);
-		btnCadastrarMedicamento.setBounds(487, 337, 175, 23);
+		btnCadastrarMedicamento.setBounds(524, 336, 175, 23);
 		panel.add(btnCadastrarMedicamento);
 
 		this.controller = new CadastroMedicamentoController(this);

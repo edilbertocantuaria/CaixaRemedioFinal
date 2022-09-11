@@ -36,7 +36,7 @@ public class BuscaPaciente<Pessoa> implements ActionListener {
 	private BuscaPacienteController controller;
 
 	public BuscaPaciente() {
-		frame.setSize(577, 280);
+		frame.setSize(800, 280);
 
 		panel = new JPanel();
 		frame.getContentPane().add(panel);
@@ -71,12 +71,12 @@ public class BuscaPaciente<Pessoa> implements ActionListener {
 		panel.add(lbPacienteEncontrado);
 
 		panel_1 = new JPanel();
-		panel_1.setBounds(10, 80, 541, 155);
+		panel_1.setBounds(10, 80, 764, 155);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 0, 541, 155);
+		scrollPane.setBounds(0, 0, 764, 155);
 		panel_1.add(scrollPane);
 
 		jtPacienteEncontrado = new JTable();
@@ -85,12 +85,12 @@ public class BuscaPaciente<Pessoa> implements ActionListener {
 		scrollPane.setViewportView(jtPacienteEncontrado);
 
 		btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(466, 10, 85, 25);
+		btnBuscar.setBounds(220, 10, 85, 25);
 		btnBuscar.addActionListener(this);
 		panel.add(btnBuscar);
 
 		btnVoltar = new JButton("Voltar para tela anterior");
-		btnVoltar.setBounds(376, 46, 175, 23);
+		btnVoltar.setBounds(599, 11, 175, 23);
 		panel.add(btnVoltar);
 		btnVoltar.addActionListener(this);
 

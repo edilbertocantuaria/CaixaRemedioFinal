@@ -31,7 +31,7 @@ public class ListaPaciente implements ActionListener {
 
 	public ListaPaciente() {
 
-		frame.setSize(577, 280);
+		frame.setSize(800, 280);
 
 		panel = new JPanel();
 		frame.getContentPane().add(panel);
@@ -52,7 +52,7 @@ public class ListaPaciente implements ActionListener {
 		} else {
 
 			scrollPane = new JScrollPane();
-			scrollPane.setBounds(10, 29, 541, 134);
+			scrollPane.setBounds(10, 29, 764, 134);
 			panel.add(scrollPane);
 
 			jtPaciente = new JTable();
@@ -77,7 +77,7 @@ public class ListaPaciente implements ActionListener {
 
 		btnAtualizar = new JButton("Atualizar lista");
 		btnAtualizar.addActionListener(this);
-		btnAtualizar.setBounds(361, 207, 190, 23);
+		btnAtualizar.setBounds(584, 207, 190, 23);
 		panel.add(btnAtualizar);
 
 		btnVoltar = new JButton("Voltar para tela anterior");

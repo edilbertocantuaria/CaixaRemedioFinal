@@ -47,7 +47,7 @@ public class BuscaMedicamento implements ActionListener {
 	 * @version 09 set 22.
 	 */
 	public BuscaMedicamento() {
-		frame.setSize(577, 280);
+		frame.setSize(1000, 280);
 
 		panel = new JPanel();
 		frame.getContentPane().add(panel);
@@ -86,12 +86,12 @@ public class BuscaMedicamento implements ActionListener {
 		panel.add(lbMedicacaoEncontrada);
 
 		panel_1 = new JPanel();
-		panel_1.setBounds(10, 88, 541, 116);
+		panel_1.setBounds(10, 88, 964, 116);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 0, 541, 116);
+		scrollPane.setBounds(0, 0, 964, 116);
 		panel_1.add(scrollPane);
 
 		jtMedicacaoEncontrada = new JTable();
@@ -102,7 +102,7 @@ public class BuscaMedicamento implements ActionListener {
 		btnBuscar.addActionListener(this);
 
 		btnVoltar = new JButton("Voltar para tela anterior");
-		btnVoltar.setBounds(376, 46, 175, 23);
+		btnVoltar.setBounds(799, 11, 175, 23);
 		panel.add(btnVoltar);
 		btnVoltar.addActionListener(this);
 

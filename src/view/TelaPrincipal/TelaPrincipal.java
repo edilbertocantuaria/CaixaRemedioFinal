@@ -66,7 +66,7 @@ public class TelaPrincipal extends JFrame implements ActionListener {
 
 		btnRotina = new JButton("Rotina - Pacientes & Medicamentos");
 		btnRotina.setFont(new Font("Arial", Font.BOLD, 12));
-		btnRotina.setBounds(100, 292, 228, 46);
+		btnRotina.setBounds(60, 292, 309, 46);
 		getContentPane().add(btnRotina);
 
 		btnPaciente.addActionListener(this);

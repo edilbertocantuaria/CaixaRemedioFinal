@@ -37,7 +37,7 @@ public class BuscaPosologia implements ActionListener {
 	private BuscaPosologiaController controller;
 
 	public BuscaPosologia() {
-		frame.setSize(1100, 500);
+		frame.setSize(1375, 500);
 
 		panel = new JPanel();
 		frame.getContentPane().add(panel);
@@ -72,12 +72,12 @@ public class BuscaPosologia implements ActionListener {
 		panel.add(lbPosologiaEncontrada);
 
 		panel_1 = new JPanel();
-		panel_1.setBounds(10, 80, 1064, 155);
+		panel_1.setBounds(10, 80, 1339, 155);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 0, 1064, 155);
+		scrollPane.setBounds(0, 0, 1339, 155);
 		panel_1.add(scrollPane);
 
 		jtPosologiaEncontrada = new JTable();
@@ -88,12 +88,12 @@ public class BuscaPosologia implements ActionListener {
 		scrollPane.setViewportView(jtPosologiaEncontrada);
 
 		btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(989, 10, 85, 25);
+		btnBuscar.setBounds(238, 10, 85, 25);
 		btnBuscar.addActionListener(this);
 		panel.add(btnBuscar);
 
 		btnVoltar = new JButton("Voltar para tela anterior");
-		btnVoltar.setBounds(899, 56, 175, 23);
+		btnVoltar.setBounds(1174, 11, 175, 23);
 		panel.add(btnVoltar);
 		btnVoltar.addActionListener(this);
 

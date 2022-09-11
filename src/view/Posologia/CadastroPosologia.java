@@ -66,7 +66,7 @@ public class CadastroPosologia implements ActionListener {
 	public JButton btnAtualizarPacienteMedicamento;
 
 	public CadastroPosologia() {
-		frame.setSize(680, 525);
+		frame.setSize(705, 525);
 
 		panel = new JPanel();
 		frame.getContentPane().add(panel);
@@ -107,7 +107,7 @@ public class CadastroPosologia implements ActionListener {
 		lbRotinaExemplo.setBounds(10, 137, 300, 14);
 		panel.add(lbRotinaExemplo);
 		tfRotinaMedicacao = new JTextField();
-		tfRotinaMedicacao.setBounds(354, 121, 300, 20);
+		tfRotinaMedicacao.setBounds(379, 121, 300, 20);
 		panel.add(tfRotinaMedicacao);
 		tfRotinaMedicacao.setColumns(10);
 
@@ -145,7 +145,7 @@ public class CadastroPosologia implements ActionListener {
 
 		tfHorario6 = new JFormattedTextField(mascaraHora);
 		tfHorario6.setColumns(10);
-		tfHorario6.setBounds(614, 167, 40, 20);
+		tfHorario6.setBounds(639, 167, 40, 20);
 		panel.add(tfHorario6);
 
 		lbDosagem = new JLabel("Dosagem (digitar apenas número):");
@@ -155,7 +155,7 @@ public class CadastroPosologia implements ActionListener {
 		lbDosagemExemplo.setBounds(10, 229, 257, 14);
 		panel.add(lbDosagemExemplo);
 		tfDosagem = new JFormattedTextField(mascaraDosagem);
-		tfDosagem.setBounds(354, 213, 300, 20);
+		tfDosagem.setBounds(379, 213, 300, 20);
 		panel.add(tfDosagem);
 		tfDosagem.setColumns(10);
 
@@ -164,7 +164,7 @@ public class CadastroPosologia implements ActionListener {
 		lbNumeroVezes.setBounds(10, 78, 390, 14);
 		panel.add(lbNumeroVezes);
 		tfNumeroVezes = new JFormattedTextField(mascaraNumeroVezes);
-		tfNumeroVezes.setBounds(554, 75, 100, 20);
+		tfNumeroVezes.setBounds(579, 75, 100, 20);
 		panel.add(tfNumeroVezes);
 		tfNumeroVezes.setColumns(10);
 		lbNumeroVezesExemplo = new JLabel("(digitar apenas números)");
@@ -177,7 +177,7 @@ public class CadastroPosologia implements ActionListener {
 		panel.add(lbObsAdcPosologia);
 		tfObsAdcPosologia = new JTextField();
 		tfObsAdcPosologia.setColumns(10);
-		tfObsAdcPosologia.setBounds(354, 351, 300, 20);
+		tfObsAdcPosologia.setBounds(379, 351, 300, 20);
 		panel.add(tfObsAdcPosologia);
 
 		lbAspecto = new JLabel("Aspecto:");
@@ -185,7 +185,7 @@ public class CadastroPosologia implements ActionListener {
 		panel.add(lbAspecto);
 		tfAspecto = new JTextField();
 		tfAspecto.setColumns(10);
-		tfAspecto.setBounds(354, 259, 300, 20);
+		tfAspecto.setBounds(379, 259, 300, 20);
 		panel.add(tfAspecto);
 		lbAspectoExemplo = new JLabel("(Comprimido, capsula, gota, etc.)");
 		lbAspectoExemplo.setBounds(10, 275, 257, 14);
@@ -207,7 +207,7 @@ public class CadastroPosologia implements ActionListener {
 		panel.add(lbDataTérminoTratamento);
 		tfDataFimTratamento = new JFormattedTextField(mascaraDataFinal);
 		tfDataFimTratamento.setColumns(10);
-		tfDataFimTratamento.setBounds(554, 305, 100, 20);
+		tfDataFimTratamento.setBounds(579, 305, 100, 20);
 		panel.add(tfDataFimTratamento);
 		lbDataExemplo_2 = new JLabel("(DD/MM/AAAA)");
 		lbDataExemplo_2.setBounds(362, 321, 257, 14);
@@ -220,7 +220,7 @@ public class CadastroPosologia implements ActionListener {
 		lbCodigoInfo.setBounds(10, 413, 296, 14);
 		panel.add(lbCodigoInfo);
 		tfCodigoPosologia = new JFormattedTextField(mascaraCodigo);
-		tfCodigoPosologia.setBounds(572, 397, 82, 20);
+		tfCodigoPosologia.setBounds(597, 397, 82, 20);
 		panel.add(tfCodigoPosologia);
 
 		btnVoltar = new JButton("Voltar para tela anterior");
@@ -241,7 +241,7 @@ public class CadastroPosologia implements ActionListener {
 		panel.add(lbEscolhaMedicamento);
 
 		cbEscolhaMedicamento = new JComboBox<String>();
-		cbEscolhaMedicamento.setBounds(465, 28, 189, 22);
+		cbEscolhaMedicamento.setBounds(490, 28, 189, 22);
 		panel.add(cbEscolhaMedicamento);
 
 		cbEscolhaPaciente.setModel(controller.listarPacientes());
@@ -251,12 +251,12 @@ public class CadastroPosologia implements ActionListener {
 
 		btnCadastrarPosologia = new JButton("Cadastrar Posologia");
 		btnCadastrarPosologia.addActionListener(this);
-		btnCadastrarPosologia.setBounds(479, 454, 175, 23);
+		btnCadastrarPosologia.setBounds(504, 454, 175, 23);
 		panel.add(btnCadastrarPosologia);
 
 		btnAtualizarPacienteMedicamento = new JButton("Atualizar Pacientes e Medicamentos");
 		btnAtualizarPacienteMedicamento.addActionListener(this);
-		btnAtualizarPacienteMedicamento.setBounds(232, 454, 235, 23);
+		btnAtualizarPacienteMedicamento.setBounds(232, 454, 259, 23);
 		panel.add(btnAtualizarPacienteMedicamento);
 
 		this.controller = new CadastroPosologiaController(this);

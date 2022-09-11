@@ -283,7 +283,7 @@ public class EdicaoPosologia implements ActionListener {
 		cbEscolhaMedicamento.setModel(controller.listarMedicamentos());
 		cbEscolhaMedicamento.setSelectedIndex(-1);
 
-		btnAtualizarPosologia = new JButton("Cadastrar Posologia");
+		btnAtualizarPosologia = new JButton("Atualizar Posologia");
 		btnAtualizarPosologia.setEnabled(false);
 		btnAtualizarPosologia.addActionListener(this);
 		btnAtualizarPosologia.setBounds(479, 522, 175, 23);

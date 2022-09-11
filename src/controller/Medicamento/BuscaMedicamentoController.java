@@ -28,7 +28,8 @@ public class BuscaMedicamentoController {
 
 	public void voltarTelaAnterior() {
 		// limpando os campos dos jtextfield's
-		view.tfMedicamentoBusca.setText("");
+		view.tabelaBuscaMedicamento = (DefaultTableModel) view.jtMedicacaoEncontrada.getModel();
+		view.tabelaBuscaMedicamento.setNumRows(0);
 
 		// deixa o cursor dentro desse jtextfield's
 		view.tfMedicamentoBusca.requestFocus();

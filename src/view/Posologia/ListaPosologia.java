@@ -31,7 +31,7 @@ public class ListaPosologia implements ActionListener {
 	private ListaPosologiaController controller;
 
 	public ListaPosologia() {
-		frame.setSize(1300, 470);
+		frame.setSize(1375, 470);
 
 		panel = new JPanel();
 		frame.getContentPane().add(panel);
@@ -53,7 +53,7 @@ public class ListaPosologia implements ActionListener {
 		} else {
 
 			scrollPane = new JScrollPane();
-			scrollPane.setBounds(10, 11, 1264, 318);
+			scrollPane.setBounds(10, 11, 1339, 318);
 			panel.add(scrollPane);
 
 			jtPosologia = new JTable();
@@ -81,7 +81,7 @@ public class ListaPosologia implements ActionListener {
 		}
 
 		btnAtualizar = new JButton("Atualizar lista");
-		btnAtualizar.setBounds(1064, 397, 210, 23);
+		btnAtualizar.setBounds(1139, 397, 210, 23);
 		btnAtualizar.addActionListener(this);
 		panel.add(btnAtualizar);
 

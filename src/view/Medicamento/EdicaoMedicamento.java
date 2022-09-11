@@ -55,7 +55,7 @@ public class EdicaoMedicamento implements ActionListener {
 	 * @version 09 set 22.
 	 */
 	public EdicaoMedicamento() {
-		frame.setSize(700, 480);
+		frame.setSize(725, 480);
 
 		panel = new JPanel();
 		frame.getContentPane().add(panel);
@@ -83,7 +83,7 @@ public class EdicaoMedicamento implements ActionListener {
 		panel.add(lbNomeMedicamentoBuscaInfo);
 
 		tfMedicamentoEdicao = new TextField();
-		tfMedicamentoEdicao.setBounds(486, 6, 188, 25);
+		tfMedicamentoEdicao.setBounds(511, 6, 188, 25);
 		panel.add(tfMedicamentoEdicao);
 
 		lbNomeMedicamento = new JLabel("Nome do medicamento:");
@@ -100,7 +100,7 @@ public class EdicaoMedicamento implements ActionListener {
 		tfNomeMedicamento.setEnabled(false);
 		tfNomeMedicamento.setEditable(false);
 		tfNomeMedicamento.setColumns(10);
-		tfNomeMedicamento.setBounds(374, 84, 300, 20);
+		tfNomeMedicamento.setBounds(399, 84, 300, 20);
 		panel.add(tfNomeMedicamento);
 
 		lbCodigo = new JLabel("Codigo de barras:");
@@ -111,7 +111,7 @@ public class EdicaoMedicamento implements ActionListener {
 		tfCodigo.setEnabled(false);
 		tfCodigo.setEditable(false);
 		tfCodigo.setColumns(10);
-		tfCodigo.setBounds(374, 130, 300, 20);
+		tfCodigo.setBounds(399, 130, 300, 20);
 		panel.add(tfCodigo);
 
 		lbDescricao = new JLabel("Descrição do medicamento:");
@@ -122,7 +122,7 @@ public class EdicaoMedicamento implements ActionListener {
 		tfDescricao.setEnabled(false);
 		tfDescricao.setEditable(false);
 		tfDescricao.setColumns(10);
-		tfDescricao.setBounds(374, 176, 300, 20);
+		tfDescricao.setBounds(399, 176, 300, 20);
 		panel.add(tfDescricao);
 
 		lbFabricante = new JLabel("Fabricante:");
@@ -133,7 +133,7 @@ public class EdicaoMedicamento implements ActionListener {
 		tfFabricante.setEnabled(false);
 		tfFabricante.setEditable(false);
 		tfFabricante.setColumns(10);
-		tfFabricante.setBounds(374, 222, 300, 20);
+		tfFabricante.setBounds(399, 222, 300, 20);
 		panel.add(tfFabricante);
 
 		lbBula = new JLabel("Bula:");
@@ -141,14 +141,14 @@ public class EdicaoMedicamento implements ActionListener {
 		panel.add(lbBula);
 
 		lbBulaExemplo = new JLabel("(Pode inserir um link que redireciona para a bula da medicação)");
-		lbBulaExemplo.setBounds(10, 284, 342, 14);
+		lbBulaExemplo.setBounds(10, 284, 412, 14);
 		panel.add(lbBulaExemplo);
 
 		tfBula = new JTextField();
 		tfBula.setEnabled(false);
 		tfBula.setEditable(false);
 		tfBula.setColumns(10);
-		tfBula.setBounds(374, 268, 300, 20);
+		tfBula.setBounds(399, 268, 300, 20);
 		panel.add(tfBula);
 
 		lbPrincipioAtivo = new JLabel("Princípio ativo do medicamento:");
@@ -159,7 +159,7 @@ public class EdicaoMedicamento implements ActionListener {
 		tfPrincipioAtivo.setEnabled(false);
 		tfPrincipioAtivo.setEditable(false);
 		tfPrincipioAtivo.setColumns(10);
-		tfPrincipioAtivo.setBounds(374, 314, 300, 20);
+		tfPrincipioAtivo.setBounds(399, 314, 300, 20);
 		panel.add(tfPrincipioAtivo);
 
 		lbObsAdcMedicamento = new JLabel("Observações adicionais");
@@ -170,7 +170,7 @@ public class EdicaoMedicamento implements ActionListener {
 		tfObsAdcMedicamento.setEnabled(false);
 		tfObsAdcMedicamento.setEditable(false);
 		tfObsAdcMedicamento.setColumns(10);
-		tfObsAdcMedicamento.setBounds(374, 360, 300, 20);
+		tfObsAdcMedicamento.setBounds(399, 360, 300, 20);
 		panel.add(tfObsAdcMedicamento);
 
 		/**
@@ -202,7 +202,7 @@ public class EdicaoMedicamento implements ActionListener {
 		btnAtualizarCadastroMedicamento.setEnabled(false);
 		btnAtualizarCadastroMedicamento.addActionListener(this);
 
-		btnAtualizarCadastroMedicamento.setBounds(499, 407, 175, 23);
+		btnAtualizarCadastroMedicamento.setBounds(524, 407, 175, 23);
 		panel.add(btnAtualizarCadastroMedicamento);
 
 		/**

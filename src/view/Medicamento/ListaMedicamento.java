@@ -45,7 +45,7 @@ public class ListaMedicamento implements ActionListener {
 	 */
 
 	public ListaMedicamento() {
-		frame.setSize(577, 280);
+		frame.setSize(1000, 280);
 
 		panel = new JPanel();
 		frame.getContentPane().add(panel);
@@ -77,6 +77,7 @@ public class ListaMedicamento implements ActionListener {
 		 * caso não tenha medicação cadastrada, imprime uma label informando que não
 		 * medicamento cadastrado. Caso contrário irá imprimir uma JTable listando.
 		 */
+
 		if (MedicamentoController.medicamentos.isEmpty()) {
 
 			lbSemMedicamento.setFont(new Font("Arial", Font.BOLD, 15));
@@ -87,7 +88,7 @@ public class ListaMedicamento implements ActionListener {
 		} else {
 
 			scrollPane = new JScrollPane();
-			scrollPane.setBounds(10, 29, 541, 134);
+			scrollPane.setBounds(10, 29, 964, 134);
 			panel.add(scrollPane);
 
 			jtMedicacao = new JTable();
@@ -113,7 +114,7 @@ public class ListaMedicamento implements ActionListener {
 		// System.out.println(MedicamentoController.medicamentos.toString());
 
 		btnAtualizar = new JButton("Atualizar lista");
-		btnAtualizar.setBounds(361, 207, 190, 23);
+		btnAtualizar.setBounds(784, 207, 190, 23);
 		btnAtualizar.addActionListener(this);
 		panel.add(btnAtualizar);
 		/**

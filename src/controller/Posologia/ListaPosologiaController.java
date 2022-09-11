@@ -36,7 +36,7 @@ public class ListaPosologiaController {
 			Posologia posologia = PosologiaController.posologias.get(i);
 
 			view.tabelaPosologia.addRow(new String[] { posologia.getCodigoPosologia(), posologia.getNomePaciente(),
-					posologia.getNomeMedicamento(), (posologia.getNomePaciente()), (posologia.getRotinaMedicacao()),
+					posologia.getNomeMedicamento(), (posologia.getNumeroVezes()), (posologia.getRotinaMedicacao()),
 					posologia.getHorario1(), posologia.getHorario2(), posologia.getHorario3(), posologia.getHorario4(),
 					posologia.getHorario5(), posologia.getHorario6(), (posologia.getDosagem()),
 					(posologia.getAspectoMedicamento()), posologia.getDataInicioTratamento(),
@@ -58,7 +58,7 @@ public class ListaPosologiaController {
 			Posologia posologia = PosologiaController.posologias.get(i);
 
 			view.tabelaPosologia.addRow(new String[] { posologia.getCodigoPosologia(), posologia.getNomePaciente(),
-					posologia.getNomeMedicamento(), (posologia.getNomePaciente()), (posologia.getRotinaMedicacao()),
+					posologia.getNomeMedicamento(), (posologia.getNumeroVezes()), (posologia.getRotinaMedicacao()),
 					posologia.getHorario1(), posologia.getHorario2(), posologia.getHorario3(), posologia.getHorario4(),
 					posologia.getHorario5(), posologia.getHorario6(), (posologia.getDosagem()),
 					(posologia.getAspectoMedicamento()), posologia.getDataInicioTratamento(),

@@ -42,53 +42,63 @@ public class CadastroMedicamentoController {
 	}
 
 	public void cadastraMedicamento() {
-		// deixa o cursor dentro desse jtextfield's
-		view.tfNomeMedicamento.requestFocus();
 
-		// Cadastra as informações de um medicamento na lista
+		String nomeMedicacao = view.getTfNomeMedicamento().getText();
 
-		String nomeRemedio = view.getTfNomeMedicamento().getText().trim();
-		String codigo = view.getTfCodigo().getText().trim();
-		String descricao = view.getTfDescricao().getText().trim();
-		String fabricante = view.getTfFabricante().getText().trim();
-		String bula = view.getTfBula().getText().trim();
-		String principioAtivo = view.getTfPrincipioAtivo().getText().trim();
-		String observacaoAdicionalMedicamento = view.getTfObsAdcMedicamento().getText().trim();
+		MedicamentoController medicamentoController = new MedicamentoController();
+		Medicamento resultado = medicamentoController.buscarMedicamentos(nomeMedicacao);
 
-		/**
-		 * Adiciona os dados inseridos acima no ArrayList medicamentos. Este ArrayList
-		 * está em controller.MedicamentoController, linhas 23 a 26.
-		 * 
-		 * @version 09 set 22
-		 */
-
-		if (view.getTfNomeMedicamento().getText().isEmpty() || view.getTfCodigo().getText().isEmpty()
-				|| view.getTfDescricao().getText().isEmpty() || view.getTfFabricante().getText().isEmpty()
-				|| view.getTfBula().getText().isEmpty() || view.getTfPrincipioAtivo().getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null,
-					"Não foi possível realizar o cadastro: os dados do medicamento não podem estar vazios!");
-
+		if (resultado != null) {
+			JOptionPane.showMessageDialog(null, "Medicamento já possui cadastrado!");
 		} else {
-			Medicamento medicamento = new Medicamento(nomeRemedio, codigo, descricao, fabricante, bula, principioAtivo,
-					observacaoAdicionalMedicamento);
-			MedicamentoController.medicamentos.add(medicamento);
-			JOptionPane.showMessageDialog(null, "Cadastro efetivado!");
+			// deixa o cursor dentro desse jtextfield's
+			view.tfNomeMedicamento.requestFocus();
+
+			// Cadastra as informações de um medicamento na lista
+
+			String nomeRemedio = view.getTfNomeMedicamento().getText().trim();
+			String codigo = view.getTfCodigo().getText().trim();
+			String descricao = view.getTfDescricao().getText().trim();
+			String fabricante = view.getTfFabricante().getText().trim();
+			String bula = view.getTfBula().getText().trim();
+			String principioAtivo = view.getTfPrincipioAtivo().getText().trim();
+			String observacaoAdicionalMedicamento = view.getTfObsAdcMedicamento().getText().trim();
+
+			/**
+			 * Adiciona os dados inseridos acima no ArrayList medicamentos. Este ArrayList
+			 * está em controller.MedicamentoController, linhas 23 a 26.
+			 * 
+			 * @version 09 set 22
+			 */
+
+			if (view.getTfNomeMedicamento().getText().isEmpty() || view.getTfCodigo().getText().isEmpty()
+					|| view.getTfDescricao().getText().isEmpty() || view.getTfFabricante().getText().isEmpty()
+					|| view.getTfBula().getText().isEmpty() || view.getTfPrincipioAtivo().getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null,
+						"Não foi possível realizar o cadastro: os dados do medicamento não podem estar vazios!");
+
+			} else {
+				Medicamento medicamento = new Medicamento(nomeRemedio, codigo, descricao, fabricante, bula,
+						principioAtivo, observacaoAdicionalMedicamento);
+				MedicamentoController.medicamentos.add(medicamento);
+				JOptionPane.showMessageDialog(null, "Cadastro efetivado!");
+			}
+
+			// System.out.println(MedicamentoController.medicamentos.toString());
+
+			// limpando os campos dos jtextfield's
+			view.tfNomeMedicamento.setText("");
+			view.tfCodigo.setText("");
+			view.tfDescricao.setText("");
+			view.tfFabricante.setText("");
+			view.tfBula.setText("");
+			view.tfPrincipioAtivo.setText("");
+			view.tfObsAdcMedicamento.setText("");
+
+			// deixa o cursor dentro desse jtextfield's
+			view.tfNomeMedicamento.requestFocus();
+
 		}
-
-		// System.out.println(MedicamentoController.medicamentos.toString());
-
-		// limpando os campos dos jtextfield's
-		view.tfNomeMedicamento.setText("");
-		view.tfCodigo.setText("");
-		view.tfDescricao.setText("");
-		view.tfFabricante.setText("");
-		view.tfBula.setText("");
-		view.tfPrincipioAtivo.setText("");
-		view.tfObsAdcMedicamento.setText("");
-
-		// deixa o cursor dentro desse jtextfield's
-		view.tfNomeMedicamento.requestFocus();
-
 	}
 
 }

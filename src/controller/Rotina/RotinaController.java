@@ -40,9 +40,10 @@ public class RotinaController implements ActionListener {
 			Posologia posologia = PosologiaController.posologias.get(i);
 
 			view.tabelaPosologia.addRow(new String[] { posologia.getCodigoPosologia(), posologia.getNomePaciente(),
-					posologia.getNomeMedicamento(), (posologia.getDosagem()), (posologia.getAspectoMedicamento()),
+					posologia.getNomeMedicamento(), (posologia.getNumeroVezes()), (posologia.getRotinaMedicacao()),
 					posologia.getHorario1(), posologia.getHorario2(), posologia.getHorario3(), posologia.getHorario4(),
-					posologia.getHorario5(), posologia.getHorario6(), posologia.getDataInicioTratamento(),
+					posologia.getHorario5(), posologia.getHorario6(), (posologia.getDosagem()),
+					(posologia.getAspectoMedicamento()), posologia.getDataInicioTratamento(),
 					posologia.getDataFimTratamento(), posologia.getObservacaoAdicionalPosologia() });
 		}
 		PrincipalPosologia obj = new PrincipalPosologia();
@@ -61,9 +62,10 @@ public class RotinaController implements ActionListener {
 			Posologia posologia = PosologiaController.posologias.get(i);
 
 			view.tabelaPosologia.addRow(new String[] { posologia.getCodigoPosologia(), posologia.getNomePaciente(),
-					posologia.getNomeMedicamento(), (posologia.getDosagem()), (posologia.getAspectoMedicamento()),
+					posologia.getNomeMedicamento(), (posologia.getNumeroVezes()), (posologia.getRotinaMedicacao()),
 					posologia.getHorario1(), posologia.getHorario2(), posologia.getHorario3(), posologia.getHorario4(),
-					posologia.getHorario5(), posologia.getHorario6(), posologia.getDataInicioTratamento(),
+					posologia.getHorario5(), posologia.getHorario6(), (posologia.getDosagem()),
+					(posologia.getAspectoMedicamento()), posologia.getDataInicioTratamento(),
 					posologia.getDataFimTratamento(), posologia.getObservacaoAdicionalPosologia() });
 		}
 		JOptionPane.showMessageDialog(null, "Lista atualizada!");

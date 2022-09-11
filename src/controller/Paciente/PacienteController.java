@@ -70,16 +70,6 @@ public class PacienteController {
 		return null;
 	}
 
-	// Para aparecer os nomes dos pacientes na tela de cadastro da posologia
-	public static Paciente recuperarPacientePeloNome(String recuperarNomePaciente) {
-		for (Paciente paciente : pacientes) {
-			if (paciente.getNome().equals(recuperarNomePaciente)) {
-				return paciente;
-			}
-		}
-		return null;
-	}
-
 	// Exclui o paciente da lista a partir do seu cpf
 	public Paciente excluirPacientes(String excluirCPFPaciente) {
 		for (int i = 0; i < pacientes.size(); i++) {

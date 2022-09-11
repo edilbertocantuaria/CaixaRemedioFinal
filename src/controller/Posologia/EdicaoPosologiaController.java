@@ -88,7 +88,7 @@ public class EdicaoPosologiaController {
 			if (resultado == null) {
 				JOptionPane.showMessageDialog(null, "Posologia não cadastrada ou código inválido!");
 			} else {
-				// indexOf().getNomePaciente();
+
 				view.cbEscolhaPaciente.setEnabled(true);
 				view.cbEscolhaMedicamento.setSelectedIndex(-1);
 

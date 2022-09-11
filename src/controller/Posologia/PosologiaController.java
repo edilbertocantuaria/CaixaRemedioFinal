@@ -104,17 +104,37 @@ public class PosologiaController {
 		return model;
 	}
 
+	// Realiza a busca de uma posologia na lista por meio do código
+	public static Posologia buscarPosologia(String buscarCodigoPosologia) {
+		for (int i = 0; i < posologias.size(); i++) {
+			if (posologias.get(i).getCodigoPosologia().equals(buscarCodigoPosologia)) {
+				return posologias.get(i);
+			}
+		}
+		return null;
+	}
+
+	// Exclui o paciente da lista a partir do seu cpf
+	public static Posologia excluirPosologia(String excluirCODPosologia) {
+		for (int i = 0; i < posologias.size(); i++) {
+			if (posologias.get(i).getCodigoPosologia().equals(excluirCODPosologia)) {
+				return posologias.remove(i);
+			}
+		}
+		return null;
+	}
+
 	// Carrega dados na lista de posologias
 	public static void dadosPosologia() {
 
 		Posologia posologiaA = new Posologia("Edilberto", "LORATAMED", "2", "diariamente", "08:00", "20:00", "", "", "",
-				"", "1", "comprimido", "03/09/2022", "10/09/2022", "", "123");
+				"", "1.0", "comprimido", "03/09/2022", "10/09/2022", "", "123");
 
 		Posologia posologiaB = new Posologia("Fran", "NEOCOPAN COMPOSTO", "1", "diariamente", "07:00", "15:00", "23:00",
-				"", "", "", "1", "cápsula", "04/09/2022", "11/09/2022", "", "456");
+				"", "", "", "1.0", "cápsula", "04/09/2022", "11/09/2022", "", "456");
 
-		Posologia posologiaC = new Posologia("Eurico", "REFENOL", "2", "diariamente", "10:00", "", "", "", "", "", "1",
-				"comprimido", "10/08/2022", "10/09/2022", "", "789");
+		Posologia posologiaC = new Posologia("Eurico", "REFENOL", "2", "diariamente", "10:00", "", "", "", "", "",
+				"1.0", "comprimido", "10/08/2022", "10/09/2022", "", "789");
 
 		posologias.add(posologiaA);
 		posologias.add(posologiaB);

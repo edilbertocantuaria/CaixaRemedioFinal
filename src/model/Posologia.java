@@ -172,6 +172,14 @@ public class Posologia {
 		return medicamentos;
 	}
 
+	public String getCodigoPosologia() {
+		return codigoPosologia;
+	}
+
+	public void setCodigoPosologia(String codigoPosologia) {
+		this.codigoPosologia = codigoPosologia;
+	}
+
 	@Override
 	public String toString() {
 		return "Posologia [medicamentos=" + medicamentos + ",\n\n nomePaciente=" + nomePaciente + ",\n nomeMedicamento="

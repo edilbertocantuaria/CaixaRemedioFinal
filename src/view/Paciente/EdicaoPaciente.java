@@ -30,7 +30,7 @@ public class EdicaoPaciente implements ActionListener {
 	public JButton btnEditarPaciente_edicao;
 	public JButton btnVoltar;
 
-	private JLabel instrucao;
+	private JLabel lbCpf;
 	private JLabel lbNomePaciente;
 	private JLabel lbCPF;
 	private JLabel lbCPFinfo;
@@ -70,9 +70,9 @@ public class EdicaoPaciente implements ActionListener {
 			erro1.printStackTrace();
 		}
 
-		instrucao = new JLabel("CPF:");
-		instrucao.setBounds(10, 10, 90, 25);
-		panel.add(instrucao);
+		lbCpf = new JLabel("CPF:");
+		lbCpf.setBounds(10, 10, 90, 25);
+		panel.add(lbCpf);
 
 		lbNomePaciente = new JLabel("Nome");
 		lbNomePaciente.setBounds(10, 99, 46, 14);
@@ -217,7 +217,7 @@ public class EdicaoPaciente implements ActionListener {
 	}
 
 	public JLabel getInstrucao() {
-		return instrucao;
+		return lbCpf;
 	}
 
 	public JPanel getPanel() {
@@ -273,7 +273,7 @@ public class EdicaoPaciente implements ActionListener {
 	}
 
 	public void setInstrucao(JLabel instrucao) {
-		this.instrucao = instrucao;
+		this.lbCpf = instrucao;
 	}
 
 	public void setPanel(JPanel panel) {

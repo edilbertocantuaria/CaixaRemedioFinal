@@ -45,8 +45,8 @@ public class EdicaoMedicamento implements ActionListener {
 	private JLabel lbCodigo;
 	private JLabel lbNomeMedicamentoInfo;
 	private JLabel lbNomeMedicamento;
-	private JLabel lbInstrucaoInfo;
-	private JLabel lbInstrucao;
+	private JLabel lbNomeMedicamentoBuscaInfo;
+	private JLabel lbNomeMedicamentoBusca;
 	private JPanel panel;
 
 	/**
@@ -74,13 +74,13 @@ public class EdicaoMedicamento implements ActionListener {
 		setController(new EdicaoMedicamentoController(this));
 		panel.setLayout(null);
 
-		lbInstrucao = new JLabel("Digite o nome do medicamento: ");
-		lbInstrucao.setBounds(10, 6, 200, 25);
-		panel.add(lbInstrucao);
+		lbNomeMedicamentoBusca = new JLabel("Digite o nome do medicamento: ");
+		lbNomeMedicamentoBusca.setBounds(10, 6, 200, 25);
+		panel.add(lbNomeMedicamentoBusca);
 
-		lbInstrucaoInfo = new JLabel("(tudo maiúsculo)");
-		lbInstrucaoInfo.setBounds(10, 19, 200, 25);
-		panel.add(lbInstrucaoInfo);
+		lbNomeMedicamentoBuscaInfo = new JLabel("(tudo maiúsculo)");
+		lbNomeMedicamentoBuscaInfo.setBounds(10, 19, 200, 25);
+		panel.add(lbNomeMedicamentoBuscaInfo);
 
 		tfMedicamentoEdicao = new TextField();
 		tfMedicamentoEdicao.setBounds(486, 6, 188, 25);

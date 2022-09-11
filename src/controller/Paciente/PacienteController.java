@@ -60,7 +60,7 @@ public class PacienteController {
 
 	}
 
-	// Realiza a busca de um paciente na lista por meio do CPF de um nome podendo
+	// Realiza a busca de um paciente na lista por meio do CPF
 	public Pessoa buscarPacientes(String buscarCPFPaciente) {
 		for (int i = 0; i < pacientes.size(); i++) {
 			if (pacientes.get(i).getCpf().equals(buscarCPFPaciente)) {

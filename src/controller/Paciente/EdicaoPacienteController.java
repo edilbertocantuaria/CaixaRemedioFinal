@@ -162,7 +162,6 @@ public class EdicaoPacienteController {
 		view.tfObsAdcPaciente.setEnabled(false);
 		view.tfObsAdcPaciente.setEditable(false);
 
-		// JOptionPane.showMessageDialog(null, "CPF inválido!");
 	}
 
 }

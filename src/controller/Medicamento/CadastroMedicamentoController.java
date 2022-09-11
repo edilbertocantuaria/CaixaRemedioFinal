@@ -17,7 +17,7 @@ public class CadastroMedicamentoController {
 
 	public void executarBotao(Object botaoApertado) {
 		if (botaoApertado == view.getBtnVoltar()) {
-			this.limpaCampo();
+			this.voltarTelaAnterior();
 
 		} else {
 			this.cadastraMedicamento();
@@ -25,7 +25,7 @@ public class CadastroMedicamentoController {
 
 	}
 
-	public void limpaCampo() {
+	public void voltarTelaAnterior() {
 		// limpando os campos dos jtextfield's
 		view.tfNomeMedicamento.setText("");
 		view.tfCodigo.setText("");

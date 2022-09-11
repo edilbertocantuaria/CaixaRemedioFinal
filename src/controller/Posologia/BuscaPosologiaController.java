@@ -17,7 +17,7 @@ public class BuscaPosologiaController {
 
 	public void executarBotao(Object botaoApertado) {
 		if (botaoApertado == view.getBtnVoltar()) {
-			this.limpaCampo();
+			this.voltarTelaAnterior();
 
 		} else {
 			this.buscaPosologia();
@@ -25,7 +25,7 @@ public class BuscaPosologiaController {
 
 	}
 
-	public void limpaCampo() {
+	public void voltarTelaAnterior() {
 		// limpando os campos dos jtextfield's
 		view.jftCodPosologiaBusca.setText("");
 

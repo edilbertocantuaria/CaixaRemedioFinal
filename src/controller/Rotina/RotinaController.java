@@ -1,17 +1,21 @@
-package controller.Posologia;
+package controller.Rotina;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import controller.Posologia.PosologiaController;
 import model.Posologia;
-import view.Posologia.ListaPosologia;
 import view.Posologia.PrincipalPosologia;
+import view.Rotina.PrincipalRotina;
 
-public class ListaPosologiaController {
+public class RotinaController implements ActionListener {
 
-	private ListaPosologia view;
+	private PrincipalRotina view;
 
-	public ListaPosologiaController(ListaPosologia view) {
+	public RotinaController(PrincipalRotina view) {
 		this.view = view;
 
 	}
@@ -36,15 +40,14 @@ public class ListaPosologiaController {
 			Posologia posologia = PosologiaController.posologias.get(i);
 
 			view.tabelaPosologia.addRow(new String[] { posologia.getCodigoPosologia(), posologia.getNomePaciente(),
-					posologia.getNomeMedicamento(), (posologia.getNomePaciente()), (posologia.getRotinaMedicacao()),
+					posologia.getNomeMedicamento(), (posologia.getDosagem()), (posologia.getAspectoMedicamento()),
 					posologia.getHorario1(), posologia.getHorario2(), posologia.getHorario3(), posologia.getHorario4(),
-					posologia.getHorario5(), posologia.getHorario6(), (posologia.getDosagem()),
-					(posologia.getAspectoMedicamento()), posologia.getDataInicioTratamento(),
+					posologia.getHorario5(), posologia.getHorario6(), posologia.getDataInicioTratamento(),
 					posologia.getDataFimTratamento(), posologia.getObservacaoAdicionalPosologia() });
 		}
 		PrincipalPosologia obj = new PrincipalPosologia();
 		obj.setVisible(true);
-		ListaPosologia.getFrame().dispose();
+		PrincipalRotina.getFrame().dispose();
 
 	}
 
@@ -58,12 +61,17 @@ public class ListaPosologiaController {
 			Posologia posologia = PosologiaController.posologias.get(i);
 
 			view.tabelaPosologia.addRow(new String[] { posologia.getCodigoPosologia(), posologia.getNomePaciente(),
-					posologia.getNomeMedicamento(), (posologia.getNomePaciente()), (posologia.getRotinaMedicacao()),
+					posologia.getNomeMedicamento(), (posologia.getDosagem()), (posologia.getAspectoMedicamento()),
 					posologia.getHorario1(), posologia.getHorario2(), posologia.getHorario3(), posologia.getHorario4(),
-					posologia.getHorario5(), posologia.getHorario6(), (posologia.getDosagem()),
-					(posologia.getAspectoMedicamento()), posologia.getDataInicioTratamento(),
+					posologia.getHorario5(), posologia.getHorario6(), posologia.getDataInicioTratamento(),
 					posologia.getDataFimTratamento(), posologia.getObservacaoAdicionalPosologia() });
 		}
 		JOptionPane.showMessageDialog(null, "Lista atualizada!");
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 }

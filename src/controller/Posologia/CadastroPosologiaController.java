@@ -51,7 +51,7 @@ public class CadastroPosologiaController {
 
 	public void executarBotao(Object botaoApertado) {
 		if (botaoApertado == view.getBtnVoltar()) {
-			this.limpaCampo();
+			this.voltarTelaAnterior();
 
 		}
 		if (botaoApertado == view.getBtnAtualizarPacienteMedicamento()) {
@@ -64,7 +64,7 @@ public class CadastroPosologiaController {
 
 	}
 
-	public void limpaCampo() {
+	public void voltarTelaAnterior() {
 		// limpando os campos dos jtextfield's
 		view.cbEscolhaPaciente.setSelectedIndex(-1);
 		view.cbEscolhaMedicamento.setSelectedIndex(-1);

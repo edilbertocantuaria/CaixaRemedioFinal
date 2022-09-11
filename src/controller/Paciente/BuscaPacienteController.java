@@ -18,7 +18,7 @@ public class BuscaPacienteController {
 
 	public void executarBotao(Object botaoApertado) {
 		if (botaoApertado == view.getBtnVoltar()) {
-			this.limpaCampo();
+			this.voltarTelaAnterior();
 
 		} else {
 			this.buscaPaciente();
@@ -26,7 +26,7 @@ public class BuscaPacienteController {
 
 	}
 
-	public void limpaCampo() {
+	public void voltarTelaAnterior() {
 		// limpando os campos dos jtextfield's
 		view.jftCPFBusca.setText("");
 

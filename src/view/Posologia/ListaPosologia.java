@@ -58,9 +58,9 @@ public class ListaPosologia implements ActionListener {
 
 			jtPosologia = new JTable();
 			jtPosologia.setModel(new DefaultTableModel(new Object[][] {},
-					new String[] { "Cód.", "Nome", "Medicamento", "Dosagem", "Horário 01", "Horário 02", "Horário 03",
-							"Horário 04", "Horário 05", "Horário 06", "Data início", "Data término",
-							"Obs. Adicional" }));
+					new String[] { "Cód.", "Nome", "Medicamento", "Nº vezes", "Rotina", "Horário 01", "Horário 02",
+							"Horário 03", "Horário 04", "Horário 05", "Horário 06", "Dosagem", "Aspecto", "Data início",
+							"Data término", "Obs. Adicional" }));
 			scrollPane.setViewportView(jtPosologia);
 
 			// criando a tabela de posologia inicial
@@ -71,10 +71,12 @@ public class ListaPosologia implements ActionListener {
 				tabelaPosologia = (DefaultTableModel) jtPosologia.getModel();
 
 				tabelaPosologia.addRow(new String[] { posologia.getCodigoPosologia(), posologia.getNomePaciente(),
-						posologia.getNomeMedicamento(), (posologia.getDosagem()), posologia.getHorario1(),
-						posologia.getHorario2(), posologia.getHorario3(), posologia.getHorario4(),
-						posologia.getHorario5(), posologia.getHorario6(), posologia.getDataInicioTratamento(),
-						posologia.getDataFimTratamento(), posologia.getObservacaoAdicionalPosologia() });
+						posologia.getNomeMedicamento(), (posologia.getNomePaciente()), (posologia.getRotinaMedicacao()),
+						posologia.getHorario1(), posologia.getHorario2(), posologia.getHorario3(),
+						posologia.getHorario4(), posologia.getHorario5(), posologia.getHorario6(),
+						(posologia.getDosagem()), (posologia.getAspectoMedicamento()),
+						posologia.getDataInicioTratamento(), posologia.getDataFimTratamento(),
+						posologia.getObservacaoAdicionalPosologia() });
 			}
 		}
 

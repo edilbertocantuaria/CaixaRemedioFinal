@@ -17,7 +17,7 @@ public class ExclusaoMedicamentoController {
 
 	public void executarBotao(Object botaoApertado) {
 		if (botaoApertado == view.getBtnVoltar()) {
-			this.limpaCampo();
+			this.voltarTelaAnterior();
 
 		} else {
 			this.excluiMedicamento();
@@ -25,7 +25,7 @@ public class ExclusaoMedicamentoController {
 
 	}
 
-	public void limpaCampo() {
+	public void voltarTelaAnterior() {
 		// limpando os campos dos jtfield's
 		view.tfMedicamentoBusca.setText("");
 

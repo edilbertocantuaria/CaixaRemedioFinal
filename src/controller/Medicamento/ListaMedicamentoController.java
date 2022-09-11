@@ -18,7 +18,7 @@ public class ListaMedicamentoController {
 
 	public void executarBotao(Object botaoApertado) {
 		if (botaoApertado == view.getBtnVoltar()) {
-			this.limpaCampo();
+			this.voltarTelaAnterior();
 
 		}
 		if (botaoApertado == view.getBtnAtualizar()) {
@@ -27,7 +27,7 @@ public class ListaMedicamentoController {
 
 	}
 
-	public void limpaCampo() {
+	public void voltarTelaAnterior() {
 		// limpando os campos dos jtextfield's
 		view.tabelaMedicacao = (DefaultTableModel) view.jtMedicacao.getModel();
 		view.tabelaMedicacao.setNumRows(0);

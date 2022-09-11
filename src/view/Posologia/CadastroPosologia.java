@@ -9,31 +9,32 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
-import controller.Posologia.PosologiaController;
-import model.Posologia;
+import controller.Posologia.CadastroPosologiaController;
 
-public class CadastroPosologia {
+public class CadastroPosologia implements ActionListener {
 
 	private static JFrame frame = new JFrame("Cadastro de Posologia");
 
-	private JTextField tfNumeroVezes;
-	private JTextField tfRotinaMedicacao;
-	private JTextField tfDosagem;
-	private JTextField tfObsAdcPosologia;
-	private JTextField tfAspecto;
-	private JTextField tfDataInicioTratamento;
-	private JTextField tfDataFimTratamento;
-	private JFormattedTextField tfHorario1;
-	private JFormattedTextField tfHorario2;
-	private JFormattedTextField tfHorario3;
-	private JFormattedTextField tfHorario4;
-	private JFormattedTextField tfHorario5;
-	private JFormattedTextField tfHorario6;
+	public JFormattedTextField tfNumeroVezes;
+	public JTextField tfRotinaMedicacao;
+	public JTextField tfDosagem;
+	public JTextField tfObsAdcPosologia;
+	public JTextField tfAspecto;
+	public JTextField tfDataInicioTratamento;
+	public JTextField tfDataFimTratamento;
+	public JFormattedTextField tfHorario1;
+	public JFormattedTextField tfHorario2;
+	public JFormattedTextField tfHorario3;
+	public JFormattedTextField tfHorario4;
+	public JFormattedTextField tfHorario5;
+	public JFormattedTextField tfHorario6;
+	public JFormattedTextField tfCodigoPosologia;
+	public JComboBox<String> cbEscolhaPaciente;
+	public JComboBox<String> cbEscolhaMedicamento;
 
 	private JLabel lbNumeroVezes;
 	private JLabel lbRotinaMedicacao;
@@ -50,20 +51,22 @@ public class CadastroPosologia {
 	private JLabel lbDataExemplo_1;
 	private JLabel lbDataExemplo_2;
 	private JLabel lbNumeroVezesExemplo;
-	private JButton btnCadastrarPosologia;
-	private JButton btnVoltar;
-
-	private JComboBox<String> cbEscolhaPaciente;
-	private JComboBox<String> cbEscolhaMedicamento;
+	private JLabel lbCodigo;
+	private JLabel lbEscolhaMedicamento;
 	private JLabel lbEscolhaPaciente;
 
 	private JPanel panel;
-	private JLabel lbEscolhaMedicamento;
 
-	private PosologiaController controller;
+	private JButton btnCadastrarPosologia;
+	private JButton btnVoltar;
+
+	private CadastroPosologiaController controller;
+	private JLabel lbCodigoInfo;
+
+	public JButton btnAtualizarPacienteMedicamento;
 
 	public CadastroPosologia() {
-		frame.setSize(700, 470);
+		frame.setSize(680, 525);
 
 		panel = new JPanel();
 		frame.getContentPane().add(panel);
@@ -73,18 +76,24 @@ public class CadastroPosologia {
 	}
 
 	private void placeComponents(JPanel panel) {
+		setController(new CadastroPosologiaController(this));
+
 		panel.setLayout(null);
 
 		MaskFormatter mascaraDataInicial = null;
 		MaskFormatter mascaraDataFinal = null;
 		MaskFormatter mascaraHora = null;
 		MaskFormatter mascaraDosagem = null;
+		MaskFormatter mascaraNumeroVezes = null;
+		MaskFormatter mascaraCodigo = null;
 
 		try {
 			mascaraDataInicial = new MaskFormatter("##/##/####");
 			mascaraDataFinal = new MaskFormatter("##/##/####");
 			mascaraHora = new MaskFormatter("##:##");
 			mascaraDosagem = new MaskFormatter("#.#");
+			mascaraNumeroVezes = new MaskFormatter("#");
+			mascaraCodigo = new MaskFormatter("###");
 		} catch (ParseException erro1) {
 
 			System.err.println("Erro na formatação!" + erro1.getMessage());
@@ -98,7 +107,7 @@ public class CadastroPosologia {
 		lbRotinaExemplo.setBounds(10, 137, 300, 14);
 		panel.add(lbRotinaExemplo);
 		tfRotinaMedicacao = new JTextField();
-		tfRotinaMedicacao.setBounds(362, 121, 300, 20);
+		tfRotinaMedicacao.setBounds(354, 121, 300, 20);
 		panel.add(tfRotinaMedicacao);
 		tfRotinaMedicacao.setColumns(10);
 
@@ -136,7 +145,7 @@ public class CadastroPosologia {
 
 		tfHorario6 = new JFormattedTextField(mascaraHora);
 		tfHorario6.setColumns(10);
-		tfHorario6.setBounds(622, 167, 40, 20);
+		tfHorario6.setBounds(614, 167, 40, 20);
 		panel.add(tfHorario6);
 
 		lbDosagem = new JLabel("Dosagem (digitar apenas número):");
@@ -146,7 +155,7 @@ public class CadastroPosologia {
 		lbDosagemExemplo.setBounds(10, 229, 257, 14);
 		panel.add(lbDosagemExemplo);
 		tfDosagem = new JFormattedTextField(mascaraDosagem);
-		tfDosagem.setBounds(362, 213, 300, 20);
+		tfDosagem.setBounds(354, 213, 300, 20);
 		panel.add(tfDosagem);
 		tfDosagem.setColumns(10);
 
@@ -154,8 +163,8 @@ public class CadastroPosologia {
 		lbNumeroVezes.setAutoscrolls(true);
 		lbNumeroVezes.setBounds(10, 78, 390, 14);
 		panel.add(lbNumeroVezes);
-		tfNumeroVezes = new JTextField();
-		tfNumeroVezes.setBounds(561, 75, 100, 20);
+		tfNumeroVezes = new JFormattedTextField(mascaraNumeroVezes);
+		tfNumeroVezes.setBounds(554, 75, 100, 20);
 		panel.add(tfNumeroVezes);
 		tfNumeroVezes.setColumns(10);
 		lbNumeroVezesExemplo = new JLabel("(digitar apenas números)");
@@ -168,7 +177,7 @@ public class CadastroPosologia {
 		panel.add(lbObsAdcPosologia);
 		tfObsAdcPosologia = new JTextField();
 		tfObsAdcPosologia.setColumns(10);
-		tfObsAdcPosologia.setBounds(362, 351, 300, 20);
+		tfObsAdcPosologia.setBounds(354, 351, 300, 20);
 		panel.add(tfObsAdcPosologia);
 
 		lbAspecto = new JLabel("Aspecto:");
@@ -176,7 +185,7 @@ public class CadastroPosologia {
 		panel.add(lbAspecto);
 		tfAspecto = new JTextField();
 		tfAspecto.setColumns(10);
-		tfAspecto.setBounds(362, 259, 300, 20);
+		tfAspecto.setBounds(354, 259, 300, 20);
 		panel.add(tfAspecto);
 		lbAspectoExemplo = new JLabel("(Comprimido, capsula, gota, etc.)");
 		lbAspectoExemplo.setBounds(10, 275, 257, 14);
@@ -198,46 +207,26 @@ public class CadastroPosologia {
 		panel.add(lbDataTérminoTratamento);
 		tfDataFimTratamento = new JFormattedTextField(mascaraDataFinal);
 		tfDataFimTratamento.setColumns(10);
-		tfDataFimTratamento.setBounds(562, 305, 100, 20);
+		tfDataFimTratamento.setBounds(554, 305, 100, 20);
 		panel.add(tfDataFimTratamento);
 		lbDataExemplo_2 = new JLabel("(DD/MM/AAAA)");
 		lbDataExemplo_2.setBounds(362, 321, 257, 14);
 		panel.add(lbDataExemplo_2);
 
+		lbCodigo = new JLabel("Código de até 3 dígitos");
+		lbCodigo.setBounds(10, 400, 251, 14);
+		panel.add(lbCodigo);
+		lbCodigoInfo = new JLabel("Esse código será utilizado para localizar a posologia");
+		lbCodigoInfo.setBounds(10, 413, 296, 14);
+		panel.add(lbCodigoInfo);
+		tfCodigoPosologia = new JFormattedTextField(mascaraCodigo);
+		tfCodigoPosologia.setBounds(572, 397, 82, 20);
+		panel.add(tfCodigoPosologia);
+
 		btnVoltar = new JButton("Voltar para tela anterior");
-		btnVoltar.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Object botaoApertado = e.getSource();
-
-				if (botaoApertado == btnVoltar) {
-					// limpando os campos dos jtextfield's
-					cbEscolhaPaciente.setSelectedItem("");
-					cbEscolhaMedicamento.setSelectedItem("");
-					tfNumeroVezes.setText("");
-					tfRotinaMedicacao.setText("");
-					tfHorario1.setText("");
-					tfHorario2.setText("");
-					tfHorario3.setText("");
-					tfHorario4.setText("");
-					tfHorario5.setText("");
-					tfHorario6.setText("");
-					tfDosagem.setText("");
-					tfAspecto.setText("");
-					tfDataInicioTratamento.setText("");
-					tfDataFimTratamento.setText("");
-					tfObsAdcPosologia.setText("");
-
-					PrincipalPosologia obj = new PrincipalPosologia();
-					obj.setVisible(true);
-					frame.dispose();
-
-				}
-			}
-		});
+		btnVoltar.addActionListener(this);
+		btnVoltar.setBounds(10, 454, 210, 23);
 		panel.add(btnVoltar);
-		btnVoltar.setBounds(10, 388, 210, 23);
 
 		cbEscolhaPaciente = new JComboBox<String>();
 		cbEscolhaPaciente.setBounds(86, 28, 189, 22);
@@ -252,378 +241,208 @@ public class CadastroPosologia {
 		panel.add(lbEscolhaMedicamento);
 
 		cbEscolhaMedicamento = new JComboBox<String>();
-		cbEscolhaMedicamento.setBounds(468, 28, 189, 22);
+		cbEscolhaMedicamento.setBounds(465, 28, 189, 22);
 		panel.add(cbEscolhaMedicamento);
 
-		this.controller = new PosologiaController(this);
 		cbEscolhaPaciente.setModel(controller.listarPacientes());
+		cbEscolhaPaciente.setSelectedIndex(-1);
 		cbEscolhaMedicamento.setModel(controller.listarMedicamentos());
+		cbEscolhaMedicamento.setSelectedIndex(-1);
 
 		btnCadastrarPosologia = new JButton("Cadastrar Posologia");
-		btnCadastrarPosologia.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				cadastraPosologia();
-			}
-
-			public void cadastraPosologia() {
-
-				// cadastra a posologia
-				String nomePaciente = (String) getCbEscolhaPaciente().getSelectedItem();
-				String nomeMedicacao = (String) getCbEscolhaMedicamento().getSelectedItem();
-				int numeroVezes = Integer.parseInt(getTfNumeroVezes().getText().trim());
-				String rotinaMedicacao = getTfRotinaMedicacao().getText().trim();
-				String horario1 = getTfHorario1().getText().trim();
-				String horario2 = getTfHorario2().getText().trim();
-				String horario3 = getTfHorario3().getText().trim();
-				String horario4 = getTfHorario4().getText().trim();
-				String horario5 = getTfHorario5().getText().trim();
-				String horario6 = getTfHorario6().getText().trim();
-				float dosagem = Float.parseFloat(getTfDosagem().getText().trim());
-				String aspectoMedicamento = getTfAspecto().getText().trim();
-				String dataInicioTratamento = getTfDataInicioTratamento().getText().trim();
-				String dataFimTratamento = getTfDataFimTratamento().getText().trim();
-				String observacaoAdicionalPosologia = getTfObsAdcPosologia().getText().trim();
-
-				Posologia posologia = new Posologia(nomePaciente, nomeMedicacao, numeroVezes, rotinaMedicacao, horario1,
-						horario2, horario3, horario4, horario5, horario6, dosagem, aspectoMedicamento,
-						dataInicioTratamento, dataFimTratamento, observacaoAdicionalPosologia);
-
-				PosologiaController.posologias.add(posologia);
-
-				PosologiaController.posologias.toString();
-
-				System.out.print(PosologiaController.posologias.toString());
-
-				JOptionPane.showMessageDialog(null, "Cadastro efetivado!");
-
-				// limpando os campos dos jtextfield's
-				cbEscolhaPaciente.setSelectedItem("");
-				cbEscolhaMedicamento.setSelectedItem("");
-				tfNumeroVezes.setText("");
-				tfRotinaMedicacao.setText("");
-				tfHorario1.setText("");
-				tfHorario2.setText("");
-				tfHorario3.setText("");
-				tfHorario4.setText("");
-				tfHorario5.setText("");
-				tfHorario6.setText("");
-				tfDosagem.setText("");
-				tfAspecto.setText("");
-				tfDataInicioTratamento.setText("");
-				tfDataFimTratamento.setText("");
-				tfObsAdcPosologia.setText("");
-
-				// deixa o cursor dentro desse jtextfield's
-				cbEscolhaPaciente.requestFocus();
-				cbEscolhaMedicamento.requestFocus();
-
-			}
-
-		});
-		btnCadastrarPosologia.setBounds(487, 388, 175, 23);
+		btnCadastrarPosologia.addActionListener(this);
+		btnCadastrarPosologia.setBounds(479, 454, 175, 23);
 		panel.add(btnCadastrarPosologia);
 
+		btnAtualizarPacienteMedicamento = new JButton("Atualizar Pacientes e Medicamentos");
+		btnAtualizarPacienteMedicamento.addActionListener(this);
+		btnAtualizarPacienteMedicamento.setBounds(232, 454, 235, 23);
+		panel.add(btnAtualizarPacienteMedicamento);
+
+		this.controller = new CadastroPosologiaController(this);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		controller.executarBotao(e.getSource());
+	}
+
+	public void setVisible(boolean b) {
 	}
 
 	public static JFrame getFrame() {
 		return frame;
 	}
 
-	public static void setFrame(JFrame frame) {
-		CadastroPosologia.frame = frame;
-	}
-
 	public JTextField getTfNumeroVezes() {
 		return tfNumeroVezes;
-	}
-
-	public void setTfNumeroVezes(JTextField tfNumeroVezes) {
-		this.tfNumeroVezes = tfNumeroVezes;
 	}
 
 	public JTextField getTfRotinaMedicacao() {
 		return tfRotinaMedicacao;
 	}
 
-	public void setTfRotinaMedicacao(JTextField tfRotinaMedicacao) {
-		this.tfRotinaMedicacao = tfRotinaMedicacao;
-	}
-
-	public JFormattedTextField getTfHorario1() {
-		return tfHorario1;
-	}
-
-	public void setTfHorario1(JFormattedTextField tfHorario1) {
-		this.tfHorario1 = tfHorario1;
-	}
-
 	public JTextField getTfDosagem() {
 		return tfDosagem;
-	}
-
-	public void setTfDosagem(JTextField tfDosagem) {
-		this.tfDosagem = tfDosagem;
 	}
 
 	public JTextField getTfObsAdcPosologia() {
 		return tfObsAdcPosologia;
 	}
 
-	public void setTfObsAdcPosologia(JTextField tfObsAdcPosologia) {
-		this.tfObsAdcPosologia = tfObsAdcPosologia;
-	}
-
 	public JTextField getTfAspecto() {
 		return tfAspecto;
-	}
-
-	public void setTfAspecto(JTextField tfAspecto) {
-		this.tfAspecto = tfAspecto;
 	}
 
 	public JTextField getTfDataInicioTratamento() {
 		return tfDataInicioTratamento;
 	}
 
-	public void setTfDataInicioTratamento(JTextField tfDataInicioTratamento) {
-		this.tfDataInicioTratamento = tfDataInicioTratamento;
-	}
-
 	public JTextField getTfDataFimTratamento() {
 		return tfDataFimTratamento;
 	}
 
-	public void setTfDataFimTratamento(JTextField tfDataFimTratamento) {
-		this.tfDataFimTratamento = tfDataFimTratamento;
-	}
-
-	public JLabel getLbNumeroVezes() {
-		return lbNumeroVezes;
-	}
-
-	public void setLbNumeroVezes(JLabel lbNumeroVezes) {
-		this.lbNumeroVezes = lbNumeroVezes;
-	}
-
-	public JLabel getLbRotinaMedicacao() {
-		return lbRotinaMedicacao;
-	}
-
-	public void setLbRotinaMedicacao(JLabel lbRotinaMedicacao) {
-		this.lbRotinaMedicacao = lbRotinaMedicacao;
-	}
-
-	public JLabel getLbHorario() {
-		return lbHorario;
-	}
-
-	public void setLbHorario(JLabel lbHorario) {
-		this.lbHorario = lbHorario;
-	}
-
-	public JLabel getLbDosagem() {
-		return lbDosagem;
-	}
-
-	public void setLbDosagem(JLabel lbDosagem) {
-		this.lbDosagem = lbDosagem;
-	}
-
-	public JLabel getLbObsAdcPosologia() {
-		return lbObsAdcPosologia;
-	}
-
-	public void setLbObsAdcPosologia(JLabel lbObsAdcPosologia) {
-		this.lbObsAdcPosologia = lbObsAdcPosologia;
-	}
-
-	public JLabel getLbRotinaExemplo() {
-		return lbRotinaExemplo;
-	}
-
-	public void setLbRotinaExemplo(JLabel lbRotinaExemplo) {
-		this.lbRotinaExemplo = lbRotinaExemplo;
-	}
-
-	public JLabel getLbDosagemExemplo() {
-		return lbDosagemExemplo;
-	}
-
-	public void setLbDosagemExemplo(JLabel lbDosagemExemplo) {
-		this.lbDosagemExemplo = lbDosagemExemplo;
-	}
-
-	public JLabel getLbAspecto() {
-		return lbAspecto;
-	}
-
-	public void setLbAspecto(JLabel lbAspecto) {
-		this.lbAspecto = lbAspecto;
-	}
-
-	public JLabel getLbAspectoExemplo() {
-		return lbAspectoExemplo;
-	}
-
-	public void setLbAspectoExemplo(JLabel lbAspectoExemplo) {
-		this.lbAspectoExemplo = lbAspectoExemplo;
-	}
-
-	public JLabel getLbDataInicioTratamento() {
-		return lbDataInicioTratamento;
-	}
-
-	public void setLbDataInicioTratamento(JLabel lbDataInicioTratamento) {
-		this.lbDataInicioTratamento = lbDataInicioTratamento;
-	}
-
-	public JLabel getLbDataTérminoTratamento() {
-		return lbDataTérminoTratamento;
-	}
-
-	public void setLbDataTérminoTratamento(JLabel lbDataTérminoTratamento) {
-		this.lbDataTérminoTratamento = lbDataTérminoTratamento;
-	}
-
-	public JLabel getLbHorarioExemplo() {
-		return lbHorarioExemplo;
-	}
-
-	public void setLbHorarioExemplo(JLabel lbHorarioExemplo) {
-		this.lbHorarioExemplo = lbHorarioExemplo;
-	}
-
-	public JLabel getLbDataExemplo_1() {
-		return lbDataExemplo_1;
-	}
-
-	public void setLbDataExemplo_1(JLabel lbDataExemplo_1) {
-		this.lbDataExemplo_1 = lbDataExemplo_1;
-	}
-
-	public JLabel getLbDataExemplo_2() {
-		return lbDataExemplo_2;
-	}
-
-	public void setLbDataExemplo_2(JLabel lbDataExemplo_2) {
-		this.lbDataExemplo_2 = lbDataExemplo_2;
-	}
-
-	public JLabel getLbNumeroVezesExemplo() {
-		return lbNumeroVezesExemplo;
-	}
-
-	public void setLbNumeroVezesExemplo(JLabel lbNumeroVezesExemplo) {
-		this.lbNumeroVezesExemplo = lbNumeroVezesExemplo;
-	}
-
-	public JButton getBtnCadastrarPosologia() {
-		return btnCadastrarPosologia;
-	}
-
-	public void setBtnCadastrarPosologia(JButton btnCadastrarPosologia) {
-		this.btnCadastrarPosologia = btnCadastrarPosologia;
-	}
-
-	public JButton getBtnVoltar() {
-		return btnVoltar;
-	}
-
-	public void setBtnVoltar(JButton btnVoltar) {
-		this.btnVoltar = btnVoltar;
-	}
-
-	public JComboBox<String> getCbEscolhaPaciente() {
-		return cbEscolhaPaciente;
-	}
-
-	public void setCbEscolhaPaciente(JComboBox<String> cbEscolhaPaciente) {
-		this.cbEscolhaPaciente = cbEscolhaPaciente;
-	}
-
-	public JComboBox<String> getCbEscolhaMedicamento() {
-		return cbEscolhaMedicamento;
-	}
-
-	public void setCbEscolhaMedicamento(JComboBox<String> cbEscolhaMedicamento) {
-		this.cbEscolhaMedicamento = cbEscolhaMedicamento;
-	}
-
-	public JLabel getLbEscolhaPaciente() {
-		return lbEscolhaPaciente;
-	}
-
-	public void setLbEscolhaPaciente(JLabel lbEscolhaPaciente) {
-		this.lbEscolhaPaciente = lbEscolhaPaciente;
-	}
-
-	public JPanel getPanel() {
-		return panel;
-	}
-
-	public void setPanel(JPanel panel) {
-		this.panel = panel;
-	}
-
-	public JLabel getLbEscolhaMedicamento() {
-		return lbEscolhaMedicamento;
-	}
-
-	public void setLbEscolhaMedicamento(JLabel lbEscolhaMedicamento) {
-		this.lbEscolhaMedicamento = lbEscolhaMedicamento;
-	}
-
-	public PosologiaController getController() {
-		return controller;
-	}
-
-	public void setController(PosologiaController controller) {
-		this.controller = controller;
+	public JFormattedTextField getTfHorario1() {
+		return tfHorario1;
 	}
 
 	public JFormattedTextField getTfHorario2() {
 		return tfHorario2;
 	}
 
-	public void setTfHorario2(JFormattedTextField tfHorario2) {
-		this.tfHorario2 = tfHorario2;
-	}
-
 	public JFormattedTextField getTfHorario3() {
 		return tfHorario3;
-	}
-
-	public void setTfHorario3(JFormattedTextField tfHorario3) {
-		this.tfHorario3 = tfHorario3;
 	}
 
 	public JFormattedTextField getTfHorario4() {
 		return tfHorario4;
 	}
 
-	public void setTfHorario4(JFormattedTextField tfHorario4) {
-		this.tfHorario4 = tfHorario4;
-	}
-
 	public JFormattedTextField getTfHorario5() {
 		return tfHorario5;
-	}
-
-	public void setTfHorario5(JFormattedTextField tfHorario5) {
-		this.tfHorario5 = tfHorario5;
 	}
 
 	public JFormattedTextField getTfHorario6() {
 		return tfHorario6;
 	}
 
+	public JFormattedTextField getTfCodigoPosologia() {
+		return tfCodigoPosologia;
+	}
+
+	public JComboBox<String> getCbEscolhaPaciente() {
+		return cbEscolhaPaciente;
+	}
+
+	public JComboBox<String> getCbEscolhaMedicamento() {
+		return cbEscolhaMedicamento;
+	}
+
+	public JPanel getPanel() {
+		return panel;
+	}
+
+	public JButton getBtnCadastrarPosologia() {
+		return btnCadastrarPosologia;
+	}
+
+	public JButton getBtnVoltar() {
+		return btnVoltar;
+	}
+
+	public CadastroPosologiaController getController() {
+		return controller;
+	}
+
+	public static void setFrame(JFrame frame) {
+		CadastroPosologia.frame = frame;
+	}
+
+	public void setTfNumeroVezes(JFormattedTextField tfNumeroVezes) {
+		this.tfNumeroVezes = tfNumeroVezes;
+	}
+
+	public void setTfRotinaMedicacao(JTextField tfRotinaMedicacao) {
+		this.tfRotinaMedicacao = tfRotinaMedicacao;
+	}
+
+	public void setTfDosagem(JTextField tfDosagem) {
+		this.tfDosagem = tfDosagem;
+	}
+
+	public void setTfObsAdcPosologia(JTextField tfObsAdcPosologia) {
+		this.tfObsAdcPosologia = tfObsAdcPosologia;
+	}
+
+	public void setTfAspecto(JTextField tfAspecto) {
+		this.tfAspecto = tfAspecto;
+	}
+
+	public void setTfDataInicioTratamento(JTextField tfDataInicioTratamento) {
+		this.tfDataInicioTratamento = tfDataInicioTratamento;
+	}
+
+	public void setTfDataFimTratamento(JTextField tfDataFimTratamento) {
+		this.tfDataFimTratamento = tfDataFimTratamento;
+	}
+
+	public void setTfHorario1(JFormattedTextField tfHorario1) {
+		this.tfHorario1 = tfHorario1;
+	}
+
+	public void setTfHorario2(JFormattedTextField tfHorario2) {
+		this.tfHorario2 = tfHorario2;
+	}
+
+	public void setTfHorario3(JFormattedTextField tfHorario3) {
+		this.tfHorario3 = tfHorario3;
+	}
+
+	public void setTfHorario4(JFormattedTextField tfHorario4) {
+		this.tfHorario4 = tfHorario4;
+	}
+
+	public void setTfHorario5(JFormattedTextField tfHorario5) {
+		this.tfHorario5 = tfHorario5;
+	}
+
 	public void setTfHorario6(JFormattedTextField tfHorario6) {
 		this.tfHorario6 = tfHorario6;
 	}
 
-	public void setVisible(boolean b) {
-		// TODO Auto-generated method stub
+	public void setTfCodigoPosologia(JFormattedTextField tfCodigoPosologia) {
+		this.tfCodigoPosologia = tfCodigoPosologia;
+	}
 
+	public void setCbEscolhaPaciente(JComboBox<String> cbEscolhaPaciente) {
+		this.cbEscolhaPaciente = cbEscolhaPaciente;
+	}
+
+	public void setCbEscolhaMedicamento(JComboBox<String> cbEscolhaMedicamento) {
+		this.cbEscolhaMedicamento = cbEscolhaMedicamento;
+	}
+
+	public void setPanel(JPanel panel) {
+		this.panel = panel;
+	}
+
+	public void setBtnCadastrarPosologia(JButton btnCadastrarPosologia) {
+		this.btnCadastrarPosologia = btnCadastrarPosologia;
+	}
+
+	public void setBtnVoltar(JButton btnVoltar) {
+		this.btnVoltar = btnVoltar;
+	}
+
+	public JButton getBtnAtualizarPacienteMedicamento() {
+		return btnAtualizarPacienteMedicamento;
+	}
+
+	public void setBtnAtualizarPacienteMedicamento(JButton btnAtualizarPacienteMedicamento) {
+		this.btnAtualizarPacienteMedicamento = btnAtualizarPacienteMedicamento;
+	}
+
+	public void setController(CadastroPosologiaController controller) {
+		this.controller = controller;
 	}
 }

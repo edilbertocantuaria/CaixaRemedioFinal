@@ -44,8 +44,7 @@ public class CadastroPacienteController {
 		// deixa o cursor dentro desse jtextfield's
 		view.tfNomePaciente.requestFocus();
 
-		// Cadastra as informações de um paciente na
-		// listaview.getTfDataNascimento().getText()
+		// Cadastra as informações de um paciente no ArrayList pacientes
 		String nomePaciente = view.getTfNomePaciente().getText().trim();
 		String cpf = view.getTfCPF().getText().trim();
 		String dataNascimento = view.getTfDataNascimento().getText().trim();

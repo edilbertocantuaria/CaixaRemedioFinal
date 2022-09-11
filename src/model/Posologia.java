@@ -8,7 +8,7 @@ public class Posologia {
 
 	private String nomePaciente;
 	private String nomeMedicamento;
-	private int numeroVezes; // quantas vezes a medicação deve ser ingerida, por exemplo, 2x.
+	private String numeroVezes; // quantas vezes a medicação deve ser ingerida, por exemplo, 2x.
 	private String rotinaMedicacao; // se a medicação deve ser ingerida diariamente, semanalmente, quinzenalmente,
 	private String horario1; // horários da medicações
 	private String horario2; // horários da medicações
@@ -16,16 +16,17 @@ public class Posologia {
 	private String horario4; // horários da medicações
 	private String horario5; // horários da medicações
 	private String horario6; // horários da medicações
-	private float dosagem; // se deve ingerir meio, 1, 2, 3... "aspecto".
+	private String dosagem; // se deve ingerir meio, 1, 2, 3... "aspecto".
 	private String aspectoMedicamento; // se o medicamento é capsula, comprimido, gota...
 	private String dataInicioTratamento;
 	private String dataFimTratamento;
 	private String observacaoAdicionalPosologia;
+	private String codigoPosologia;
 
-	public Posologia(String nomePaciente, String nomeMedicamento, int numeroVezes, String rotinaMedicacao,
+	public Posologia(String nomePaciente, String nomeMedicamento, String numeroVezes, String rotinaMedicacao,
 			String horario1, String horario2, String horario3, String horario4, String horario5, String horario6,
-			float dosagem, String aspectoMedicamento, String dataInicioTratamento, String dataFimTratamento,
-			String observacaoAdicionalPosologia) {
+			String dosagem2, String aspectoMedicamento, String dataInicioTratamento, String dataFimTratamento,
+			String observacaoAdicionalPosologia, String codigoPosologia) {
 		super();
 		this.nomePaciente = nomePaciente;
 		this.nomeMedicamento = nomeMedicamento;
@@ -37,11 +38,12 @@ public class Posologia {
 		this.horario4 = horario4;
 		this.horario5 = horario5;
 		this.horario6 = horario6;
-		this.dosagem = dosagem;
+		this.dosagem = dosagem2;
 		this.aspectoMedicamento = aspectoMedicamento;
 		this.dataInicioTratamento = dataInicioTratamento;
 		this.dataFimTratamento = dataFimTratamento;
 		this.observacaoAdicionalPosologia = observacaoAdicionalPosologia;
+		this.codigoPosologia = codigoPosologia;
 
 		this.medicamentos = new ArrayList<>();
 	}
@@ -62,11 +64,11 @@ public class Posologia {
 		this.nomeMedicamento = nomeMedicamento;
 	}
 
-	public int getNumeroVezes() {
+	public String getNumeroVezes() {
 		return numeroVezes;
 	}
 
-	public void setNumeroVezes(int numeroVezes) {
+	public void setNumeroVezes(String numeroVezes) {
 		this.numeroVezes = numeroVezes;
 	}
 
@@ -126,11 +128,11 @@ public class Posologia {
 		this.horario6 = horario6;
 	}
 
-	public float getDosagem() {
+	public String getDosagem() {
 		return dosagem;
 	}
 
-	public void setDosagem(float dosagem) {
+	public void setDosagem(String dosagem) {
 		this.dosagem = dosagem;
 	}
 
@@ -178,7 +180,7 @@ public class Posologia {
 				+ horario4 + ",\n horario5=" + horario5 + ",\n horario6=" + horario6 + ",\n dosagem=" + dosagem
 				+ ",\n aspectoMedicamento=" + aspectoMedicamento + ",\n dataInicioTratamento=" + dataInicioTratamento
 				+ ",\n dataFimTratamento=" + dataFimTratamento + ",\n observacaoAdicionalPosologia="
-				+ observacaoAdicionalPosologia + "]\n\n\n";
+				+ observacaoAdicionalPosologia + ",\n codigoPosologia=" + codigoPosologia + "]\n\n\n";
 	}
 
 }

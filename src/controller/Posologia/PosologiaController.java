@@ -107,14 +107,14 @@ public class PosologiaController {
 	// Carrega dados na lista de posologias
 	public static void dadosPosologia() {
 
-		Posologia posologiaA = new Posologia("Edilberto", "LORATAMED", 2, "diariamente", "08:00", "20:00", "", "", "",
-				"", 1, "comprimido", "03/09/2022", "10/09/2022", "");
+		Posologia posologiaA = new Posologia("Edilberto", "LORATAMED", "2", "diariamente", "08:00", "20:00", "", "", "",
+				"", "1", "comprimido", "03/09/2022", "10/09/2022", "", "123");
 
-		Posologia posologiaB = new Posologia("Fran", "NEOCOPAN COMPOSTO", 1, "diariamente", "07:00", "15:00", "23:00",
-				"", "", "", 1, "cápsula", "04/09/2022", "11/09/2022", "");
+		Posologia posologiaB = new Posologia("Fran", "NEOCOPAN COMPOSTO", "1", "diariamente", "07:00", "15:00", "23:00",
+				"", "", "", "1", "cápsula", "04/09/2022", "11/09/2022", "", "456");
 
-		Posologia posologiaC = new Posologia("Eurico", "REFENOL", 2, "diariamente", "10:00", "", "", "", "", "", 1,
-				"comprimido", "10/08/2022", "10/09/2022", "");
+		Posologia posologiaC = new Posologia("Eurico", "REFENOL", "2", "diariamente", "10:00", "", "", "", "", "", "1",
+				"comprimido", "10/08/2022", "10/09/2022", "", "789");
 
 		posologias.add(posologiaA);
 		posologias.add(posologiaB);

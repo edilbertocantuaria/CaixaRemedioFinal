@@ -14,6 +14,14 @@ import javax.swing.text.MaskFormatter;
 
 import controller.Paciente.EdicaoPacienteController;
 
+/**
+ * É a tela para a edição dospacientes. Ela recebe o nome do paciente, envia
+ * para o controller.Paciente.EdicaoPacienteController e, se cadastrado no
+ * ArrayList, exibe as informações deste e permite modificações..
+ * 
+ * @author Caetano.
+ * @version 09 set 22.
+ */
 public class EdicaoPaciente implements ActionListener {
 
 	private static JFrame frame = new JFrame("Editar Paciente");
@@ -42,6 +50,10 @@ public class EdicaoPaciente implements ActionListener {
 
 	private EdicaoPacienteController controller;
 
+	/**
+	 * Define as dimensões físicas da view.Paciente.EdicaoPaciente
+	 * 
+	 */
 	public EdicaoPaciente() {
 		frame.setSize(500, 420);
 
@@ -52,6 +64,11 @@ public class EdicaoPaciente implements ActionListener {
 		frame.setVisible(true);
 	}
 
+	/**
+	 * Define as posições e nomes dos componetes gráficos que estão na
+	 * view.Paciente.EdicaoPaciente EdicaoPaciente
+	 * 
+	 */
 	private void placeComponents(JPanel panel) {
 		setController(new EdicaoPacienteController(this));
 		panel.setLayout(null);
@@ -162,8 +179,18 @@ public class EdicaoPaciente implements ActionListener {
 		btnVoltar.addActionListener(this);
 		panel.add(btnVoltar);
 
+		// Invoca o controller, que neste caso, é EdicaoPacienteController, apontando
+		// que a ação está descrita nesta parte do código
+		this.controller = new EdicaoPacienteController(this);
+
 	}
 
+	/**
+	 * Está recebendo, o evento dos botões que estão na view.Paciente.EdicaoPaciente
+	 * e invoca o controller controller.Paciente.EdicaoPaciente para saber qual deve
+	 * ser a ação executada
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		controller.executarBotao(e.getSource());

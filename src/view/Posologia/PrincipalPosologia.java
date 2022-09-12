@@ -12,6 +12,14 @@ import javax.swing.SwingConstants;
 
 import controller.Posologia.PosologiaController;
 
+/**
+ * É a tela principal dos posologias, onde contém os botões que concedem acesso
+ * ao cadastro, edição, listagem, busca, exclusão e retorno para a tela
+ * anterior.
+ * 
+ * @author Caetano.
+ * @version 09 set 22.
+ */
 public class PrincipalPosologia extends JFrame implements ActionListener {
 
 	private static JFrame PrincipalPosologia = new JFrame("Posologia - Caixa de Remédios");
@@ -28,6 +36,10 @@ public class PrincipalPosologia extends JFrame implements ActionListener {
 
 	private final PosologiaController controller;
 
+	/**
+	 * Defineas as dimensões físicas da view.Posologia.PrincipalPosologia as
+	 * posições e nomes dos componetes gráficos que estão na referida view
+	 */
 	public PrincipalPosologia() {
 		setResizable(false);
 		setTitle("Caixa de remédio - T8.1M");
@@ -78,9 +90,19 @@ public class PrincipalPosologia extends JFrame implements ActionListener {
 		btnExcluirPosologia.addActionListener(this);
 		btnVoltar.addActionListener(this);
 
+		// Invoca o controller, que neste caso, é PosologiaController, apontando que a
+		// ação está descrita nesta parte do código
 		this.controller = new PosologiaController(this);
 
 	}
+
+	/**
+	 * Está recebendo, o evento dos botões que estão na
+	 * view.Posologia.PrincipalPosologia e invoca o controller
+	 * controller.Posologia.PosologiaController para saber qual deve ser a ação
+	 * executada
+	 * 
+	 */
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

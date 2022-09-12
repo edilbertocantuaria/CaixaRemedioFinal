@@ -13,6 +13,14 @@ import javax.swing.text.MaskFormatter;
 
 import controller.Paciente.ExclusaoPacienteController;
 
+/**
+ * É a tela para a exclusão dos pacientes. Ela recebe o nome do paciente, envia
+ * para o controller.Paciente.EdicaoPacienteController e, se cadastrado no
+ * ArrayList, permite a remoção.
+ * 
+ * @author Caetano.
+ * @version 09 set 22.
+ */
 public class ExclusaoPaciente implements ActionListener {
 	private static JFrame frame = new JFrame("Excluir Paciente");
 	private JLabel lbCPF;
@@ -22,6 +30,10 @@ public class ExclusaoPaciente implements ActionListener {
 
 	private ExclusaoPacienteController controller;
 
+	/**
+	 * Define as dimensões físicas da view.Paciente.EdicaoPaciente
+	 * 
+	 */
 	public ExclusaoPaciente() {
 		frame.setSize(400, 280);
 
@@ -31,6 +43,12 @@ public class ExclusaoPaciente implements ActionListener {
 
 		frame.setVisible(true);
 	}
+
+	/**
+	 * Define as posições e nomes dos componetes gráficos que estão na
+	 * view.Paciente.EdicaoPaciente EdicaoPaciente
+	 * 
+	 */
 
 	private void placeComponents(JPanel panel) {
 		setController(new ExclusaoPacienteController(this));
@@ -63,9 +81,17 @@ public class ExclusaoPaciente implements ActionListener {
 		btnVoltar.addActionListener(this);
 		panel.add(btnVoltar);
 
+		// Invoca o controller, que neste caso, é EdicaoPacienteController, apontando
+		// que a ação está descrita nesta parte do código
 		this.controller = new ExclusaoPacienteController(this);
 	}
 
+	/**
+	 * Está recebendo, o evento dos botões que estão na view.Paciente.EdicaoPaciente
+	 * e invoca o controller controller.Paciente.EdicaoPaciente para saber qual deve
+	 * ser a ação executada
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		this.controller.executarBotao(e.getSource());

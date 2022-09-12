@@ -12,13 +12,13 @@ import javax.swing.JPanel;
 import controller.Medicamento.ExclusaoMedicamentoController;
 
 /**
- * É a tela para o exclusão dos medicamentos, onde ocorre o dele do CRUD. Ele
- * busca o remédio pelo nome e o remove do ArrayList medicamentos.
+ * É a tela para a exclusão dos medicamentos. Ela recebe o os dados necessários
+ * e envia para o controller.Medicamento.ExclusaoMedicamentoController e, se
+ * cadastrado no ArrayList, permite a remoção.
  * 
- * @author Edilberto.
+ * @author Caetano.
  * @version 09 set 22.
  */
-
 public class ExclusaoMedicamento implements ActionListener {
 	private static JFrame frame = new JFrame("Excluir Medicamento");
 	private JLabel instrucao;
@@ -30,9 +30,8 @@ public class ExclusaoMedicamento implements ActionListener {
 	private ExclusaoMedicamentoController controller;
 
 	/**
-	 * Define as dimensões físicas da tela ExclusaoMedicamento
+	 * Define as dimensões físicas da view.Medicamento.ExclusaoMedicamento
 	 * 
-	 * @version 09 set 22.
 	 */
 	public ExclusaoMedicamento() {
 		frame.setSize(446, 280);
@@ -45,10 +44,10 @@ public class ExclusaoMedicamento implements ActionListener {
 	}
 
 	/**
-	 * Define as posições e nomes dos componetes gráficos que estão na tela
-	 * ExclusaoMedicamento
+	 * Define as posições e nomes dos componetes gráficos que estão na
+	 * view.Medicamento.ExclusaoMedicamento
 	 * 
-	 * @version 09 out 22.
+	 * 
 	 */
 	private void placeComponents(JPanel panel) {
 		setController(new ExclusaoMedicamentoController(this));
@@ -72,21 +71,24 @@ public class ExclusaoMedicamento implements ActionListener {
 		panel.add(btnApagarMedicamento);
 		btnApagarMedicamento.addActionListener(this);
 
-		/**
-		 * Determina a ação do btnVoltar, que neste caso fecha a tela
-		 * ExclusaoMedicamento e abre a tela PrincipalMedicamento
-		 * 
-		 * @version 09 set. 22.
-		 */
 		btnVoltar = new JButton("Voltar para tela anterior");
 		btnVoltar.setBounds(10, 207, 175, 23);
 		panel.add(btnVoltar);
 		btnVoltar.addActionListener(this);
 
+		// Invoca o controller, que neste caso, é ExclusaoMedicamentoController,
+		// apontando que a ação está descrita nesta parte do código
 		this.controller = new ExclusaoMedicamentoController(this);
 
 	}
 
+	/**
+	 * Está recebendo, o evento dos botões que estão na
+	 * view.Medicamento.ExclusaoMedicamento e invoca o controller
+	 * controller.Medicamento.ExclusaoMedicamento para saber qual deve ser a ação
+	 * executada
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		controller.executarBotao(e.getSource());

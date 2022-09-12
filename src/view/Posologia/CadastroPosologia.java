@@ -15,6 +15,14 @@ import javax.swing.text.MaskFormatter;
 
 import controller.Posologia.CadastroPosologiaController;
 
+/**
+ * É a tela para a cadastro dos posologias. Ela recebe o os dados necessários e
+ * envia para o controller.Posologia.CadastroPosologiaController e, se já
+ * cadastrado no ArrayList, exibe uma mensagem informando a existência deste..
+ * 
+ * @author Caetano.
+ * @version 09 set 22.
+ */
 public class CadastroPosologia implements ActionListener {
 
 	private static JFrame frame = new JFrame("Cadastro de Posologia");
@@ -65,6 +73,11 @@ public class CadastroPosologia implements ActionListener {
 
 	public JButton btnAtualizarPacienteMedicamento;
 
+	/**
+	 * Define as dimensões físicas da view.Posologia.CadastroPosologia
+	 * 
+	 */
+
 	public CadastroPosologia() {
 		frame.setSize(705, 525);
 
@@ -75,6 +88,11 @@ public class CadastroPosologia implements ActionListener {
 		frame.setVisible(true);
 	}
 
+	/**
+	 * Define as posições e nomes dos componetes gráficos que estão na
+	 * view.Posologia.CadastroPosologia CadastroPosologia
+	 * 
+	 */
 	private void placeComponents(JPanel panel) {
 		setController(new CadastroPosologiaController(this));
 
@@ -259,9 +277,18 @@ public class CadastroPosologia implements ActionListener {
 		btnAtualizarPacienteMedicamento.setBounds(232, 454, 259, 23);
 		panel.add(btnAtualizarPacienteMedicamento);
 
+		// Invoca o controller, que neste caso, é CadastroPosologiaController, apontando
+		// que a ação está descrita nesta parte do código
 		this.controller = new CadastroPosologiaController(this);
 	}
 
+	/**
+	 * Está recebendo, o evento dos botões que estão na
+	 * view.Posologia.CadastroPosologia e invoca o controller
+	 * controller.Posologia.CadastroPosologia para saber qual deve ser a ação
+	 * executada
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		controller.executarBotao(e.getSource());

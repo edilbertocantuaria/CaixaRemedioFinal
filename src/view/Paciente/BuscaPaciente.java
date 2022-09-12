@@ -16,6 +16,14 @@ import javax.swing.text.MaskFormatter;
 
 import controller.Paciente.BuscaPacienteController;
 
+/**
+ * É a tela para a busca dos pacientes. Ela recebe o nome do paciente, envia
+ * para o controller.Paciente.BuscaPacienteController e, se cadastrado no
+ * ArrayList, exibe as informações deste.
+ * 
+ * @author Caetano.
+ * @version 09 set 22.
+ */
 public class BuscaPaciente<Pessoa> implements ActionListener {
 	private static JFrame frame = new JFrame("Buscar cadastro de paciente");
 	private JPanel panel;
@@ -35,6 +43,10 @@ public class BuscaPaciente<Pessoa> implements ActionListener {
 
 	private BuscaPacienteController controller;
 
+	/**
+	 * Define as dimensões físicas da view.Paciente.BuscaPaciente
+	 * 
+	 */
 	public BuscaPaciente() {
 		frame.setSize(800, 280);
 
@@ -44,6 +56,12 @@ public class BuscaPaciente<Pessoa> implements ActionListener {
 
 		frame.setVisible(true);
 	}
+
+	/**
+	 * Define as posições e nomes dos componetes gráficos que estão na
+	 * view.Paciente.BuscaPaciente BuscaPaciente
+	 * 
+	 */
 
 	private void placeComponents(JPanel panel) {
 		setController(new BuscaPacienteController(this));
@@ -94,8 +112,18 @@ public class BuscaPaciente<Pessoa> implements ActionListener {
 		panel.add(btnVoltar);
 		btnVoltar.addActionListener(this);
 
+		// Invoca o controller, que neste caso, é BuscaPacienteController, apontando
+		// que a ação está descrita nesta parte do código
+
 		this.controller = new BuscaPacienteController(this);
 	}
+
+	/**
+	 * Está recebendo, o evento dos botões que estão na view.Paciente.BuscaPaciente
+	 * e invoca o controller controller.Paciente.BuscaPaciente para saber qual deve
+	 * ser a ação executada
+	 * 
+	 */
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

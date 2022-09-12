@@ -1,5 +1,14 @@
 package model;
 
+/**
+ * Cria a classe abstrata Pessoa, classe Pai da classe Paciente Pessoa e
+ * determina quais são as variáveis que devem estar presente quando for
+ * trabalhar no quesito Paciente, classe filho.
+ * 
+ * @author Edilberto
+ * @version 11 set. 22.
+ */
+
 public abstract class Pessoa {
 
 	private String nome;
@@ -10,14 +19,17 @@ public abstract class Pessoa {
 	private String observacaoAdicionalPessoa;
 
 	/**
-	 * Construtor da classe pessoa.
+	 * Construtor da classe Pessoa: diz como tipo Pessoa deve ser organizado dentro
+	 * do seu ArrayList, definindo também qual deve ser o tipo de variável.
 	 * 
-	 * @param nome
-	 * @param cpf
-	 * @param dataNascimento
-	 * @param telefone
-	 * @param genero
-	 * @param observacaoAdicionalPessoa
+	 * @param nomePaciente                - recebe a string do nome do Paciente.
+	 * @param cpf                         - recebe a string do CPF do paciente
+	 * @param dataNascimento              - recebe uma string da data de nascimento
+	 *                                    do Paciente.
+	 * @param telefone                    - recebe uma string telefone do Paciente.
+	 * @param genero                      - recebe uma string do gênero do Paciente.
+	 * @param observacaoAdicionalPaciente - recebe a string que recebe um comentário
+	 *                                    adicional que o usário julgue importante
 	 */
 	public Pessoa(String nome, String cpf, String dataNascimento, String telefone, String genero,
 			String observacaoAdicionalPessoa) {
@@ -78,6 +90,11 @@ public abstract class Pessoa {
 		this.observacaoAdicionalPessoa = observacaoAdicionalPessoa;
 	}
 
+	/**
+	 * Método que converte os dados para string, imprimindo seus "valores", não o
+	 * seu endereço na memória
+	 * 
+	 */
 	@Override
 	public String toString() {
 		return "Pessoa [nome=" + nome + ", cpf=" + cpf + ", dataNascimento=" + dataNascimento + ", telefone=" + telefone

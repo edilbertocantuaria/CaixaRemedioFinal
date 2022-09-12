@@ -13,12 +13,15 @@ import javax.swing.JTextField;
 import controller.Medicamento.EdicaoMedicamentoController;
 
 /**
- * É a tela para o edição dos medicamentos, onde ocorre o update do CRUD. Ele
- * busca o remédio pelo nome e retorna os dados já cadastrados.
+ * É a tela para a edição dosmedicamentos. Ela recebe o nome do medicamento,
+ * envia para o controller.Medicamento.EdicaoMedicamentoController e, se
+ * cadastrado no ArrayList, exibe as informações deste e permite modificações. e
+ * permite alterá-lo.
  * 
- * @author Edilberto.
+ * @author Caetano.
  * @version 09 set 22.
  */
+
 public class EdicaoMedicamento implements ActionListener {
 	private static JFrame frame = new JFrame("Editar Paciente");
 	public JButton btnEditarMedicamento_edicao;
@@ -50,9 +53,8 @@ public class EdicaoMedicamento implements ActionListener {
 	private JPanel panel;
 
 	/**
-	 * Define as dimensões físicas da tela EdicaoMedicamento
+	 * Define as dimensões físicas da view.Medicamento.EdicaoMedicamento
 	 * 
-	 * @version 09 set 22.
 	 */
 	public EdicaoMedicamento() {
 		frame.setSize(725, 480);
@@ -65,10 +67,9 @@ public class EdicaoMedicamento implements ActionListener {
 	}
 
 	/**
-	 * Define as posições e nomes dos componetes gráficos que estão na tela
-	 * EdicaoMedicamento
+	 * Define as posições e nomes dos componetes gráficos que estão na
+	 * view.Medicamento.EdicaoMedicamento EdicaoMedicamento
 	 * 
-	 * @version 09 out 22.
 	 */
 	private void placeComponents(JPanel panel) {
 		setController(new EdicaoMedicamentoController(this));
@@ -173,31 +174,11 @@ public class EdicaoMedicamento implements ActionListener {
 		tfObsAdcMedicamento.setBounds(399, 360, 300, 20);
 		panel.add(tfObsAdcMedicamento);
 
-		/**
-		 * Começa a buscar pela medicação pelo seu nome. Como o Java faz distinção entre
-		 * letras maiúsculas e minúsculas, solicita a padronização do nome de todas
-		 * medicações serem inserirdas em CAIXA ALTA, caso contrário, não irá retornar
-		 * resultado. A busca sendo bem sucedida, esta é a parte do código responsável
-		 * para que cada textfield fique com seu respectivo dado. Dessa forma, por
-		 * exemplo, esta é a parte do código que vai mostrar que o nome da medicação no
-		 * tfNomeMedicamento.
-		 * 
-		 * @version 09 set 22.
-		 */
 		btnEditarMedicamento_edicao = new JButton("Editar Medicamento");
 		btnEditarMedicamento_edicao.addActionListener(this);
 		btnEditarMedicamento_edicao.setBounds(10, 50, 175, 25);
 		panel.add(btnEditarMedicamento_edicao);
 
-		/**
-		 * É a parte do código que de fato permite alterar os dados antes inseridos.
-		 * Devido o método ecrito nas linhas 188 a 237, os campos já se encontrarão
-		 * preenchidos nesta parte, cabendo ao usuário realizar as modificações e
-		 * salvá-las ao clicar no btnAtualizarCadastro. Esta modificação não altera as
-		 * posições no ArrayList medicamentos.
-		 * 
-		 * @version 09 set 22.
-		 */
 		btnAtualizarCadastroMedicamento = new JButton("Atualizar cadastro");
 		btnAtualizarCadastroMedicamento.setEnabled(false);
 		btnAtualizarCadastroMedicamento.addActionListener(this);
@@ -205,20 +186,23 @@ public class EdicaoMedicamento implements ActionListener {
 		btnAtualizarCadastroMedicamento.setBounds(524, 407, 175, 23);
 		panel.add(btnAtualizarCadastroMedicamento);
 
-		/**
-		 * Determina a ação do btnVoltar, que neste caso fecha a tela EdicaoMedicamento
-		 * e abre a tela PrincipalMedicamento
-		 * 
-		 * @version 09 set. 22.
-		 */
 		btnVoltar = new JButton("Voltar para tela anterior");
 		btnVoltar.setBounds(10, 407, 175, 23);
 		panel.add(btnVoltar);
 		btnVoltar.addActionListener(this);
 
+		// Invoca o controller, que neste caso, é EdicaoMedicamentoController, apontando
+		// que a ação está descrita nesta parte do código
 		this.controller = new EdicaoMedicamentoController(this);
 	}
 
+	/**
+	 * Está recebendo, o evento dos botões que estão na
+	 * view.Medicamento.EdicaoMedicamento e invoca o controller
+	 * controller.Medicamento.EdicaoMedicamento para saber qual deve ser a ação
+	 * executada
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		controller.executarBotao(e.getSource());

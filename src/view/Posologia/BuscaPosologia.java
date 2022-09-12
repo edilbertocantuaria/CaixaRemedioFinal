@@ -16,6 +16,14 @@ import javax.swing.text.MaskFormatter;
 
 import controller.Posologia.BuscaPosologiaController;
 
+/**
+ * É a tela para a busca dos posologias. Ela recebe o nome do posologia, envia
+ * para o controller.Posologia.BuscaPosologiaController e, se cadastrado no
+ * ArrayList, exibe as informações deste.
+ * 
+ * @author Caetano.
+ * @version 09 set 22.
+ */
 public class BuscaPosologia implements ActionListener {
 
 	private static JFrame frame = new JFrame("Buscar cadastro de posologia");
@@ -36,6 +44,10 @@ public class BuscaPosologia implements ActionListener {
 
 	private BuscaPosologiaController controller;
 
+	/**
+	 * Define as dimensões físicas da view.Posologia.BuscaPosologia
+	 * 
+	 */
 	public BuscaPosologia() {
 		frame.setSize(1375, 500);
 
@@ -46,6 +58,11 @@ public class BuscaPosologia implements ActionListener {
 		frame.setVisible(true);
 	}
 
+	/**
+	 * Define as posições e nomes dos componetes gráficos que estão na
+	 * view.Posologia.BuscaPosologia BuscaPosologia
+	 * 
+	 */
 	private void placeComponents(JPanel panel) {
 		setController(new BuscaPosologiaController(this));
 		panel.setLayout(null);
@@ -97,9 +114,17 @@ public class BuscaPosologia implements ActionListener {
 		panel.add(btnVoltar);
 		btnVoltar.addActionListener(this);
 
+		// Invoca o controller, que neste caso, é BuscaPosologiaController, apontando
+		// que a ação está descrita nesta parte do código
 		this.controller = new BuscaPosologiaController(this);
 	}
 
+	/**
+	 * Está recebendo, o evento dos botões que estão na
+	 * view.Posologia.BuscaPosologia e invoca o controller
+	 * controller.Posologia.BuscaPosologia para saber qual deve ser a ação executada
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		controller.executarBotao(e.getSource());

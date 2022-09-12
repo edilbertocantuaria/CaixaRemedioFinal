@@ -7,15 +7,33 @@ import model.Pessoa;
 import view.Paciente.CadastroPaciente;
 import view.Paciente.PrincipalPaciente;
 
+/**
+ * Responsável por pegar todos os dados que estão na view.CadastroPaciente e
+ * alocolocá-los no ArrayList pacientes, que está na classe PacienteController.
+ * 
+ * @author Edilberto
+ * @version 11 set 22
+ */
 public class CadastroPacienteController {
 
 	private CadastroPaciente view;
 
+	/**
+	 * Chama o método construtor da classe CadastroPaciente
+	 * 
+	 * @param view - é a classe view.Paciente.CadastroPaciente.
+	 */
 	public CadastroPacienteController(CadastroPaciente view) {
 		this.view = view;
 
 	}
 
+	/**
+	 * Está recebendo, o evento dos botões que estão classe
+	 * view.Paciente.CadastroPaciente e identifica qual o método deve ser executado.
+	 * 
+	 * @param botaoApertado- evento que é descrito na view.Paciente.CadastroPaciente
+	 */
 	public void executarBotao(Object botaoApertado) {
 		if (botaoApertado == view.getBtnVoltar()) {
 			this.voltarTelaAnterior();
@@ -26,6 +44,11 @@ public class CadastroPacienteController {
 
 	}
 
+	/**
+	 * Ao clicar no botão Voltar, este método limpa os campos e retorna para a tela
+	 * view.Paciente.PrincipalPaciente
+	 * 
+	 */
 	public void voltarTelaAnterior() {
 
 		// limpando os campos dos jtextfield's
@@ -41,6 +64,12 @@ public class CadastroPacienteController {
 		CadastroPaciente.getFrame().dispose();
 	}
 
+	/**
+	 * Ao clicar no botão para cadastrar, este método executa uma busca para evitar
+	 * dois CPF's iguais. Sendo bem sucedido, pega os dados que estão na view e
+	 * aloca no ArrayList pacientes
+	 * 
+	 */
 	public void cadastraPaciente() {
 
 		String cpfBusca = view.getTfCPF().getText().trim();
@@ -87,6 +116,10 @@ public class CadastroPacienteController {
 				JOptionPane.showMessageDialog(null,
 						"Não foi possível realizar o cadastro: os dados do paciente não podem estar vazios!");
 			} else {
+
+				// Adiciona os dados inseridos acima no ArrayList pacientes. Este ArrayList está
+				// em controller.MedicamentoController.
+
 				Paciente paciente = new Paciente(nomePaciente, cpf, dataNascimento, telefone, genero,
 						observacaoAdicionalPaciente);
 				PacienteController.pacientes.add(paciente);

@@ -16,10 +16,14 @@ import view.TelaPrincipal.TelaPrincipal;
  * meio dos métodos de: (1) Cadastrar (2) Editar (3) Listar (4) Buscar (5)
  * Excluir. Ou seja, aqui está implementando um sistema de CRUD para o
  * medicamento + busca.
+ * 
+ * @author Edilberto.
+ * @version 09 set 22.
  */
 
 public class MedicamentoController {
 
+	// Arraylist de medicamentos
 	public static ArrayList<Medicamento> medicamentos = new ArrayList<>();
 
 	public static ArrayList<Medicamento> getMedicamentos() {
@@ -37,11 +41,12 @@ public class MedicamentoController {
 	}
 
 	/**
-	 * O prâmetro-objeto botaoApertado está recebendo, indiretamente, o evento dos
-	 * botões que estão tela PrincipalMedicamento e identifica qual o método deve
-	 * ser executado.
+	 * Está recebendo, o evento dos botões que estão tela PrincipalMedicamento e
+	 * identifica qual o método deve ser executado.
 	 * 
-	 * @version 09 set 22
+	 * 
+	 * @param botaoApertado - evento que é descrito na
+	 *                      view.Medicamento.PrincipalMedicamento.
 	 */
 	public void executarBotao(Object botaoApertado) {
 
@@ -68,7 +73,15 @@ public class MedicamentoController {
 
 	}
 
-	// Realiza a busca de um medicamento na lista por meio do seu nome
+	/**
+	 * Realiza busca de um medicamento na lista por meio do seu nome
+	 * 
+	 * @param buscarNomeRemedio- string que será utilizada para comparar e
+	 *                           selecionar o que se busca.
+	 * @return null- retorna os dados do medicamento que está com aquele nome
+	 *         buscado
+	 */
+	// Busca medicamento pelo seu nome
 	public Medicamento buscarMedicamentos(String buscarNomeRemedio) {
 		for (int i = 0; i < medicamentos.size(); i++) {
 			if (medicamentos.get(i).getNomeRemedio().equals(buscarNomeRemedio)) {
@@ -78,7 +91,15 @@ public class MedicamentoController {
 		return null;
 	}
 
-	// Exclui o medicamento da lista a partir do seu nome
+	/**
+	 * Excluio medicamento da lista a partir do seu nome
+	 * 
+	 * @param excluirNomeRemedio - string que será utilizada para comparar e
+	 *                           selecionar o que se busca.
+	 * @return null - remove os dados do medicamento que está com aquele nome
+	 *         buscado
+	 */
+	// Exclui medicamento pelo seu nome
 	public Medicamento excluirMedicamentos(String excluirNomeRemedio) {
 		for (int i = 0; i < medicamentos.size(); i++) {
 			if (medicamentos.get(i).getNomeRemedio().equals(excluirNomeRemedio)) {
@@ -88,7 +109,11 @@ public class MedicamentoController {
 		return null;
 	}
 
-	// Carrega dados na lista de medicamentos
+	/**
+	 * Realizando carregamento de dados aleatórios
+	 * 
+	 */
+	// Dados aleatórios
 	public static void dadosMedicamento() {
 		Medicamento medicamentoA = new Medicamento("NEOCOPAN COMPOSTO", "786006217459",
 				"Para cólicas e dores intensas na região da barriga", "União Química",
@@ -111,9 +136,8 @@ public class MedicamentoController {
 	/**
 	 * Os seguintes métodos concretizam a ação dos botões pressionados na tela
 	 * PrincpalMedicacao. A execução de cada método abaixo dependerá da cadeia
-	 * condicional que está descrito nas linhas 47 a 70
+	 * condicional que está descrito nas linhas 51 a 74
 	 * 
-	 * @version 09 out 22.
 	 */
 	private void executarBotaoVoltar() {
 		TelaPrincipal obj = new TelaPrincipal();

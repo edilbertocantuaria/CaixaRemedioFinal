@@ -14,6 +14,14 @@ import javax.swing.text.MaskFormatter;
 
 import controller.Paciente.CadastroPacienteController;
 
+/**
+ * É a tela para a cadastro dos pacientes. Ela recebe o os dados necessários e
+ * envia para o controller.Paciente.CadastroPacienteController e, se já
+ * cadastrado no ArrayList, exibe uma mensagem informando a existência deste.
+ * 
+ * @author Caetano.
+ * @version 09 set 22.
+ */
 public class CadastroPaciente implements ActionListener {
 	private static JFrame frame = new JFrame("Cadastro de Paciente");
 
@@ -38,6 +46,10 @@ public class CadastroPaciente implements ActionListener {
 
 	private CadastroPacienteController controller;
 
+	/**
+	 * Define as dimensões físicas da view.Paciente.CadastroPaciente
+	 * 
+	 */
 	public CadastroPaciente() {
 		frame.setSize(500, 350);
 
@@ -48,6 +60,11 @@ public class CadastroPaciente implements ActionListener {
 		frame.setVisible(true);
 	}
 
+	/**
+	 * Define as posições e nomes dos componetes gráficos que estão na
+	 * view.Paciente.CadastroPaciente CadastroPaciente
+	 * 
+	 */
 	private void placeComponents(JPanel panel) {
 		setController(new CadastroPacienteController(this));
 		panel.setLayout(null);
@@ -131,8 +148,22 @@ public class CadastroPaciente implements ActionListener {
 		btnRealizarCadastroPaciente.setBounds(302, 277, 175, 23);
 		panel.add(btnRealizarCadastroPaciente);
 
+		// Invoca o controller, que neste caso, é CadastroPacienteController, apontando
+		// que a ação está descrita nesta parte do código
 		this.controller = new CadastroPacienteController(this);
 
+	}
+
+	/**
+	 * Está recebendo, o evento dos botões que estão na
+	 * view.Paciente.CadastroPaciente e invoca o controller
+	 * controller.Paciente.CadastroPaciente para saber qual deve ser a ação
+	 * executada
+	 * 
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		controller.executarBotao(e.getSource());
 	}
 
 	public static JFrame getFrame() {
@@ -236,8 +267,4 @@ public class CadastroPaciente implements ActionListener {
 		this.controller = controller;
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		controller.executarBotao(e.getSource());
-	}
 }

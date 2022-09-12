@@ -11,6 +11,14 @@ import javax.swing.SwingConstants;
 
 import controller.TelaPrincipal.TelaPrincipalController;
 
+/**
+ * É a tela principal do software, onde contém os botões que concedem acesso ao
+ * paciente, medicamento, posologia e rotina.
+ * 
+ * @author Caetano.
+ * @version 09 set 22.
+ */
+
 public class TelaPrincipal extends JFrame implements ActionListener {
 
 	private static JButton btnPaciente;
@@ -23,6 +31,10 @@ public class TelaPrincipal extends JFrame implements ActionListener {
 
 	private final TelaPrincipalController controller;
 
+	/**
+	 * Defineas as dimensões físicas da view.TelaPrincipal, as posições e nomes dos
+	 * componetes gráficos que estão na referida view
+	 */
 	public TelaPrincipal() {
 		setResizable(false);
 		setTitle("Caixa de remédio - T8.1M");
@@ -74,10 +86,19 @@ public class TelaPrincipal extends JFrame implements ActionListener {
 		btnPosologia.addActionListener(this);
 		btnRotina.addActionListener(this);
 
+		// Invoca o controller, que neste caso, é TelaPrincipalController, apontando que
+		// a
+		// ação está descrita nesta parte do código
 		this.controller = new TelaPrincipalController(this);
 
 	}
 
+	/**
+	 * Está recebendo, o evento dos botões que estão na view.TelaPrincipal e invoca
+	 * o controller TelaPrincipalController para saber qual deve ser a ação
+	 * executada
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		controller.executarBotao(e.getSource());

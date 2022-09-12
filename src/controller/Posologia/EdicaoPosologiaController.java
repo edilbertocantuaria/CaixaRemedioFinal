@@ -14,15 +14,36 @@ import model.Posologia;
 import view.Posologia.EdicaoPosologia;
 import view.Posologia.PrincipalPosologia;
 
+/**
+ * Esta classe é responsável pela comunicação entre a classe
+ * view.Posologia.EdicaoPosologia e a classe
+ * controller.Posologia.PosologiaController, editando um objeto desejado e
+ * retornando seus valores e atualizando-os.
+ * 
+ * @author Edilberto
+ * @version 11 set 22.
+ *
+ */
+
 public class EdicaoPosologiaController {
 
 	private EdicaoPosologia view;
 
+	/**
+	 * Chama o método construtor da classe EdicaoPosologia
+	 * 
+	 * @param view - é a classe view.Posologia.EdicaoPosologia
+	 */
 	public EdicaoPosologiaController(EdicaoPosologia view) {
 		this.view = view;
 
 	}
 
+	/**
+	 * Adiciona apenas os nomes dos pacientes cadastrados numa ComboBox.
+	 * 
+	 * @return - nome dos pacientes salvos no Arraylist pacientes
+	 */
 	public ComboBoxModel<String> listarPacientes() {
 
 		ArrayList<Paciente> listaPacientes = PacienteController.getPacientes();
@@ -36,6 +57,11 @@ public class EdicaoPosologiaController {
 		return model;
 	}
 
+	/**
+	 * Adiciona apenas os nomes dos medicamentos cadastrados numa ComboBox.
+	 * 
+	 * @return - nome dos pacientes salvos no Arraylist pacientes
+	 */
 	public ComboBoxModel<String> listarMedicamentos() {
 
 		ArrayList<Medicamento> listaMedicamentos = MedicamentoController.getMedicamentos();
@@ -49,6 +75,14 @@ public class EdicaoPosologiaController {
 		return model;
 	}
 
+	/**
+	 * Está recebendo, o evento dos botões que estão em
+	 * view.Posologia.EdicaoPosologia e identifica qual o método deve ser executado.
+	 * 
+	 * 
+	 * @param botaoApertado - evento que é descrito na
+	 *                      view.Posologia.EdicaoPosologia
+	 */
 	public void executarBotao(Object botaoApertado) {
 		if (botaoApertado == view.getBtnVoltar()) {
 			this.voltaTelaAnterior();
@@ -64,6 +98,11 @@ public class EdicaoPosologiaController {
 
 	}
 
+	/**
+	 * Ao clicar no botão Voltar, este método limpa os campos e retorna para a tela
+	 * view.Posologia.PrincipalPosologia
+	 * 
+	 */
 	public void voltaTelaAnterior() {
 		// limpando os campos dos jtextfield's
 		view.jftCodPosologiaBusca.setText("");
@@ -76,13 +115,22 @@ public class EdicaoPosologiaController {
 		EdicaoPosologia.getFrame().dispose();
 	}
 
+	/**
+	 * Ao clicar no botão para editar, este método invoca a classe
+	 * PosologiaController, procurando pelo método buscarPosologias, passando como
+	 * parâmetro o código da posologia, retornando os dados solicidados que compõem
+	 * o ArrayList posologias
+	 * 
+	 */
+
 	public void edicaoPosologia() {
 		view.jftCodPosologiaBusca.requestFocus();
 
 		if (view.jftCodPosologiaBusca.getText().matches("^[0-9]{3}$")) {
 			String cod = view.jftCodPosologiaBusca.getText();
 
-			// PosologiaController buscaPosologiaController = new PosologiaController(null);
+			// Invoca o controller para que ele procure a posologia pelo seu código no
+			// método buscarPosologia.
 			Posologia resultado = PosologiaController.buscarPosologia(cod);
 
 			if (resultado == null) {
@@ -161,6 +209,12 @@ public class EdicaoPosologiaController {
 		}
 	}
 
+	/**
+	 * Ao clicar no botão para atualizar, este método invoca a classe
+	 * PosologiaController, atualizando os dados existentes no ArrayList posologias
+	 * pelos dados que estão inseridos na view.EditarPosologia, sem mudar sua
+	 * posição dentro do ArryList, somente as informações
+	 */
 	public void atualizaPosologia() {
 
 		String nomePaciente = (String) view.getCbEscolhaPaciente().getSelectedItem();
@@ -180,7 +234,9 @@ public class EdicaoPosologiaController {
 		String observacaoAdicionalPosologia = view.getTfObsAdcPosologia().getText().trim();
 		String codigoPosologia = view.getTfCodigoPosologia().getText().trim();
 
-		// A próxima linha valida se as informações foram preenchidas corretamente
+		// A próxima linha valida se as informações foram preenchidas corretamente. As
+		// variáveis recebem 0 se os campos estão preenchidos conforme o esperado, caso
+		// contrário, 1
 		int i, j, k, l, m, n;
 
 		if (view.getTfHorario1().getText().matches("([01]?[0-9]|2[0-3]):[0-5][0-9]")
@@ -232,6 +288,9 @@ public class EdicaoPosologiaController {
 			//
 
 		} else {
+			// Invoca o controller para que ele atualize a posologia, substituindo as
+			// informações antigas e inserindo as novas
+
 			String cod = view.jftCodPosologiaBusca.getText();
 			Posologia resultado = PosologiaController.buscarPosologia(cod);
 

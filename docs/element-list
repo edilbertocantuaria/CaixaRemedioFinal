@@ -1,0 +1,10 @@
+controller.Medicamento
+controller.Paciente
+controller.Posologia
+controller.TelaPrincipal
+main
+model
+view.Medicamento
+view.Paciente
+view.Posologia
+view.TelaPrincipal

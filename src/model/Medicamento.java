@@ -1,5 +1,12 @@
 package model;
 
+/**
+ * Esta classe é a responsável por determinar quais são as variáveis que devem
+ * estar presente quando for trabalhar no quesito Medicamento.
+ * 
+ * @author Edilberto
+ * @version 09 set 22.
+ */
 public class Medicamento {
 
 	// Dados necesários para construir a classe Medicamento.
@@ -11,6 +18,25 @@ public class Medicamento {
 	private String principioAtivo;
 	private String observacaoAdicionalMedicamento;
 
+	/**
+	 * Contrutor da classe medicamento: diz como tipo Medicamento deve ser
+	 * organizado dentro do seu ArrayList, definindo também qual deve ser o tipo de
+	 * variável.
+	 * 
+	 * @param nomeRemedio                    - recebe a string do nome da medicação.
+	 * @param codigo                         - recebe a string do código de barras
+	 *                                       contido na medicação.
+	 * @param descricao                      - recebe a string de uma descrição do
+	 *                                       medicamento.
+	 * @param fabricante                     -recebe a string da empresa fabricante
+	 * @param bula                           - recebe a string de algum link que
+	 *                                       direcione para a bula do medicamento
+	 * @param principioAtivo                 - recebe a string que descreve o
+	 *                                       princípio ativo da medicação
+	 * @param observacaoAdicionalMedicamento - recebe a string que recebe um
+	 *                                       comentário adicional que o usário
+	 *                                       julgue importante
+	 */
 	// Construtor da classe medicamento
 	public Medicamento(String nomeRemedio, String codigo, String descricao, String fabricante, String bula,
 			String principioAtivo, String observacaoAdicionalMedicamento) {
@@ -81,9 +107,12 @@ public class Medicamento {
 		this.observacaoAdicionalMedicamento = observacaoAdicionalMedicamento;
 	}
 
+	/**
+	 * Método que converte os dados para string, imprimindo seus "valores", não o
+	 * seu endereço na memória
+	 * 
+	 */
 	@Override
-	// Converte os dados para string, imprimindo seus "valroes", não seu endereço na
-	// memória.
 	public String toString() {
 		return "Medicamento [nomeRemedio=" + nomeRemedio + ", codigo=" + codigo + ", descricao=" + descricao
 				+ ", fabricante=" + fabricante + ", bula=" + bula + ", principioAtivo=" + principioAtivo

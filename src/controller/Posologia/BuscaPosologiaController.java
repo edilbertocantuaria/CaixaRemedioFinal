@@ -7,13 +7,37 @@ import model.Posologia;
 import view.Posologia.BuscaPosologia;
 import view.Posologia.PrincipalPosologia;
 
+/**
+ * Esta classe é responsável pela comunicação entre a classe
+ * view.Posologia.BuscaPosologia e a classe
+ * controller.Posologia.PosologiaController, buscando um objeto desejado e
+ * retornando seus valores
+ * 
+ * @author Edilberto
+ *
+ */
+
 public class BuscaPosologiaController {
 	private BuscaPosologia view;
+
+	/**
+	 * Chama o método construtor da classe BuscaPosologia
+	 * 
+	 * @param view - é a classe view.Posologia.BuscaPosologia
+	 */
 
 	public BuscaPosologiaController(BuscaPosologia view) {
 		this.view = view;
 
 	}
+
+	/**
+	 * Está recebendo, o evento dos botões que estão em
+	 * view.Posologia.BuscaPosologia e identifica qual o método deve ser executado.
+	 * 
+	 * 
+	 * @param botaoApertado - evento que é descrito na view.Posologia.BuscaPosologia
+	 */
 
 	public void executarBotao(Object botaoApertado) {
 		if (botaoApertado == view.getBtnVoltar()) {
@@ -24,6 +48,12 @@ public class BuscaPosologiaController {
 		}
 
 	}
+
+	/**
+	 * Ao clicar no botão Voltar, este método limpa os campos e retorna para a tela
+	 * view.Posologia.PrincipalPosologia
+	 * 
+	 */
 
 	public void voltarTelaAnterior() {
 		// limpando os campos dos jtextfield's
@@ -36,6 +66,14 @@ public class BuscaPosologiaController {
 		obj.setVisible(true);
 		BuscaPosologia.getFrame().dispose();
 	}
+
+	/**
+	 * Ao clicar no botão para buscar, este método executa invoca a classe
+	 * PosologiaController, procurando pelo método buscarPosologias, passando como
+	 * parâmetro o código da posologia, retornando os dados solicidados que compõem
+	 * o ArrayList posologias
+	 * 
+	 */
 
 	public void buscaPosologia() {
 		// deixa o cursor dentro desse jtextfield's

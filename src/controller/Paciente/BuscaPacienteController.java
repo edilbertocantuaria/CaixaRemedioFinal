@@ -7,14 +7,38 @@ import model.Pessoa;
 import view.Paciente.BuscaPaciente;
 import view.Paciente.PrincipalPaciente;
 
+/**
+ * Esta classe é responsável pela comunicação entre a classe
+ * view.Paciente.BuscaPaciente e a classe
+ * controller.Paciente.PacienteController, buscando um objeto desejado e
+ * retornando seus valores
+ * 
+ * @author Edilberto
+ *
+ */
+
 public class BuscaPacienteController {
 
 	private BuscaPaciente<?> view;
+
+	/**
+	 * Chama o método construtor da classe BuscaPaciente
+	 * 
+	 * @param view - é a classe view.Paciente.BuscaPaciente
+	 */
 
 	public BuscaPacienteController(BuscaPaciente<?> view) {
 		this.view = view;
 
 	}
+
+	/**
+	 * Está recebendo, o evento dos botões que estão em view.Paciente.BuscaPaciente
+	 * e identifica qual o método deve ser executado.
+	 * 
+	 * 
+	 * @param botaoApertado - evento que é descrito na view.Paciente.BuscaPaciente
+	 */
 
 	public void executarBotao(Object botaoApertado) {
 		if (botaoApertado == view.getBtnVoltar()) {
@@ -25,6 +49,12 @@ public class BuscaPacienteController {
 		}
 
 	}
+
+	/**
+	 * Ao clicar no botão Voltar, este método limpa os campos e retorna para a tela
+	 * view.Paciente.PrincipalPaciente
+	 * 
+	 */
 
 	public void voltarTelaAnterior() {
 		// limpando os campos dos jtextfield's
@@ -38,6 +68,14 @@ public class BuscaPacienteController {
 		BuscaPaciente.getFrame().dispose();
 
 	}
+
+	/**
+	 * Ao clicar no botão para buscar, este método executa invoca a classe
+	 * PacienteController, procurando pelo método buscarPacientes, passando como
+	 * parâmetro o CPF do paciente, retornando os dados solicidados que compõem o
+	 * ArrayList pacientes
+	 * 
+	 */
 
 	public void buscaPaciente() {
 		// deixa o cursor dentro desse jtextfield's

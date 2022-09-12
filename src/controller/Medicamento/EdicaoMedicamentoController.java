@@ -6,15 +6,39 @@ import model.Medicamento;
 import view.Medicamento.EdicaoMedicamento;
 import view.Medicamento.PrincipalMedicamento;
 
+/**
+ * Esta classe é responsável pela comunicação entre a classe
+ * view.Medicamento.EdicaoMedicamento e a classe
+ * controller.Medicamento.MedicamentoController, editando um objeto desejado e
+ * retornando seus valores e atualizando-os.
+ * 
+ * @author Edilberto
+ * @version 11 set 22.
+ *
+ */
 public class EdicaoMedicamentoController {
 
 	private EdicaoMedicamento view;
 
+	/**
+	 * Chama o método construtor da classe EdicaoMedicamento
+	 * 
+	 * @param view - é a classe view.Medicamento.EdicaoMedicamento
+	 */
 	public EdicaoMedicamentoController(EdicaoMedicamento view) {
 		this.view = view;
 
 	}
 
+	/**
+	 * Está recebendo, o evento dos botões que estão em
+	 * view.Medicamento.EdicaoMedicamento e identifica qual o método deve ser
+	 * executado.
+	 * 
+	 * 
+	 * @param botaoApertado - evento que é descrito na
+	 *                      view.Medicamento.EdicaoMedicamento
+	 */
 	public void executarBotao(Object botaoApertado) {
 		if (botaoApertado == view.getBtnVoltar()) {
 			this.voltarTelaAnterior();
@@ -32,6 +56,11 @@ public class EdicaoMedicamentoController {
 
 	}
 
+	/**
+	 * Ao clicar no botão Voltar, este método limpa os campos e retorna para a tela
+	 * view.Medicamento.PrincipalMedicamento
+	 * 
+	 */
 	public void voltarTelaAnterior() {
 		// limpando os campos dos jtextfield's
 		view.tfMedicamentoEdicao.setText("");
@@ -41,18 +70,20 @@ public class EdicaoMedicamentoController {
 		EdicaoMedicamento.getFrame().dispose();
 	}
 
+	/**
+	 * Ao clicar no botão para editar, este método invoca a classe
+	 * MedicamentoController, procurando pelo método buscarMedicamentos, passando
+	 * como parâmetro o código da medicamento, retornando os dados solicidados que
+	 * compõem o ArrayList medicamentos
+	 * 
+	 */
 	public void edicaoMedicamento() {
 		view.tfMedicamentoEdicao.requestFocus();
 
 		String nomeMedicacao = view.tfMedicamentoEdicao.getText();
 
-		/**
-		 * Invoca o controller para que ele procure o medicamento pelo seu nome no
-		 * método buscarMedicamento.
-		 * 
-		 * @param nomeMedicacao.
-		 * @version 09 set 22.
-		 */
+		// Invoca o controller para que ele procure o medicamento pelo seu nome no
+		// método buscarMedicamentos.
 		MedicamentoController medicamentoController = new MedicamentoController();
 		Medicamento resultado = medicamentoController.buscarMedicamentos(nomeMedicacao);
 		if (resultado == null) {
@@ -92,6 +123,13 @@ public class EdicaoMedicamentoController {
 		}
 	}
 
+	/**
+	 * Ao clicar no botão para atualizar, este método invoca a classe
+	 * MedicamentoController, atualizando os dados existentes no ArrayList
+	 * medicamentos pelos dados que estão inseridos na view.EditarMedicamento, sem
+	 * mudar sua posição dentro do ArryList, somente as informações
+	 */
+
 	public void atualizaMedicamento() {
 
 		view.tfMedicamentoEdicao.requestFocus();
@@ -109,15 +147,6 @@ public class EdicaoMedicamentoController {
 		String principioAtivo = view.getTfPrincipioAtivo().getText().trim();
 		String observacaoAdicionalMedicamento = view.getTfObsAdcMedicamento().getText().trim();
 
-		/**
-		 * Invoca o controller para que ele atualize o medicamento, substituindo as
-		 * informações antigas e inserindo as novas
-		 *
-		 * @param nomeMedicacao.
-		 * 
-		 * @version 09 set 22.
-		 */
-
 		if (view.getTfNomeMedicamento().getText().isEmpty() || view.getTfCodigo().getText().isEmpty()
 				|| view.getTfDescricao().getText().isEmpty() || view.getTfFabricante().getText().isEmpty()
 				|| view.getTfBula().getText().isEmpty() || view.getTfPrincipioAtivo().getText().isEmpty()) {
@@ -125,6 +154,8 @@ public class EdicaoMedicamentoController {
 					"Não foi possível atualizar o cadastro: os dados do medicamento não podem estar vazios!");
 
 		} else {
+			// Invoca o controller para que ele atualize o medicamento, substituindo as
+			// informações antigas e inserindo as novas
 
 			MedicamentoController medicamentoController = new MedicamentoController();
 			Medicamento medicamento = medicamentoController.buscarMedicamentos(nomeMedicacao);

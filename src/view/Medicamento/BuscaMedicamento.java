@@ -15,10 +15,11 @@ import javax.swing.table.DefaultTableModel;
 import controller.Medicamento.BuscaMedicamentoController;
 
 /**
- * É a tela para a busca dos medicamentos. Ela exibir as informações do
- * medicamento, se eles estiver presente no ArrayList medicamentos.
+ * É a tela para a busca dos medicamentos. Ela recebe o nome do medicamento,
+ * envia para o controller.Medicamento.BuscaMedicamentoController e, se
+ * cadastrado no ArrayList, exibe as informações deste.
  * 
- * @author Edilberto.
+ * @author Caetano.
  * @version 09 set 22.
  */
 public class BuscaMedicamento implements ActionListener {
@@ -42,9 +43,8 @@ public class BuscaMedicamento implements ActionListener {
 	public BuscaMedicamentoController controller;
 
 	/**
-	 * Define as dimensões físicas da tela BuscaMedicamento
+	 * Define as dimensões físicas da view.Medicamento.BuscaMedicamento
 	 * 
-	 * @version 09 set 22.
 	 */
 	public BuscaMedicamento() {
 		frame.setSize(1000, 280);
@@ -57,10 +57,9 @@ public class BuscaMedicamento implements ActionListener {
 	}
 
 	/**
-	 * Define as posições e nomes dos componetes gráficos que estão na tela
-	 * BuscaMedicamento
+	 * Define as posições e nomes dos componetes gráficos que estão na
+	 * view.Medicamento.BuscaMedicamento BuscaMedicamento
 	 * 
-	 * @version 09 set 22.
 	 */
 	private void placeComponents(JPanel panel) {
 		setController(new BuscaMedicamentoController(this));
@@ -106,11 +105,21 @@ public class BuscaMedicamento implements ActionListener {
 		panel.add(btnVoltar);
 		btnVoltar.addActionListener(this);
 
+		// Invoca o controller, que neste caso, é BuscaMedicamentoController, apontando
+		// que a ação está descrita nesta parte do código
 		this.controller = new BuscaMedicamentoController(this);
 	}
 
+	/**
+	 * Está recebendo, o evento dos botões que estão na
+	 * view.Medicamento.BuscaMedicamento e invoca o controller
+	 * controller.Medicamento.BuscaMedicamento para saber qual deve ser a ação
+	 * executada
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+
 		controller.executarBotao(e.getSource());
 
 	}

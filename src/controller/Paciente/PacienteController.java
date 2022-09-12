@@ -12,14 +12,18 @@ import view.Paciente.ListaPaciente;
 import view.Paciente.PrincipalPaciente;
 import view.TelaPrincipal.TelaPrincipal;
 
-/*
+/**
  * Realiza a comunicação entre o pacote model e o pacote view.Paciente por meio
  * dos métodos de: (1) Cadastrar (2) Editar (3) Listar (4) Buscar (5) Excluir.
- * Ou seja, aqui está implementando um sistema de CRUD para o paciente + busca.
+ * Ou seja, aqui está implementando um sistema de CRUD para o medicamento +
+ * busca.
+ * 
+ * @author Edilberto
+ * @version 09 set 22.
  */
-
 public class PacienteController {
 
+	// ArrayList de pacientes
 	public static ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
 
 	public static ArrayList<Paciente> getPacientes() {
@@ -33,6 +37,13 @@ public class PacienteController {
 		this.view_principalPaciente = principalPaciente;
 	}
 
+	/**
+	 * Está recebendo, o evento dos botões que estão tela PrincipalMedicamento e
+	 * identifica qual o método deve ser executado.
+	 * 
+	 * @param botaoApertado - evento que é descrito na
+	 *                      view.Paciente.PrincipalPaciente
+	 */
 	public void executarBotao(Object botaoApertado) {
 		if (botaoApertado == view_principalPaciente.getBtnVoltar()) {
 			this.executarBotaoVoltar();
@@ -60,7 +71,14 @@ public class PacienteController {
 
 	}
 
-	// Realiza a busca de um paciente na lista por meio do CPF
+	/**
+	 * Realiza busca de um paciente na lista por meio do seu CPF
+	 * 
+	 * @param buscarCPFPaciente - string que será utilizada para comparar e
+	 *                          selecionar o que se busca.
+	 * @return null- retorna os dados do paciente que está com aquele CPF buscado
+	 */
+	// Busca paciente pelo seu CPF
 	public Pessoa buscarPacientes(String buscarCPFPaciente) {
 		for (int i = 0; i < pacientes.size(); i++) {
 			if (pacientes.get(i).getCpf().equals(buscarCPFPaciente)) {
@@ -70,7 +88,15 @@ public class PacienteController {
 		return null;
 	}
 
-	// Exclui o paciente da lista a partir do seu cpf
+	/**
+	 * Exclui o paciente da lista a partir do seu CPF
+	 * 
+	 * @param excluirCPFPaciente - string que será utilizada para comparar e
+	 *                           selecionar o que se busca.
+	 * @return null - remove os dados da posologia que está com aquele código
+	 *         buscado
+	 */
+	// Exclui medicamento pelo seu cpf
 	public Paciente excluirPacientes(String excluirCPFPaciente) {
 		for (int i = 0; i < pacientes.size(); i++) {
 			if (pacientes.get(i).getCpf().equals(excluirCPFPaciente)) {
@@ -80,7 +106,11 @@ public class PacienteController {
 		return null;
 	}
 
-	// Carrega dados na lista de pacientes
+	/**
+	 * Realizando carregamento de dados aleatórios
+	 * 
+	 */
+	// Dados aleatórios
 	public static void dadosPaciente() {
 		Paciente pacienteA = new Paciente("Edilberto", "123.456.789-10", "25/02/1998", "(61) 98126-6760", "Masculino",
 				"Rinite alérgica");
@@ -93,6 +123,12 @@ public class PacienteController {
 		pacientes.add(pacienteC);
 	}
 
+	/**
+	 * Os seguintes métodos concretizam a ação dos botões pressionados
+	 * view.PrincpalPaciente. A execução de cada método abaixo dependerá da cadeia
+	 * condicional que está descrito nas linhas 47 a 72
+	 * 
+	 */
 	private void executarBotaoVoltar() {
 		TelaPrincipal obj = new TelaPrincipal();
 		obj.setVisible(true);
@@ -117,9 +153,8 @@ public class PacienteController {
 		view_principalPaciente.dispose();
 	}
 
-	@SuppressWarnings("rawtypes")
 	private void executarBotaoBuscarPaciente() {
-		BuscaPaciente obj = new BuscaPaciente();
+		BuscaPaciente<Paciente> obj = new BuscaPaciente<Paciente>();
 		obj.setVisible(true);
 		view_principalPaciente.dispose();
 	}

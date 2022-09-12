@@ -15,6 +15,14 @@ import javax.swing.text.MaskFormatter;
 
 import controller.Posologia.EdicaoPosologiaController;
 
+/**
+ * É a tela para a edição das posologias. Ela recebe o nome do posologia, envia
+ * para o controller.Posologia.EdicaoPosologiaController e, se cadastrado no
+ * ArrayList, exibe as informações deste e permite modificações..
+ * 
+ * @author Caetano.
+ * @version 09 set 22.
+ */
 public class EdicaoPosologia implements ActionListener {
 
 	private static JFrame frame = new JFrame("Cadastro de Posologia");
@@ -69,6 +77,10 @@ public class EdicaoPosologia implements ActionListener {
 
 	public JLabel lbCod;
 
+	/**
+	 * Define as dimensões físicas da view.Posologia.EdicaoPosologia
+	 * 
+	 */
 	public EdicaoPosologia() {
 		frame.setSize(680, 595);
 
@@ -79,6 +91,11 @@ public class EdicaoPosologia implements ActionListener {
 		frame.setVisible(true);
 	}
 
+	/**
+	 * Define as posições e nomes dos componetes gráficos que estão na
+	 * view.Posologia.EdicaoPosologia EdicaoPosologia
+	 * 
+	 */
 	private void placeComponents(JPanel panel) {
 		setController(new EdicaoPosologiaController(null));
 
@@ -302,9 +319,18 @@ public class EdicaoPosologia implements ActionListener {
 		btnEditarPosologia_edicao.setBounds(10, 51, 146, 25);
 		panel.add(btnEditarPosologia_edicao);
 
+		// Invoca o controller, que neste caso, é EdicaoPosologiaController,
+		// apontandoque a ação está descrita nesta parte do código
 		this.controller = new EdicaoPosologiaController(this);
 	}
 
+	/**
+	 * Está recebendo, o evento dos botões que estão na
+	 * view.Posologia.EdicaoPosologia e invoca o controller
+	 * controller.Posologia.EdicaoPosologia para saber qual deve ser a ação
+	 * executada
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		controller.executarBotao(e.getSource());

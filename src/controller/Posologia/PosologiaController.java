@@ -19,40 +19,38 @@ import view.Posologia.ListaPosologia;
 import view.Posologia.PrincipalPosologia;
 import view.TelaPrincipal.TelaPrincipal;
 
-/*
- * Realiza a comunicação entre os pacotes model (paciente e posologia), o pacote controlles (PacienteController) e o pacote view.Posologia por meio
+/**
+ * Realiza a comunicação entre o pacote model e o pacote view.Posologia por meio
  * dos métodos de: (1) Cadastrar (2) Editar (3) Listar (4) Buscar (5) Excluir.
- * Ou seja, aqui está implementando um sistema de CRUD para o paciente + busca.
+ * Ou seja, aqui está implementando um sistema de CRUD para o medicamento +
+ * busca.
+ * 
+ * @author Edilberto
+ * @version 09 set 22.
  */
-
 public class PosologiaController {
 
-	public static List<Posologia> posologias = new ArrayList<>();
+	// ArrayList de posologias
+	public static ArrayList<Posologia> posologias = new ArrayList<>();
 
 	public static ArrayList<Posologia> getPosologias() {
-		return (ArrayList<Posologia>) posologias;
+		return posologias;
 	}
 
 	private PrincipalPosologia view_principalPosologia;
-	private CadastroPosologia view_cadastroPosologia;
-	private ListaPosologia view_listaPosologia;
-	private EdicaoPosologia view_EdicaoPosologia;
 
 	public PosologiaController(PrincipalPosologia principalPosologia) {
 		super();
 		this.view_principalPosologia = principalPosologia;
 	}
 
-	public PosologiaController(CadastroPosologia cadastroPosologia) {
-		super();
-		this.setView_cadastroPosologia(cadastroPosologia);
-	}
-
-	public PosologiaController(EdicaoPosologia edicaoPosologia) {
-		super();
-		this.setView_EdicaoPosologia(edicaoPosologia);
-	}
-
+	/**
+	 * Está recebendo, o evento dos botões que estão tela PrincipalPosologia e
+	 * identifica qual o método deve ser executado.
+	 * 
+	 * @param botaoApertado- evento que é descrito na
+	 *                       view.Posologia.PrincipalPosologia
+	 */
 	public void executarBotao(Object botaoApertado) {
 
 		if (botaoApertado == view_principalPosologia.getBtnVoltar()) {
@@ -78,6 +76,13 @@ public class PosologiaController {
 		}
 	}
 
+	/**
+	 * Responsável por listar os nomes de pacientes na ComboBoxModel
+	 * 
+	 * 
+	 * @return model - nome dos pacientes salvos no Arraylist pacientes
+	 * 
+	 */
 	public ComboBoxModel<String> listarPacientes() {
 
 		ArrayList<Paciente> listaPacientes = PacienteController.getPacientes();
@@ -91,6 +96,12 @@ public class PosologiaController {
 		return model;
 	}
 
+	/**
+	 * Responsável por listar medicamentos na ComboBoxModel
+	 * 
+	 * 
+	 * @return model - nome dos medicamentos salvos no Arraylist medicamentos
+	 */
 	public ComboBoxModel<String> listarMedicamentos() {
 
 		ArrayList<Medicamento> listaMedicamentos = MedicamentoController.getMedicamentos();
@@ -104,7 +115,15 @@ public class PosologiaController {
 		return model;
 	}
 
-	// Realiza a busca de uma posologia na lista por meio do código
+	/**
+	 * Realiza a busca de uma posologia na lista por meio do código
+	 * 
+	 * @param buscarCodigoPosologia - string que será utilizada para comparar e
+	 *                              selecionar o que se busca.
+	 * @return null - retorna os dados da posologia que está com aquele código
+	 *         buscado
+	 */
+	// Busca posologia pelo seu código
 	public static Posologia buscarPosologia(String buscarCodigoPosologia) {
 		for (int i = 0; i < posologias.size(); i++) {
 			if (posologias.get(i).getCodigoPosologia().equals(buscarCodigoPosologia)) {
@@ -114,7 +133,15 @@ public class PosologiaController {
 		return null;
 	}
 
-	// Exclui o paciente da lista a partir do seu cpf
+	/**
+	 * Exclui a posologia da lista a partir do seu código
+	 * 
+	 * @param excluirCODPosologia -string que será utilizada para comparar e
+	 *                            selecionar o que se busca.
+	 * @return null - remove os dados da posologia que está com aquele código
+	 *         buscado
+	 */
+	// Exlcui posologia pelo seu código
 	public static Posologia excluirPosologia(String excluirCODPosologia) {
 		for (int i = 0; i < posologias.size(); i++) {
 			if (posologias.get(i).getCodigoPosologia().equals(excluirCODPosologia)) {
@@ -124,7 +151,11 @@ public class PosologiaController {
 		return null;
 	}
 
-	// Carrega dados na lista de posologias
+	/**
+	 * Realizando carregamento de dados aleatórios
+	 * 
+	 */
+	// Dados aleatórios
 	public static void dadosPosologia() {
 
 		Posologia posologiaA = new Posologia("Edilberto", "LORATAMED", "2", "diariamente", "08:00", "20:00", "", "", "",
@@ -141,6 +172,12 @@ public class PosologiaController {
 		posologias.add(posologiaC);
 	}
 
+	/**
+	 * Os seguintes métodos concretizam a ação dos botões pressionados
+	 * view.PrincpalPosologia. A execução de cada método abaixo dependerá da cadeia
+	 * condicional que está descrito nas linhas 53 a 76
+	 * 
+	 */
 	private void executarBotaoVoltar() {
 		TelaPrincipal obj = new TelaPrincipal();
 		obj.setVisible(true);
@@ -185,32 +222,8 @@ public class PosologiaController {
 		this.view_principalPosologia = view_principalPosologia;
 	}
 
-	public CadastroPosologia getView_cadastroPosologia() {
-		return view_cadastroPosologia;
-	}
-
-	public void setView_cadastroPosologia(CadastroPosologia view_cadastroPosologia) {
-		this.view_cadastroPosologia = view_cadastroPosologia;
-	}
-
-	public ListaPosologia getView_listaPosologia() {
-		return view_listaPosologia;
-	}
-
-	public void setView_listaPosologia(ListaPosologia view_listaPosologia) {
-		this.view_listaPosologia = view_listaPosologia;
-	}
-
 	public static void setPosologias(List<Posologia> posologias) {
-		PosologiaController.posologias = posologias;
-	}
-
-	public EdicaoPosologia getView_EdicaoPosologia() {
-		return view_EdicaoPosologia;
-	}
-
-	public void setView_EdicaoPosologia(EdicaoPosologia view_EdicaoPosologia) {
-		this.view_EdicaoPosologia = view_EdicaoPosologia;
+		PosologiaController.posologias = (ArrayList<Posologia>) posologias;
 	}
 
 }

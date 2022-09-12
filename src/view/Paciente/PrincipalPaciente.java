@@ -12,6 +12,14 @@ import javax.swing.SwingConstants;
 
 import controller.Paciente.PacienteController;
 
+/**
+ * É a tela principal dos pacientes, onde contém os botões que concedem acesso
+ * ao cadastro, edição, listagem, busca, exclusão e retorno para a tela
+ * anterior.
+ * 
+ * @author Caetano.
+ * @version 09 set 22.
+ */
 public class PrincipalPaciente extends JFrame implements ActionListener {
 
 	private static JFrame PrincipalPaciente = new JFrame("Paciente - Caixa de Remédios");
@@ -28,6 +36,10 @@ public class PrincipalPaciente extends JFrame implements ActionListener {
 
 	private final PacienteController controller;
 
+	/**
+	 * Defineas as dimensões físicas da view.Paciente.PrincipalPaciente as posições
+	 * e nomes dos componetes gráficos que estão na referida view
+	 */
 	public PrincipalPaciente() {
 		setResizable(false);
 		setTitle("Caixa de remédio - T8.1M");
@@ -35,7 +47,6 @@ public class PrincipalPaciente extends JFrame implements ActionListener {
 		this.setBounds(100, 100, 275, 316);
 		getContentPane().setLayout(null);
 
-		// PACIENTES
 		panelPacientes = new JPanel();
 		panelPacientes.setBounds(20, 95, 229, 170);
 		getContentPane().add(panelPacientes);
@@ -81,10 +92,19 @@ public class PrincipalPaciente extends JFrame implements ActionListener {
 		btnExcluirPaciente.addActionListener(this);
 		btnVoltar.addActionListener(this);
 
+		// Invoca o controller, que neste caso, é PacienteController, apontando que
+		// a ação está descrita nesta parte do código
 		this.controller = new PacienteController(this);
 
 	}
 
+	/**
+	 * Está recebendo, o evento dos botões que estão na
+	 * view.Paciente.PrincipalPaciente e invoca o controller
+	 * controller.Paciente.PacienteController para saber qual deve ser a ação
+	 * executada
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		controller.executarBotao(e.getSource());

@@ -6,8 +6,9 @@ import controller.Posologia.PosologiaController;
 import view.TelaPrincipal.TelaPrincipal;
 
 /**
- * É a responsável para executar a tela principal.Importa os Controller's e
- * invoca os dados já cadastrados.
+ * É a responsável para executar a tela view.TelaPrincipal e invoca os dados já
+ * cadastrados que estão em PacienteController, MedicamentoController e
+ * PosologiaController.
  * 
  * @author Edilberto.
  * @version 09 set 22.

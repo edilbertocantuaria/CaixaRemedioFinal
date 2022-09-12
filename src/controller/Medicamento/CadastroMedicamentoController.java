@@ -6,15 +6,37 @@ import model.Medicamento;
 import view.Medicamento.CadastroMedicamento;
 import view.Medicamento.PrincipalMedicamento;
 
+/**
+ * Responsável por pegar todos os dados que estão na view.CadastroMedicamento e
+ * alocolocá-los no ArrayList medicamentos, que está na classe
+ * MedicamentoController.
+ * 
+ * @author Edilberto
+ * @version 09 set 22
+ *
+ */
 public class CadastroMedicamentoController {
 
 	private CadastroMedicamento view;
 
+	/**
+	 * Chama o método construtor da classe CadastroMedicamento
+	 * 
+	 * @param view - é a classe view.Medicamento.CadastroMedicamento
+	 */
 	public CadastroMedicamentoController(CadastroMedicamento view) {
 		this.view = view;
 
 	}
 
+	/**
+	 * Está recebendo, o evento dos botões que estão classe
+	 * view.Medicamento.CadastroMedicamento e identifica qual o método deve ser
+	 * executado.
+	 * 
+	 * @param botaoApertado - evento que é descrito na
+	 *                      view.Medicamento.CadastroMedicamento
+	 */
 	public void executarBotao(Object botaoApertado) {
 		if (botaoApertado == view.getBtnVoltar()) {
 			this.voltarTelaAnterior();
@@ -25,6 +47,11 @@ public class CadastroMedicamentoController {
 
 	}
 
+	/**
+	 * Ao clicar no botão Voltar, este método limpa os campos e retorna para a tela
+	 * view.Medicamento.PrincipalMedicamento
+	 * 
+	 */
 	public void voltarTelaAnterior() {
 		// limpando os campos dos jtextfield's
 		view.tfNomeMedicamento.setText("");
@@ -41,6 +68,12 @@ public class CadastroMedicamentoController {
 
 	}
 
+	/**
+	 * Ao clicar no botão para cadastrar, este método executa uma busca para evitar
+	 * dois nomes de medicamentos iguais. Sendo bem sucedido, pega os dados que
+	 * estão na view e aloca no ArrayList medicamentos
+	 * 
+	 */
 	public void cadastraMedicamento() {
 
 		String nomeMedicacao = view.getTfNomeMedicamento().getText();
@@ -64,13 +97,6 @@ public class CadastroMedicamentoController {
 			String principioAtivo = view.getTfPrincipioAtivo().getText().trim();
 			String observacaoAdicionalMedicamento = view.getTfObsAdcMedicamento().getText().trim();
 
-			/**
-			 * Adiciona os dados inseridos acima no ArrayList medicamentos. Este ArrayList
-			 * está em controller.MedicamentoController, linhas 23 a 26.
-			 * 
-			 * @version 09 set 22
-			 */
-
 			if (view.getTfNomeMedicamento().getText().isEmpty() || view.getTfCodigo().getText().isEmpty()
 					|| view.getTfDescricao().getText().isEmpty() || view.getTfFabricante().getText().isEmpty()
 					|| view.getTfBula().getText().isEmpty() || view.getTfPrincipioAtivo().getText().isEmpty()) {
@@ -78,6 +104,8 @@ public class CadastroMedicamentoController {
 						"Não foi possível realizar o cadastro: os dados do medicamento não podem estar vazios!");
 
 			} else {
+				// Adiciona os dados inseridos acima no ArrayList medicamentos. Este ArrayList
+				// está em controller.MedicamentoController.
 				Medicamento medicamento = new Medicamento(nomeRemedio, codigo, descricao, fabricante, bula,
 						principioAtivo, observacaoAdicionalMedicamento);
 				MedicamentoController.medicamentos.add(medicamento);

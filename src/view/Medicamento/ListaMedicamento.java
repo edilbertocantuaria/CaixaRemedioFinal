@@ -18,10 +18,11 @@ import controller.Medicamento.MedicamentoController;
 import model.Medicamento;
 
 /**
- * É a tela para a listagem dos medicamentos. Ela busca exibir as informações de
- * todos medicamentos presentes no ArrayList medicamentos.
+ * É a tela para a listagem dos medicamentos. Ela recebe o os dados necessários
+ * e envia para o controller.Medicamento.ListaMedicamentoController e, se
+ * cadastrado no ArrayList, lista-o.
  * 
- * @author Edilberto.
+ * @author Caetano.
  * @version 09 set 22.
  */
 public class ListaMedicamento implements ActionListener {
@@ -39,11 +40,9 @@ public class ListaMedicamento implements ActionListener {
 	private ListaMedicamentoController controller;
 
 	/**
-	 * Define as dimensões físicas da tela ListaMedicamento
+	 * Define as dimensões físicas da view.Medicamento.ListaMedicamento
 	 * 
-	 * @version 09 set 22.
 	 */
-
 	public ListaMedicamento() {
 		frame.setSize(1000, 280);
 
@@ -64,12 +63,10 @@ public class ListaMedicamento implements ActionListener {
 	}
 
 	/**
-	 * Define as posições e nomes dos componetes gráficos que estão na tela
-	 * ListaMedicamento
+	 * Define as posições e nomes dos componetes gráficos que estão na
+	 * view.Medicamento.ListaMedicamento
 	 * 
-	 * @version 09 out 22.
 	 */
-
 	private void placeComponentes(JPanel panel) {
 		setController(new ListaMedicamentoController(this));
 
@@ -117,12 +114,7 @@ public class ListaMedicamento implements ActionListener {
 		btnAtualizar.setBounds(784, 207, 190, 23);
 		btnAtualizar.addActionListener(this);
 		panel.add(btnAtualizar);
-		/**
-		 * Determina a ação do btnVoltar, que neste caso fecha a tela ListaMedicamento e
-		 * abre a tela PrincipalMedicamento
-		 * 
-		 * @version 09 set. 22.
-		 */
+
 		btnVoltar = new JButton("Voltar para tela anterior");
 		btnVoltar.setBounds(10, 207, 190, 23);
 		btnVoltar.addActionListener(this);
@@ -130,6 +122,8 @@ public class ListaMedicamento implements ActionListener {
 		panel.setLayout(null);
 		panel.add(btnVoltar);
 
+		// Invoca o controller, que neste caso, é ListaMedicamentoController, apontando
+		// que a ação está descrita nesta parte do código
 		this.controller = new ListaMedicamentoController(this);
 
 	}
@@ -139,6 +133,13 @@ public class ListaMedicamento implements ActionListener {
 
 	}
 
+	/**
+	 * Está recebendo, o evento dos botões que estão na
+	 * view.Medicamento.ListaMedicamento e invoca o controller
+	 * controller.Medicamento.ListaMedicamento para saber qual deve ser a ação
+	 * executada
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		controller.executarBotao(e.getSource());

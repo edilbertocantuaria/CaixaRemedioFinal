@@ -16,6 +16,9 @@ import controller.Medicamento.MedicamentoController;
  * É a tela principal dos medicamentos, onde contém os botões que concedem
  * acesso ao cadastro, edição, listagem, busca, exclusão e retorno para a tela
  * anterior.
+ * 
+ * @author Caetano.
+ * @version 09 set 22.
  */
 public class PrincipalMedicamento extends JFrame implements ActionListener {
 
@@ -31,13 +34,13 @@ public class PrincipalMedicamento extends JFrame implements ActionListener {
 	private final JButton btnExcluirMedicamento;
 	private final JButton btnVoltar;
 
-	/*
-	 * Invoca a classe controller para a referida tela, que, neste caso, é
-	 * controller.MedicamentoController
-	 */
 	private final MedicamentoController controller;
 
-	// Define os elementos gráficos da tela PrincipalMedicamento
+	/**
+	 * Defineas as dimensões físicas da view.Medicamento.PrincipalMedicamento as
+	 * posições e nomes dos componetes gráficos que estão na referida view
+	 */
+
 	public PrincipalMedicamento() {
 		setResizable(false);
 		setTitle("Caixa de remédio - T8.1M");
@@ -91,23 +94,18 @@ public class PrincipalMedicamento extends JFrame implements ActionListener {
 		btnExcluirMedicamento.addActionListener(this);
 		btnVoltar.addActionListener(this);
 
-		/**
-		 * Invoca a classe controller.MedicamentoController para executar o comando. É
-		 * como se dissesse "O comando que você quer está descrito em no lugar tal!".
-		 * 
-		 * @version 09 set 22.
-		 */
+		// Invoca o controller, que neste caso, é MedicamentoController, apontando
+		// que a ação está descrita nesta parte do código
 		this.controller = new MedicamentoController(this);
 
 	}
 
 	/**
-	 * Sobrescrita. É um comando que diz "Identifiquei a ação que você executou, e
-	 * ela está descrita em tal lugar" Esse "tal lugar" é a classe
-	 * controller.MedicamentoController, que vai procurar pelo método executarBotao,
-	 * que terá como parâmetro o evento ocorrido.
+	 * Está recebendo, o evento dos botões que estão na
+	 * view.Medicamento.PrincipalMedicamento e invoca o controller
+	 * controller.Medicamento.MedicamentoController para saber qual deve ser a ação
+	 * executada
 	 * 
-	 * @version 09 set 22.
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {

@@ -6,14 +6,36 @@ import model.Pessoa;
 import view.Paciente.EdicaoPaciente;
 import view.Paciente.PrincipalPaciente;
 
+/**
+ * Esta classe é responsável pela comunicação entre a classe
+ * view.Paciente.EdicaoPaciente e a classe
+ * controller.Paciente.PacienteController, editando um objeto desejado e
+ * retornando seus valores e atualizando-os.
+ * 
+ * @author Edilberto
+ * @version 11 set 22.
+ *
+ */
 public class EdicaoPacienteController {
 
 	private EdicaoPaciente view;
 
+	/**
+	 * Chama o método construtor da classe EdicaoPaciente
+	 * 
+	 * @param view - é a classe view.Paciente.EdicaoPaciente
+	 */
 	public EdicaoPacienteController(EdicaoPaciente view) {
 		this.view = view;
 	}
 
+	/**
+	 * Está recebendo, o evento dos botões que estão em view.Paciente.EdicaoPaciente
+	 * e identifica qual o método deve ser executado.
+	 * 
+	 * 
+	 * @param botaoApertado - evento que é descrito na view.Paciente.EdicaoPaciente
+	 */
 	public void executarBotao(Object botaoApertado) {
 		if (botaoApertado == view.getBtnVoltar()) {
 			this.voltarTelaAnterior();
@@ -31,6 +53,11 @@ public class EdicaoPacienteController {
 
 	}
 
+	/**
+	 * Ao clicar no botão Voltar, este método limpa os campos e retorna para a tela
+	 * view.Paciente.PrincipalPaciente
+	 * 
+	 */
 	public void voltarTelaAnterior() {
 		// limpando os campos dos jtextfield's
 		view.jftCPFBusca.setText("");
@@ -43,6 +70,13 @@ public class EdicaoPacienteController {
 		EdicaoPaciente.getFrame().dispose();
 	}
 
+	/**
+	 * Ao clicar no botão para editar, este método invoca a classe
+	 * PacienteController, procurando pelo método buscarPacientes, passando como
+	 * parâmetro o código da paciente, retornando os dados solicidados que compõem o
+	 * ArrayList pacientes
+	 * 
+	 */
 	public void edicaoPaciente() {
 		view.jftCPFBusca.requestFocus();
 
@@ -50,6 +84,8 @@ public class EdicaoPacienteController {
 
 			String cpf = view.jftCPFBusca.getText();
 
+			// Invoca o controller para que ele procure o paciente pelo seu CPF no
+			// método buscarPacientes.
 			PacienteController pacienteController = new PacienteController(null);
 			Pessoa resultado = pacienteController.buscarPacientes(cpf);
 			if (resultado != null) {
@@ -87,6 +123,12 @@ public class EdicaoPacienteController {
 		}
 	}
 
+	/**
+	 * Ao clicar no botão para atualizar, este método invoca a classe
+	 * PacienteController, atualizando os dados existentes no ArrayList pacientes
+	 * pelos dados que estão inseridos na view.EditarPaciente, sem mudar sua posição
+	 * dentro do ArryList, somente as informações
+	 */
 	public void atualizarPaciente() {
 		String cpfBusca = view.jftCPFBusca.getText();
 
@@ -124,6 +166,9 @@ public class EdicaoPacienteController {
 		}
 
 		else {
+			// Invoca o controller para que ele atualize o paciente, substituindo as
+			// informações antigas e inserindo as novas
+
 			PacienteController pacienteController = new PacienteController(null);
 			Pessoa paciente = pacienteController.buscarPacientes(cpfBusca);
 

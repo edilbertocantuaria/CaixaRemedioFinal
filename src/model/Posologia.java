@@ -2,6 +2,15 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * Cria a classe posologia, onde interagem com medicação e determina quais são
+ * as variáveis que devem estar presente quando for trabalhar no quesito
+ * posologia.
+ * 
+ * 
+ * @author Edilberto
+ * @version 11 set 22
+ */
 public class Posologia {
 
 	private final ArrayList<Medicamento> medicamentos;
@@ -23,6 +32,51 @@ public class Posologia {
 	private String observacaoAdicionalPosologia;
 	private String codigoPosologia;
 
+	/**
+	 * Construtor da classe Posologia: diz como tipo Posologia deve ser organizado
+	 * dentro do seu ArrayList, definindo também qual deve ser o tipo de variável.
+	 * 
+	 * @param nomePaciente                 - recebe a string do nome do Paciente.
+	 * @param nomeMedicamento              - recebe a string do nome do Medicamento.
+	 * @param numeroVezes                  - recebe uma string que informa quantas
+	 *                                     vezes o remédio deve ser utilizado.
+	 * @param rotinaMedicacao              - recebe a string que informa se aquele
+	 *                                     medicamento deve ser consumido
+	 *                                     diáriamente, semanalmente, etc.
+	 * @param horario1                     - recebe a string que informa qual deve
+	 *                                     ser o 1º horário para consumir o
+	 *                                     medicamento.
+	 * @param horario2                     - recebe a string que informa qual deve
+	 *                                     ser o 2º horário para consumir o
+	 *                                     medicamento.
+	 * @param horario3                     - recebe a string que informa qual deve
+	 *                                     ser o 3º horário para consumir o
+	 *                                     medicamento.
+	 * @param horario4                     - recebe a string que informa qual deve
+	 *                                     ser o 4º horário para consumir o
+	 *                                     medicamento.
+	 * @param horario5                     - recebe a string que informa qual deve
+	 *                                     ser o 5º horário para consumir o
+	 *                                     medicamento.
+	 * @param horario6                     - recebe a string que informa qual deve
+	 *                                     ser o 6º horário para consumir o
+	 *                                     medicamento.
+	 * @param dosagem2                     - recebe a string do nome que informa a
+	 *                                     dosagem a ser consumida. Dessa forma pode
+	 *                                     consumir 2 + aspecto.
+	 * @param aspectoMedicamento           - recebe a string que caracteriza se o
+	 *                                     medicamento se apresenta em gota, xarope,
+	 *                                     comprimido, capsulas, etc.
+	 * @param dataInicioTratamento         - recebe a string que descreve a data
+	 *                                     inicial do tratamento
+	 * @param dataFimTratamento            - recebe a string que descreve a data
+	 *                                     final do tratamento
+	 * @param observacaoAdicionalPosologia - recebe a string que recebe um
+	 *                                     comentário adicional que o usário julgue
+	 *                                     importante
+	 * @param codigoPosologia              - recebe a string de 3 dígitos para
+	 *                                     identificar a posologia
+	 */
 	public Posologia(String nomePaciente, String nomeMedicamento, String numeroVezes, String rotinaMedicacao,
 			String horario1, String horario2, String horario3, String horario4, String horario5, String horario6,
 			String dosagem2, String aspectoMedicamento, String dataInicioTratamento, String dataFimTratamento,
@@ -180,6 +234,11 @@ public class Posologia {
 		this.codigoPosologia = codigoPosologia;
 	}
 
+	/**
+	 * Método que converte os dados para string, imprimindo seus "valores", não o
+	 * seu endereço na memória
+	 * 
+	 */
 	@Override
 	public String toString() {
 		return "Posologia [medicamentos=" + medicamentos + ",\n\n nomePaciente=" + nomePaciente + ",\n nomeMedicamento="

@@ -17,6 +17,14 @@ import controller.Posologia.ListaPosologiaController;
 import controller.Posologia.PosologiaController;
 import model.Posologia;
 
+/**
+ * É a tela para a listagem das posologias. Ela recebe o nome do posologia,
+ * envia para o controller.Posologia.EdicaoPosologiaController e, se cadastrado
+ * no ArrayList, lista-o.
+ * 
+ * @author Caetano.
+ * @version 09 set 22.
+ */
 public class ListaPosologia implements ActionListener {
 
 	private static JFrame frame = new JFrame("Lista de posologias");
@@ -30,6 +38,10 @@ public class ListaPosologia implements ActionListener {
 
 	private ListaPosologiaController controller;
 
+	/**
+	 * Define as dimensões físicas da view.Posologia.EdicaoPosologia
+	 * 
+	 */
 	public ListaPosologia() {
 		frame.setSize(1375, 470);
 
@@ -42,6 +54,11 @@ public class ListaPosologia implements ActionListener {
 
 	}
 
+	/**
+	 * Define as posições e nomes dos componetes gráficos que estão na
+	 * view.Posologia.EdicaoPosologia EdicaoPosologia
+	 * 
+	 */
 	private void placeComponentes(JPanel panel) {
 		setController(new ListaPosologiaController(this));
 
@@ -90,9 +107,19 @@ public class ListaPosologia implements ActionListener {
 		btnVoltar.addActionListener(this);
 		panel.add(btnVoltar);
 
+		// Invoca o controller, que neste caso, é EdicaoPosologiaController,
+		// apontandoque a ação está descrita nesta parte do código
 		this.controller = new ListaPosologiaController(this);
 
 	}
+
+	/**
+	 * Está recebendo, o evento dos botões que estão na
+	 * view.Posologia.EdicaoPosologia e invoca o controller
+	 * controller.Posologia.EdicaoPosologia para saber qual deve ser a ação
+	 * executada
+	 * 
+	 */
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

@@ -17,6 +17,14 @@ import controller.Paciente.ListaPacienteController;
 import controller.Paciente.PacienteController;
 import model.Paciente;
 
+/**
+ * É a tela para a listagem dos pacientes. Ela recebe o nome do paciente, envia
+ * para o controller.Paciente.EdicaoPacienteController e, se cadastrado no
+ * ArrayList, lista-o.
+ * 
+ * @author Caetano.
+ * @version 09 set 22.
+ */
 public class ListaPaciente implements ActionListener {
 	private static JFrame frame = new JFrame("Lista de pacientes");
 	private JLabel lbSemMedicamento = new JLabel("Ainda não há pacientes cadastrados =(");
@@ -29,6 +37,10 @@ public class ListaPaciente implements ActionListener {
 	private ListaPacienteController controller;
 	public JButton btnAtualizar;
 
+	/**
+	 * Define as dimensões físicas da view.Paciente.EdicaoPaciente
+	 * 
+	 */
 	public ListaPaciente() {
 
 		frame.setSize(800, 280);
@@ -41,6 +53,10 @@ public class ListaPaciente implements ActionListener {
 
 	}
 
+	/**
+	 * Define as posições e nomes dos componetes gráficos que estão na
+	 * view.Paciente.EdicaoPaciente EdicaoPaciente
+	 */
 	private void placeComponentes(JPanel panel) {
 		setController(new ListaPacienteController(this));
 
@@ -85,8 +101,18 @@ public class ListaPaciente implements ActionListener {
 		btnVoltar.addActionListener(this);
 		panel.setLayout(null);
 		panel.add(btnVoltar);
+
+		// Invoca o controller, que neste caso, é EdicaoPacienteController, apontando
+		// que a ação está descrita nesta parte do código
 		this.controller = new ListaPacienteController(this);
 	}
+
+	/**
+	 * Está recebendo, o evento dos botões que estão na view.Paciente.EdicaoPaciente
+	 * e invoca o controller controller.Paciente.EdicaoPaciente para saber qual deve
+	 * ser a ação executada
+	 * 
+	 */
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

@@ -12,12 +12,13 @@ import javax.swing.JTextField;
 import controller.Medicamento.CadastroMedicamentoController;
 
 /**
- * É a tela para o cadastro dos medicamentos, onde ocorre create + read do CRUD.
+ * É a tela para a cadastro dos medicamentos. Ela recebe o os dados necessários
+ * e envia para o controller.Medicamento.CadastroMedicamentoController e, se já
+ * cadastrado no ArrayList, exibe uma mensagem informando a existência deste.
  * 
- * @author Edilberto.
+ * @author Caetano.
  * @version 09 set 22.
  */
-
 public class CadastroMedicamento implements ActionListener {
 	private static JFrame frame = new JFrame("Cadastro de Medicamento");
 
@@ -47,11 +48,9 @@ public class CadastroMedicamento implements ActionListener {
 	private CadastroMedicamentoController controller;
 
 	/**
-	 * Define as dimensões físicas da tela CadastroMedicamento
+	 * Define as dimensões físicas da view.Medicamento.CadastroMedicamento
 	 * 
-	 * @version 09 set 22.
 	 */
-
 	public CadastroMedicamento() {
 		frame.setSize(725, 410);
 
@@ -63,10 +62,9 @@ public class CadastroMedicamento implements ActionListener {
 	}
 
 	/**
-	 * Define as posições e nomes dos componetes gráficos que estão na tela
-	 * CadastroMedicamento
+	 * Define as posições e nomes dos componetes gráficos que estão na
+	 * view.Medicamento.CadastroMedicamento CadastroMedicamento
 	 * 
-	 * @version 09 out 22.
 	 */
 	private void placeComponents(JPanel panel) {
 		setController(new CadastroMedicamentoController(this));
@@ -136,34 +134,29 @@ public class CadastroMedicamento implements ActionListener {
 		tfPrincipioAtivo.setBounds(399, 259, 300, 20);
 		panel.add(tfPrincipioAtivo);
 
-		/**
-		 * Determina a ação do btnVoltar, que neste caso fecha a tela
-		 * CadastroMedicamento e abre a tela PrincipalMedicamento
-		 * 
-		 * @version 09 set. 22.
-		 */
 		btnVoltar = new JButton("Voltar para tela anterior");
 		btnVoltar.setBounds(10, 337, 175, 23);
 		btnVoltar.addActionListener(this);
 		panel.add(btnVoltar);
-
-		/**
-		 * Determina a ação do btnCadastro, que neste caso fecha a tela
-		 * PrincipalMedicamento e abre a tela CadastroMedicamento, solicitando os dados
-		 * necessários
-		 * 
-		 * @version 09 set. 22.
-		 */
 
 		btnCadastrarMedicamento = new JButton("Cadastrar Medicamento");
 		btnCadastrarMedicamento.addActionListener(this);
 		btnCadastrarMedicamento.setBounds(524, 336, 175, 23);
 		panel.add(btnCadastrarMedicamento);
 
+		// Invoca o controller, que neste caso, é CadastroMedicamentoController,
+		// apontando que a ação está descrita nesta parte do código
 		this.controller = new CadastroMedicamentoController(this);
 
 	}
 
+	/**
+	 * Está recebendo, o evento dos botões que estão na
+	 * view.Medicamento.CadastroMedicamento e invoca o controller
+	 * controller.Medicamento.CadastroMedicamento para saber qual deve ser a ação
+	 * executada
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		controller.executarBotao(e.getSource());
